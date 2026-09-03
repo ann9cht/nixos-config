@@ -71,8 +71,8 @@
       };
 
       launcher = {
-        position = "bottom";
-        width = 600;
+        position = "right";
+        width = 450;
         itemCount = 6;
         terminalCommand = "kitty -e";
         smartRanking = true;
