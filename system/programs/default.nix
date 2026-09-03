@@ -4,9 +4,7 @@
   imports = [
     ./fcitx5.nix
     ./fonts.nix
-    ./utils.nix
+    ./tweaks.nix
     ./hyprland
   ];
-
-  environment.pathsToLink = [ "share/thumbnailers" ]; # Xem trước ảnh HEIC 
 }

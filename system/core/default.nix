@@ -6,6 +6,8 @@
     ./user.nix
   ];
 
+  hardware.graphics.enable = true;
+
   time.timeZone = "Asia/Ho_Chi_Minh";
 
   i18n = {
