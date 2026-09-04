@@ -10,72 +10,36 @@
     systemd.enable = true;
 
     settings = {
-      wallpaperDir = "/home/ann9cht/Wallpapers";
+      wallpaperDir = "/home/username/Pictures/Wallpapers";
 
       general = {
-        location = {
-          latitude = 18.6733;
-          longitude = 105.6813;
-          city = "Vinh";
-          region = "Nghe An";
-          country_name = "Viet Nam";
-          country_code = "VN";
-          timezone = "Asia/Bangkok";
-          source = "manual";
-        };
-        language = "vi";
-        avatarPath = "/home/ann9cht/Pictures/avatar.jpg";
-        muteSfx = false;
-        sfxVolume = 100;
-        quickactions = true;
-        weatherInterval = 15;
+        language = "en";
         weatherUnit = "metric";
+        weatherInterval = 30;
       };
 
       bar = {
-        position = "left";
-        width = 100;
-        opacity = 100;
-        style = "modular";
-        time = {
-          format = "HH:mm:ss";
-        };
-        autohide = false;
-        autohideTimeout = 1000;
-        workspaceCount = 5;
-        groupColors = {
-          g_kb = "#a0cafd";
-        };
+        position = "top";
+        style = "solid";
+        width = 40;
+        workspaceCount = 10;
         modules = {
-          left = [ "workspaces" "media" ];
-          center = [ "timedate" "info" "weather" ];
-          right = [
-            [ "sysmon" "tray" "wifi" "vol" ]
-          ];
+          left = [ "workspaces" ];
+          center = [ "time" ];
+          right = [ "tray" [ "kb" "wifi" "bt" "vol" "bat" ] ];
         };
+      };
+
+      theme = {
+        fontFamily = "Adwaita Mono";
+        borderRadius = 12;
+        matugen = true;
       };
 
       notifications = {
         dnd = false;
         position = "top right";
         sound = true;
-        soundFile = "${inputs.serpantinum}/src/assets/sounds/notifications/Botanica.wav";
-        showEmptyGraphic = true;
-      };
-
-      theme = {
-        fontFamily = "Noto Sans";
-        borderRadius = 29;
-        activePreset = "Matugen";
-        matugen = true;
-      };
-
-      launcher = {
-        position = "right";
-        width = 450;
-        itemCount = 6;
-        terminalCommand = "kitty -e";
-        smartRanking = true;
       };
     };
   };
