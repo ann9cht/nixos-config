@@ -13,7 +13,6 @@
     libheif # Xem trước ảnh HEIC
     ffmpegthumbnailer # Xem trước video
     evince # Xem trước pdf
-    xdg-user-dirs # Định tuyến thư mục
 
     # Gstreamer
     gst_all_1.gstreamer
