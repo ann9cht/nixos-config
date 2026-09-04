@@ -54,6 +54,9 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(file))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
 
+hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd("[float; size 400 500; center; animation popin] kitty"))
+hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd("[float; size 800 600; center; animation popin] dbus-run-session nautilus"))
+
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("serpantinum reload"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("serpantinum msg toggle clipboard"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("serpantinum msg toggle launcher"))

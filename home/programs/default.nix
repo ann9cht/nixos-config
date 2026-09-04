@@ -4,11 +4,10 @@
   imports = [
     ./codium.nix
     ./firefox.nix
-    ./nautilus.nix
+    ./file
     ./hyprland
     ./media
     ./misc
     ./office
-    ./shell
   ];
 }
