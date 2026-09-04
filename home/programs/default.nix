@@ -4,8 +4,7 @@
   imports = [
     ./codium.nix
     ./firefox.nix
-    ./nautilus.nix
-    ./gtk.nix
+    ./file
     ./hyprland
     ./media
     ./misc
