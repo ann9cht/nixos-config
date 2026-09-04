@@ -1,1 +1,6 @@
-hl.window_rule({match = {class = "^(Zotero)$" }, size = {"(monitor_w*0.45)", "(monitor_h*0.45)"} })
+hl.window_rule({
+    match = { class = "^(org%.gnome%.Loupe)$" },
+    float = true,
+    center = true,
+    size = { "45%", "45%" },
+})
