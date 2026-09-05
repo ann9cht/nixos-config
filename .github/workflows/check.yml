@@ -1,22 +1,10 @@
 name: Check
-
-on: [push, pull_request, workflow_dispatch]
-
+on: [push, pull_request]
 jobs:
-  checks:
-    name: Check expressions
+  check:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
-      - uses: cachix/install-nix-action@v31
-        with:
-          extra_nix_config: |
-            auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            experimental-features = nix-command flakes
-      
-      - name: Setup Magic Cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
-
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix flake check

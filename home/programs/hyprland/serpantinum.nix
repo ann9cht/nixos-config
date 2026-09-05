@@ -26,7 +26,16 @@
         modules = {
           left = [ "workspaces" ];
           center = [ "time" ];
-          right = [ "tray" [ "kb" "wifi" "bt" "vol" "bat" ] ];
+          right = [
+            "tray"
+            [
+              "kb"
+              "wifi"
+              "bt"
+              "vol"
+              "bat"
+            ]
+          ];
         };
       };
 

@@ -8,7 +8,10 @@
       "ann9cht" = {
         isNormalUser = true;
         description = "ann9cht";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+        ];
         shell = pkgs.fish;
       };
       uinput_proxy = {
@@ -17,6 +20,6 @@
         description = "Fcitx5 Lotus uinput proxy user";
       };
     };
-    groups.uinput_proxy = {};
+    groups.uinput_proxy = { };
   };
 }

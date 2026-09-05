@@ -16,9 +16,18 @@
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Times New Roman" "Liberation Serif" ];
-        sansSerif = [ "Arial" "Liberation Sans" ];
-        monospace = [ "Consolas" "DejaVu Sans Mono" ];
+        serif = [
+          "Times New Roman"
+          "Liberation Serif"
+        ];
+        sansSerif = [
+          "Arial"
+          "Liberation Sans"
+        ];
+        monospace = [
+          "Consolas"
+          "DejaVu Sans Mono"
+        ];
         emoji = [ "Noto Color Emoji" ];
       };
     };
