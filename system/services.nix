@@ -23,8 +23,5 @@
     gvfs.enable = true; # Mount phân vùng, ổ, thùng rác
     udisks2.enable = true; # Mount USB
     input-remapper.enable = true; # Setup chuột 6 nút
-    #upower.enable = true;
   };
-
-  security.polkit.enable = true;
 }
