@@ -3,24 +3,13 @@
 {
   imports = [
     ./keyd.nix
+    ./sddm.nix
   ];
 
   services = {
     xserver.xkb = {
       layout = "us";
       variant = "";
-    };
-
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      theme = "material-you";
-      extraPackages = with pkgs.kdePackages; [
-        qt5compat
-        qtsvg
-        qtdeclarative
-        qtwayland
-      ];
     };
 
     pipewire.pulse.enable = true; # Âm thanh
