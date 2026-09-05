@@ -7,8 +7,8 @@ _:
       ids = [ "30fa:1701" ];
       settings = {
         main = {
-          btn_extra = "C-v";
-          btn_side = "C-c";
+          mouseforward = "C-v";
+          mouseback = "C-c";
         };
       };
     };
