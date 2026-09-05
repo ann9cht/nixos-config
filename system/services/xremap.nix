@@ -6,7 +6,7 @@ _:
     withHypr = true;
 
     config = {
-      modmap = [
+      keymap = [
         {
           name = "Inphic mouse side buttons";
           device = {
