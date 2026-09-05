@@ -2,7 +2,7 @@ _:
 
 {
   imports = [
-    ./keyd.nix
+    ./xremap.nix
     ./sddm.nix
   ];
 
