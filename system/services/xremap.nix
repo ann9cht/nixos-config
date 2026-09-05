@@ -9,7 +9,9 @@ _:
       modmap = [
         {
           name = "Inphic mouse side buttons";
-          device = "INSTANT USB GAMING MOUSE";
+          device = {
+            name = "INSTANT USB GAMING MOUSE";
+          };
           remap = {
             "BTN_SIDE" = "C-c";
             "BTN_EXTRA" = "C-v";
