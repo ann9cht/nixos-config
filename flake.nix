@@ -3,7 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     git-hooks.url = "github:cachix/git-hooks.nix";
     serpantinum.url = "github:ilyamiro/serpantinum";
-    xremap-flake.url = "github:xremap/nix-flake";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -23,7 +22,6 @@
 
           inputs.serpantinum.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
-          inputs.xremap-flake.nixosModules.default
 
           {
             home-manager = {
