@@ -10,7 +10,7 @@ _:
         {
           name = "Inphic mouse side buttons";
           device = {
-            name = "INSTANT USB GAMING MOUSE";
+            only = [ "INSTANT USB GAMING MOUSE" ];
           };
           remap = {
             "BTN_SIDE" = "C-c";
