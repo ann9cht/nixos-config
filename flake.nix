@@ -3,7 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     git-hooks.url = "github:cachix/git-hooks.nix";
     serpantinum.url = "github:ilyamiro/serpantinum";
-    
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
