@@ -1,0 +1,7 @@
+require("modules/variables")
+require("modules/env")
+require("modules/autostart")
+require("modules/monitors")
+require("modules/rules")
+require("modules/settings")
+require("modules/keybinds")

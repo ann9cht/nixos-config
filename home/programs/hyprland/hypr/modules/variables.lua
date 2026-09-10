@@ -1,0 +1,5 @@
+mainMod = "SUPER"
+terminal = "kitty"
+file = "nautilus"
+browser = "firefox"
+editor = "codium"
