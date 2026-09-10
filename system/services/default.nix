@@ -1,8 +1,7 @@
-_:
-
 {
   imports = [
     ./sddm.nix
+    ./snapper.nix
   ];
 
   services = {

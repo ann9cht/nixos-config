@@ -1,5 +1,3 @@
-_:
-
 {
   imports = [
     ./file/gtk.nix

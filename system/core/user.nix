@@ -6,6 +6,7 @@
   users.users = {
     "ann9cht" = {
       isNormalUser = true;
+      initialPassword = "1";
       description = "ann9cht";
       extraGroups = [
         "networkmanager"

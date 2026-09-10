@@ -1,5 +1,3 @@
-_:
-
 {
   imports = [
     ./boot.nix
@@ -28,6 +26,8 @@ _:
       LC_TIME = "vi_VN";
     };
   };
+
+  zramSwap.enable = true;
 
   system.stateVersion = "26.05";
 }

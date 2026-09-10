@@ -3,10 +3,16 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     git-hooks.url = "github:cachix/git-hooks.nix";
     serpantinum.url = "github:ilyamiro/serpantinum";
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    #disko = {
+    #  url = "github:nix-community/disko";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     fcitx5-lotus = {
       url = "github:LotusInputMethod/fcitx5-lotus";
@@ -26,6 +32,7 @@
 
           inputs.serpantinum.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
+          #inputs.disko.nixosModules.disko
 
           {
             home-manager = {
