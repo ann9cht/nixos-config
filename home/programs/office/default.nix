@@ -4,7 +4,7 @@
   imports = [
     ./obsidian.nix
   ];
-  
+
   home = {
     packages = with pkgs; [ onlyoffice-desktopeditors ];
     activation.copyOfficeFonts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
