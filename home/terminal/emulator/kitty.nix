@@ -1,5 +1,3 @@
-_:
-
 {
   programs.kitty = {
     enable = true;
@@ -36,10 +34,10 @@ _:
     };
 
     extraConfig = ''
-      
-            include ~/.config/kitty/colors.conf
-            background #303446
-            cursor #c6a0f6
+
+      include ~/.config/kitty/colors.conf
+      background #303446
+      cursor #c6a0f6
     '';
   };
 }
