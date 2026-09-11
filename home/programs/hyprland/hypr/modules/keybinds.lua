@@ -59,8 +59,8 @@ hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
 hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd("[float; size 630 380; center; animation popin] kitty"))
 hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd("[float; size 800 600; center; animation popin] dbus-run-session nautilus"))
 
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("waydroid show-full-ui"))
-hl.bind(mainMod .. " + ALT + D", hl.dsp.exec_cmd("waydroid session stop"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waydroid show-full-ui"))
+hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("waydroid session stop"))
 
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("serpantinum reload"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("serpantinum msg toggle clipboard"))
@@ -69,7 +69,7 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("serpantinum msg toggle music"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("serpantinum msg toggle system"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("serpantinum msg toggle wallpaper"))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("serpantinum msg toggle calendar"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("serpantinum msg toggle network"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("serpantinum msg toggle network"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("serpantinum msg toggle volume"))
 hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd("serpantinum msg toggle guide"))
 
@@ -79,3 +79,6 @@ for i = 1, 10 do
   hl.bind(mainMod .. " + " .. key, hl.dsp.exec_cmd("serpantinum msg workspace " .. ws))
   hl.bind(mainMod .. " + ALT + " .. key, hl.dsp.exec_cmd("serpantinum msg workspace " .. ws .. " move"))
 end
+
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "-1" }))
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "+1" }))
