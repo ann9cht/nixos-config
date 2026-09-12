@@ -116,11 +116,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789150619,
-        "narHash": "sha256-Vsgv5atXkGWOOdLOL8oQLnZSGt1h140synPfFdwbyjU=",
+        "lastModified": 1789183968,
+        "narHash": "sha256-pEWnYdIF1pBMZwarp/rEPzl+Lknhm5hhjSfeLxH8nAA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e4345d5ae8aa1def34378d2a60ac5e6e4c8fd7c1",
+        "rev": "cd1c9e552f41894aeb5cc5cb353d5a1d61550357",
         "type": "github"
       },
       "original": {
@@ -192,11 +192,11 @@
         "serpantinum-wallpapers": "serpantinum-wallpapers"
       },
       "locked": {
-        "lastModified": 1789155150,
-        "narHash": "sha256-NXChTZ7HRuQSbn5Y07y7z+pXrJL1dgvhrGTfjlg6QKI=",
+        "lastModified": 1789166170,
+        "narHash": "sha256-O8stu66Uzbwu6eeyit5rEOjD8jAGWZ63LI/Zhazw48s=",
         "owner": "ilyamiro",
         "repo": "serpantinum",
-        "rev": "cab9a01fac6819ceeec7e8372d4059cf6230fc71",
+        "rev": "f24a10c264731c0991e7deac76c602698a6c237f",
         "type": "github"
       },
       "original": {
