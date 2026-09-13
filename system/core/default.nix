@@ -24,5 +24,6 @@
 
   zramSwap.enable = true;
 
+  # Không đc sửa
   system.stateVersion = "26.05";
 }
