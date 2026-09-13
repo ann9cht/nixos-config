@@ -34,15 +34,15 @@ hl.config({
   },
 
   render = {
-    direct_scanout = 0,
-    cm_enabled = 0,
-    send_content_type = 0,
-    cm_auto_hdr = 0,
- 		non_shader_cm = 0,
+    direct_scanout = false,
+    cm_enabled = false,
+    send_content_type = false,
+    cm_auto_hdr = false,
+ 		non_shader_cm = false,
 	},
 
   misc = {
-    vrr = 0,
+    vrr = false,
     focus_on_activate = false,
     font_family = "JetBrains Mono",
     disable_hyprland_logo = true,

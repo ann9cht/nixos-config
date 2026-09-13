@@ -52,12 +52,11 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("serpantinum volume lower"), { r
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("serpantinum volume raise"), { repeating = true, locked = true })
 
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd(terminalMini))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(file))
+hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd(fileMini))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
-
-hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd("[float; size 630 380;] kitty"))
-hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd("[float; size 800 600;] dbus-run-session nautilus"))
 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waydroid show-full-ui"))
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("waydroid session stop"))
