@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ nil ];
+  home.packages = with pkgs; [ nixd ];
 
   programs.vscodium = {
     enable = true;
