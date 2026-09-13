@@ -5,11 +5,6 @@
     ./user.nix
   ];
 
-  hardware = {
-    graphics.enable = true;
-    uinput.enable = true;
-  };
-
   time.timeZone = "Asia/Ho_Chi_Minh";
 
   i18n = {
@@ -29,5 +24,6 @@
 
   zramSwap.enable = true;
 
+  # Không đc sửa
   system.stateVersion = "26.05";
 }

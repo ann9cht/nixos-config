@@ -56,8 +56,8 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(file))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
 
-hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd("[float; size 630 380; center; animation popin] kitty"))
-hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd("[float; size 800 600; center; animation popin] dbus-run-session nautilus"))
+hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd("[float; size 630 380;] kitty"))
+hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd("[float; size 800 600;] dbus-run-session nautilus"))
 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waydroid show-full-ui"))
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("waydroid session stop"))
@@ -72,6 +72,7 @@ hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("serpantinum msg toggle calen
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("serpantinum msg toggle network"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("serpantinum msg toggle volume"))
 hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd("serpantinum msg toggle guide"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("serpantinum msg toggle autohide"))
 
 for i = 1, 10 do
   local ws = tostring(i)

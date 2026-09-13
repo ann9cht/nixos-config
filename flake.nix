@@ -53,7 +53,6 @@
           deadnix.enable = true;
           nixfmt.enable = true;
         };
-        excludes = [ "host/hardware-configuration.nix" ];
       };
 
       devShells.x86_64-linux.default =
