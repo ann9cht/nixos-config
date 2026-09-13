@@ -1,6 +1,9 @@
 {
   programs.kitty = {
     enable = true;
+    keybindings = {
+      "XF86Paste" = "paste_from_clipboard";
+    };
 
     settings = {
       font_family = "JetBrainsMono Nerd Font Mono";
