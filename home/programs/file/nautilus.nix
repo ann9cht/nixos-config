@@ -4,11 +4,12 @@
   home.packages = with pkgs; [
     nautilus
 
-    # Giải nén
+    # Giải nén/nén
     file-roller
     p7zip
     unzip
     unrar
+    zip
 
     libheif # Xem trước ảnh HEIC
     ffmpegthumbnailer # Xem trước video
