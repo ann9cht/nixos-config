@@ -11,7 +11,7 @@
       bld = "sudo nixos-rebuild switch --flake ~/Projects/nixos-config#nixdesk";
       cln = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old && sudo nix-collect-garbage -d";
       opt = "sudo nix-store --optimise";
-      upd = "nix flake update";
+      upd = "cd ~/Projects/nixos-config && nix flake update";
     };
   };
 }
