@@ -5,6 +5,7 @@
 
     ./codium.nix
     ./firefox.nix
+    ./remapper.nix
 
     ./hyprland
     ./media
