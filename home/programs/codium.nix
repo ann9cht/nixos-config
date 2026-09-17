@@ -9,5 +9,8 @@
       jnoortheen.nix-ide
       sumneko.lua
     ];
+    userSettings = {
+      "terminal.integrated.copyOnSelection" = true;
+    };
   };
 }
