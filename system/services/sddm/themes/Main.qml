@@ -30,6 +30,12 @@ Rectangle {
     
     readonly property string sansFont: customFont.name !== "" ? customFont.name : "Roboto, Inter, sans-serif"
 
+    function vnDateString(d) {
+        const days = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+        const months = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+        return days[d.getDay()] + ", " + d.getDate() + " " + months[d.getMonth()];
+    }
+
     function syncModel() {
         let str = pwd.text;
         let minLen = Math.min(str.length, charModel.count);
@@ -82,7 +88,7 @@ Rectangle {
     Connections {
         target: typeof sddm !== "undefined" ? sddm : null
         function onLoginFailed() {
-            root.errorMessage = "ACCESS DENIED";
+            root.errorMessage = "SAI MẬT KHẨU";
             pwd.text = "";
             charModel.clear();
             shakeAnim.start();
@@ -146,7 +152,7 @@ Rectangle {
                     let d = new Date();
                     hText.text = Qt.formatTime(d, "hh");
                     mText.text = Qt.formatTime(d, "mm");
-                    dateChipText.text = Qt.formatDate(d, "dddd, MMM d").toUpperCase();
+                    dateChipText.text = root.vnDateString(d).toUpperCase();
                 }
             }
 
@@ -181,7 +187,7 @@ Rectangle {
                 Text {
                     id: dateChipText
                     anchors.centerIn: parent
-                    text: Qt.formatDate(new Date(), "dddd, MMM d").toUpperCase()
+                    text: root.vnDateString(new Date()).toUpperCase()
                     font.family: root.sansFont
                     font.pixelSize: 11 * s
                     font.bold: true
@@ -196,7 +202,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
 
             Text {
-                text: "QUICK SETTINGS"
+                text: "TÁC VỤ NHANH"
                 font.family: root.sansFont
                 font.pixelSize: 11 * s
                 font.bold: true
@@ -249,7 +255,7 @@ Rectangle {
                             spacing: 2 * s
                             
                             Text {
-                                text: "POWER"
+                                text: "NGUỒN"
                                 font.family: root.sansFont
                                 font.pixelSize: 12 * s
                                 font.bold: true
@@ -257,7 +263,7 @@ Rectangle {
                                 Behavior on color { ColorAnimation { duration: 150 } }
                             }
                             Text {
-                                text: "SHUT DOWN"
+                                text: "TẮT MÁY"
                                 font.family: root.sansFont
                                 font.pixelSize: 9 * s
                                 color: powerMouse.containsMouse ? "#EEDDD2" : "#2F5578"
@@ -316,7 +322,7 @@ Rectangle {
                             spacing: 2 * s
                             
                             Text {
-                                text: "SESSION"
+                                text: "PHIÊN"
                                 font.family: root.sansFont
                                 font.pixelSize: 12 * s
                                 font.bold: true
@@ -324,13 +330,15 @@ Rectangle {
                                 Behavior on color { ColorAnimation { duration: 150 } }
                             }
                             Text {
-                                text: ((sessionHelper.currentItem && sessionHelper.currentItem.sName) ? sessionHelper.currentItem.sName : "PLASMA").toUpperCase()
+                                text: ((sessionHelper.currentItem && sessionHelper.currentItem.sName) ? sessionHelper.currentItem.sName : "PLASMA").toUpperCase().replace(/-/g, "\u2011")
                                 font.family: root.sansFont
                                 font.pixelSize: 9 * s
                                 color: sessionMouse.containsMouse ? "#EEDDD2" : "#2F5578"
                                 Behavior on color { ColorAnimation { duration: 150 } }
-                                elide: Text.ElideRight
+                                wrapMode: Text.WordWrap
                                 width: 90 * s
+                                maximumLineCount: 2
+                                elide: Text.ElideRight
                             }
                         }
                     }
@@ -389,7 +397,7 @@ Rectangle {
                             spacing: 2 * s
                             
                             Text {
-                                text: "REBOOT"
+                                text: "KHỞI ĐỘNG"
                                 font.family: root.sansFont
                                 font.pixelSize: 12 * s
                                 font.bold: true
@@ -397,7 +405,7 @@ Rectangle {
                                 Behavior on color { ColorAnimation { duration: 150 } }
                             }
                             Text {
-                                text: "RESTART"
+                                text: "KHỞI ĐỘNG LẠI"
                                 font.family: root.sansFont
                                 font.pixelSize: 9 * s
                                 color: rebootMouse.containsMouse ? "#EEDDD2" : "#2F5578"
@@ -456,7 +464,7 @@ Rectangle {
                             spacing: 2 * s
                             
                             Text {
-                                text: "SLEEP"
+                                text: "NGỦ"
                                 font.family: root.sansFont
                                 font.pixelSize: 12 * s
                                 font.bold: true
@@ -464,7 +472,7 @@ Rectangle {
                                 Behavior on color { ColorAnimation { duration: 150 } }
                             }
                             Text {
-                                text: "SUSPEND"
+                                text: "TẠM DỪNG"
                                 font.family: root.sansFont
                                 font.pixelSize: 9 * s
                                 color: suspendMouse.containsMouse ? "#EEDDD2" : "#2F5578"
@@ -519,7 +527,7 @@ Rectangle {
                             }
                         }
                         Text {
-                            text: "SYSTEM UI"
+                            text: "HỆ THỐNG"
                             font.family: root.sansFont
                             font.pixelSize: 10 * s
                             font.bold: true
@@ -528,7 +536,7 @@ Rectangle {
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Text {
-                            text: "•  now"
+                            text: "•  vừa xong"
                             font.family: root.sansFont
                             font.pixelSize: 10 * s
                             color: "#7C8CA0"
@@ -702,7 +710,7 @@ Rectangle {
 
                             Text {
                                 anchors.centerIn: parent
-                                text: root.errorMessage !== "" ? root.errorMessage : "PASSWORD REQUIRED"
+                                text: root.errorMessage !== "" ? root.errorMessage : "NHẬP MẬT KHẨU"
                                 font.family: root.sansFont
                                 font.pixelSize: 11 * s
                                 font.bold: true
@@ -746,7 +754,7 @@ Rectangle {
                             Text {
                                 id: userText
                                 anchors.centerIn: parent
-                                text: ((userHelper.currentItem && userHelper.currentItem.uName) ? userHelper.currentItem.uName : (userModel.lastUser || "USER")).toUpperCase()
+                                text: ((userHelper.currentItem && userHelper.currentItem.uName) ? userHelper.currentItem.uName : (userModel.lastUser || "NGƯỜI DÙNG")).toUpperCase()
                                 font.family: root.sansFont
                                 font.pixelSize: 10 * s
                                 font.bold: true
@@ -786,7 +794,7 @@ Rectangle {
                                     spacing: 6 * s
                                     
                                     Text {
-                                        text: "UNLOCK"
+                                        text: "MỞ KHOÁ"
                                         font.family: root.sansFont
                                         font.pixelSize: 10 * s
                                         font.bold: true
