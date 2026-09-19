@@ -10,45 +10,251 @@
     systemd.enable = true;
 
     settings = {
-      wallpaperDir = "/home/username/Pictures/Wallpapers";
-
       general = {
-        language = "en";
-        weatherUnit = "metric";
-        weatherInterval = 30;
-      };
-
-      bar = {
-        position = "top";
-        style = "solid";
-        width = 40;
-        workspaceCount = 10;
-        modules = {
-          left = [ "workspaces" ];
-          center = [ "time" ];
-          right = [
-            "tray"
-            [
-              "kb"
-              "wifi"
-              "bt"
-              "vol"
-              "bat"
-            ]
-          ];
+        language = "vi";
+        location = {
+          latitude = 18.6734;
+          longitude = 105.6922;
+          city = "Vinh";
+          region = "Nghe An";
+          country_name = "Viet Nam";
+          country_code = "VN";
+          timezone = "Asia/Bangkok";
+          source = "manual";
+          updated_at = 1789819859;
         };
+        avatarPath = "/home/ann9cht/Pictures/IMG_20260308_184916.jpg";
+        muteSfx = false;
+        sfxVolume = 100;
+        screenshotCaptureOnRelease = true;
+        quickactions = true;
+        weatherInterval = 15;
+        weatherUnit = "metric";
       };
 
       theme = {
-        fontFamily = "Adwaita Mono";
-        borderRadius = 12;
-        matugen = true;
+        fontFamily = "Noto Sans";
+        borderRadius = 24;
+        activePreset = "Macchiato";
+        matugen = false;
+        colors = {
+          base = "#24273a";
+          blue = "#8aadf4";
+          crust = "#181926";
+          green = "#a6da95";
+          mantle = "#1e2030";
+          maroon = "#ee99a0";
+          mauve = "#c6a0f6";
+          overlay0 = "#6e738d";
+          overlay1 = "#8087a2";
+          overlay2 = "#939ab7";
+          peach = "#f5a97f";
+          pink = "#f5bde6";
+          red = "#ed8796";
+          sapphire = "#7dc4e4";
+          subtext0 = "#a5adcb";
+          subtext1 = "#b8c0e0";
+          surface0 = "#363a4f";
+          surface1 = "#494d64";
+          surface2 = "#5b6078";
+          teal = "#8bd5ca";
+          text = "#cad3f5";
+          yellow = "#eed49f";
+        };
+      };
+
+      bar = {
+        position = "left";
+        width = 100;
+        opacity = 100;
+        style = "fill";
+        distinctPills = false;
+        time.format = "HH:mm:ss";
+        autohide = false;
+        autohideTimeout = 1000;
+        workspaceCount = 5;
+        groupColors = {
+          g_kb = "#c6a0f6";
+          g_tray = "#f5bde6";
+        };
+        modules = {
+          left = [
+            "workspaces"
+            "media"
+          ];
+          center = [
+            "timedate"
+            "info"
+            "weather"
+          ];
+          right = [
+            "sysmon"
+            [
+              "tray"
+              "wifi"
+              "vol"
+            ]
+          ];
+        };
+        sideWorkspacesStyle = "pacman";
+        workspacesStyle = "pills";
+      };
+
+      launcher = {
+        position = "right";
+        width = 420;
+        itemCount = 6;
+        terminalCommand = "kitty -e";
+        smartRanking = true;
+      };
+
+      dock = {
+        enabled = false;
+        position = "right";
+        elementSize = 50;
+        floating = true;
+        opacity = 100;
+        exclusive = false;
+        autohide = true;
+        autohideTimeout = 250;
+        editing = false;
+        apps = [
+          {
+            name = "Firefox";
+            comment = "";
+            desktop_id = "firefox";
+            icon = "firefox";
+          }
+          {
+            name = "VSCodium";
+            comment = "Code Editing. Redefined.";
+            desktop_id = "codium";
+            icon = "vscodium";
+          }
+          {
+            name = "Waydroid";
+            comment = "Run Android apps in a containerized environment.";
+            desktop_id = "Waydroid";
+            icon = "waydroid";
+          }
+          {
+            name = "Obsidian";
+            comment = "Knowledge base";
+            desktop_id = "obsidian";
+            icon = "obsidian";
+          }
+          {
+            name = "ONLYOFFICE";
+            comment = "Edit office documents";
+            desktop_id = "onlyoffice-desktopeditors";
+            icon = "onlyoffice-desktopeditors";
+          }
+          {
+            name = "Proton VPN";
+            comment = "Proton VPN GUI client";
+            desktop_id = "proton.vpn.app.gtk";
+            icon = "proton-vpn-logo";
+          }
+          {
+            name = "Tập tin";
+            comment = "Truy cập và tổ chức tập tin";
+            desktop_id = "org.gnome.Nautilus";
+            icon = "org.gnome.Nautilus";
+          }
+          {
+            name = "kitty";
+            comment = "Fast, feature-rich, GPU based terminal";
+            desktop_id = "kitty";
+            icon = "kitty";
+          }
+        ];
+        overrideBoundsCorrection = true;
+        enableScrolling = false;
+        visibleElements = 7;
+        hoverScale = 130;
+        cascadeScale = true;
       };
 
       notifications = {
         dnd = false;
         position = "top right";
+        horizontalPosition = 92;
+        verticalPosition = 8;
         sound = true;
+        soundFile = "${config.programs.serpantinum.package}/share/serpantinum/assets/sounds/notifications/Botanica.wav";
+        showEmptyGraphic = true;
+      };
+
+      osd = {
+        horizontalPosition = 50;
+        verticalPosition = 90;
+        orientation = "horizontal";
+        showCapsLock = true;
+        showNumLock = true;
+        showAirplane = true;
+        attachToBar = false;
+      };
+
+      idle = {
+        enabled = false;
+        manualInhibit = false;
+        actions = {
+          dim = {
+            id = "dim";
+            name = "Dim Screen";
+            timeout = 270;
+            enabled = true;
+            respectInhibitors = true;
+            mprisInhibit = false;
+            warningTimeout = 0;
+            warningCommand = "";
+            beforeCommand = "";
+            resumeCommand = "";
+            isCustom = false;
+          };
+          lock = {
+            id = "lock";
+            name = "Lock Session";
+            timeout = 300;
+            enabled = true;
+            respectInhibitors = true;
+            mprisInhibit = false;
+            warningTimeout = 10;
+            warningCommand = "";
+            beforeCommand = "";
+            resumeCommand = "";
+            isCustom = false;
+          };
+          dpms = {
+            id = "dpms";
+            name = "Display Off (DPMS)";
+            timeout = 360;
+            enabled = true;
+            respectInhibitors = true;
+            mprisInhibit = false;
+            warningTimeout = 0;
+            warningCommand = "";
+            beforeCommand = "";
+            resumeCommand = "";
+            isCustom = false;
+          };
+          suspend = {
+            id = "suspend";
+            name = "System Suspend";
+            timeout = 600;
+            enabled = true;
+            respectInhibitors = true;
+            mprisInhibit = false;
+            warningTimeout = 30;
+            warningCommand = "";
+            isCustom = false;
+          };
+        };
+        customActions = [ ];
+      };
+
+      sideBar = {
+        workspacesStyle = "pacman";
       };
     };
   };
