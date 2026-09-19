@@ -1,8 +1,9 @@
 {
   imports = [
     ./remapper.nix
-    ./sddm.nix
     ./snapper.nix
+
+    ./sddm
   ];
 
   services = {
