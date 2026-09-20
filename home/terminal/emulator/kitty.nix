@@ -17,7 +17,7 @@
       cursor_shape = "beam";
       cursor_beam_thickness = "1.5";
 
-      background_opacity = "1.0";
+      background_opacity = "0.85";
       confirm_os_window_close = 0;
 
       scrollback_lines = 10000;
