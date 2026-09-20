@@ -14,7 +14,6 @@
       vista-fonts
 
       nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
       nerd-fonts.fira-code
     ];
 
