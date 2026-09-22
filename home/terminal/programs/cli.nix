@@ -7,6 +7,8 @@
     fd
     file
     ripgrep
+
+    android-tools
   ];
 
   programs = {
