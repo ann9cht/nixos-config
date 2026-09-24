@@ -6,6 +6,4 @@
 
     ./hyprland
   ];
-
-  programs.kdeconnect.enable = true;
 }
