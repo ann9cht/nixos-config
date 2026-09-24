@@ -1,7 +1,5 @@
 {
   imports = [
-    ./services/kdeconnect.nix
-
     ./programs
     ./terminal
   ];
