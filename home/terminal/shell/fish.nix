@@ -20,7 +20,7 @@ in
       upd = "cd ${flakeDir} && nix flake update";
 
       # mở nhanh nixos-config
-      cnf = "codium ${flakeDir}";
+      cnf = "codium ${flakeDir}; exit";
 
       # eza dài quá
       ls = "eza --icons=always --group-directories-first";

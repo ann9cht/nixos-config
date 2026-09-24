@@ -1,7 +1,7 @@
 {
   imports = [
-    ./fcitx5.nix
     ./fonts.nix
+    ./input.nix
     ./tweaks.nix
 
     ./hyprland
