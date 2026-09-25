@@ -2,6 +2,7 @@
   imports = [
     ./remapper.nix
     ./snapper.nix
+    ./sunshine.nix
 
     ./sddm
   ];
