@@ -1,6 +1,6 @@
 mainMod = "SUPER"
 terminal = "kitty"
-terminalMini = "[float; size 630 380;; move 75 35] kitty"
+terminalMini = "[float; size 630 380; move 75 35] kitty"
 file = "nautilus"
 fileMini = "[float; size 800 600; move 765 265] dbus-run-session nautilus"
 browser = "firefox"
