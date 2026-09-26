@@ -53,7 +53,7 @@
   "bar": {
     "position": "left",
     "width": 100,
-    "opacity": 100,
+    "opacity": 85,
     "style": "fill",
     "distinctPills": false,
     "time": {
@@ -64,7 +64,8 @@
     "workspaceCount": 5,
     "groupColors": {
       "g_kb": "#c6a0f6",
-      "g_tray": "#f5bde6"
+      "g_tray": "#f5bde6",
+      "g_wifi": "#8aadf4"
     },
     "modules": {
       "left": [
@@ -77,16 +78,17 @@
         "weather"
       ],
       "right": [
+        "tray",
         "sysmon",
         [
-          "tray",
           "wifi",
           "vol"
         ]
       ]
     },
-    "sideWorkspacesStyle": "pacman",
-    "workspacesStyle": "pills"
+    "workspacesStyle": "pacman",
+    "timeStyle": "classic",
+    "timeShowDate": true
   },
   "launcher": {
     "position": "right",
@@ -96,13 +98,13 @@
     "smartRanking": true
   },
   "dock": {
-    "enabled": false,
-    "position": "right",
-    "elementSize": 50,
+    "enabled": true,
+    "position": "bottom",
+    "elementSize": 46,
     "floating": true,
-    "opacity": 100,
+    "opacity": 40,
     "exclusive": false,
-    "autohide": true,
+    "autohide": false,
     "autohideTimeout": 250,
     "editing": false,
     "apps": [
@@ -137,12 +139,6 @@
         "icon": "onlyoffice-desktopeditors"
       },
       {
-        "name": "Proton VPN",
-        "comment": "Proton VPN GUI client",
-        "desktop_id": "proton.vpn.app.gtk",
-        "icon": "proton-vpn-logo"
-      },
-      {
         "name": "Tập tin",
         "comment": "Truy cập và tổ chức tập tin",
         "desktop_id": "org.gnome.Nautilus",
@@ -159,7 +155,8 @@
     "enableScrolling": false,
     "visibleElements": 7,
     "hoverScale": 130,
-    "cascadeScale": true
+    "cascadeScale": true,
+    "onTop": false
   },
   "notifications": {
     "dnd": false,
@@ -167,7 +164,7 @@
     "horizontalPosition": 92,
     "verticalPosition": 8,
     "sound": true,
-    "soundFile": "/nix/store/lfgfy209yvilqqqwqzpsk3kbgw0vl4sy-serpantinum-2.1.7/share/serpantinum/assets/sounds/notifications/Botanica.wav",
+    "soundFile": "/nix/store/cz0pji4v3q6dmchqnf7k33b22immf92w-serpantinum-2.1.9/share/serpantinum/assets/sounds/notifications/Botanica.wav",
     "showEmptyGraphic": true
   },
   "osd": {
@@ -238,5 +235,13 @@
   },
   "sideBar": {
     "workspacesStyle": "pacman"
+  },
+  "display": {
+    "monitors": {
+      "HDMI-A-2": {
+        "enabled": false
+      }
+    }
   }
 }
+

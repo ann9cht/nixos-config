@@ -61,6 +61,8 @@ hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waydroid show-full-ui"))
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("waydroid session stop"))
 
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
+
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("serpantinum reload"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("serpantinum msg toggle clipboard"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("serpantinum msg toggle launcher"))
