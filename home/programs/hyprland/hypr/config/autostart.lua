@@ -6,5 +6,4 @@ hl.on("hyprland.start", function()
 
   hl.exec_cmd("fcitx5 -d")
   hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
-  hl.exec_cmd("kdeconnectd & kdeconnect-indicator")
 end)
