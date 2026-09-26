@@ -1,6 +1,7 @@
 {
   imports = [
     ./kdeconnect.nix
-    ./playerctl.nix
   ];
+
+  services.playerctld.enable = true;
 }
