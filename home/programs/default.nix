@@ -1,6 +1,7 @@
 {
   imports = [
     ./browser/firefox.nix
+    ./browser/zen.nix
 
     ./editor/codium.nix
 
