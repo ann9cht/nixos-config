@@ -21,7 +21,6 @@ in
       evince # Xem trước pdf
     ]
     ++ (with gst_all_1; [
-      # Gstreamer
       gstreamer
       gst-plugins-base
       gst-plugins-good
