@@ -39,8 +39,7 @@
           ./system/default.nix
 
           inputs.serpantinum.nixosModules.default
-          inputs.home-manager.nixosModules.home-manager
-          #inputs.disko.nixosModules.disko
+          inputs.home-manager.nixosModules.default
 
           {
             home-manager = {
