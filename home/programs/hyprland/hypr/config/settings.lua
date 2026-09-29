@@ -31,6 +31,7 @@ hl.config({
       natural_scroll = true,
       disable_while_typing = false,
     },
+    numlock_by_default = true, -- Led mini keyboard sáng như mặc định
   },
 
   render = {
