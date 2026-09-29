@@ -12,6 +12,10 @@
 
     extraConfig = ''
       hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+
+      hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+      hl.env("XDG_SESSION_TYPE", "wayland")
+      hl.env("XDG_SESSION_DESKTOP", "Hyprland")
     '';
 
     settings = {
