@@ -12,9 +12,10 @@ in
       bind \es 'commandline -C 0; commandline -i "sudo "; commandline -f end-of-line'
     '';
 
-    shellAliases = {
+    shellAbbrs = {
       # nix
-      frb = "sudo nixos-rebuild switch --flake ${flakeDir}#nixdesk";
+      srb = "sudo nixos-rebuild switch --flake ${flakeDir}#nixdesk";
+      hrb = "home-manager switch --flake ${flakeDir}#ann9cht@nixdesk";
       cln = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old && sudo nix-collect-garbage -d";
       opt = "sudo nix-store --optimise";
       upd = "cd ${flakeDir} && nix flake update";
