@@ -34,6 +34,7 @@
     numlock_by_default = true;
   };
 
+  # https://github.com/hyprwm/Hyprland/issues/9786
   render = {
     direct_scanout = false;
     cm_enabled = false;
