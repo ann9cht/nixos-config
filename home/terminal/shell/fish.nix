@@ -13,7 +13,6 @@ in
     '';
 
     shellAliases = {
-      # nix
       frb = "sudo nixos-rebuild switch --flake ${flakeDir}#nixdesk";
       cln = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old && sudo nix-collect-garbage -d";
       opt = "sudo nix-store --optimise";
