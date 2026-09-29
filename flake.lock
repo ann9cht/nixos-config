@@ -1,25 +1,5 @@
 {
   "nodes": {
-    "disko": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1789770686,
-        "narHash": "sha256-uZkBR7yHdIKUFB5SZdfgh1qkGfI3XmYmI/lTiquxbck=",
-        "owner": "nix-community",
-        "repo": "disko",
-        "rev": "725ea35e410ad83be4931d1bff7e090eacaf3563",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "disko",
-        "type": "github"
-      }
-    },
     "fcitx5-lotus": {
       "inputs": {
         "nixpkgs": [
@@ -199,7 +179,6 @@
     },
     "root": {
       "inputs": {
-        "disko": "disko",
         "fcitx5-lotus": "fcitx5-lotus",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
@@ -214,11 +193,11 @@
         "serpantinum-wallpapers": "serpantinum-wallpapers"
       },
       "locked": {
-        "lastModified": 1790634510,
-        "narHash": "sha256-zXLFQxhCtEQCMQS6b5cFiNy2Dyj1Kn2vtzPKcMVUBig=",
+        "lastModified": 1790683382,
+        "narHash": "sha256-3r2M2gNqPjjBGXPPV5SJEaeO4tCmro/eYZHt+K0ct1I=",
         "owner": "ilyamiro",
         "repo": "serpantinum",
-        "rev": "54318dc641b512594a7d1e5f6bab43cb0df4f20a",
+        "rev": "7cbd2c182049ec7b4e3486b6c88eac9adb6f40a2",
         "type": "github"
       },
       "original": {
