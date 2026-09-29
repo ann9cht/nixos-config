@@ -51,17 +51,17 @@
     }
   },
   "bar": {
-    "position": "left",
+    "position": "top",
     "width": 100,
-    "opacity": 85,
-    "style": "fill",
+    "opacity": 75,
+    "style": "modular",
     "distinctPills": false,
     "time": {
       "format": "HH:mm:ss"
     },
     "autohide": false,
     "autohideTimeout": 1000,
-    "workspaceCount": 5,
+    "workspaceCount": 6,
     "groupColors": {
       "g_kb": "#c6a0f6",
       "g_tray": "#f5bde6",
@@ -91,8 +91,8 @@
     "timeShowDate": true
   },
   "launcher": {
-    "position": "right",
-    "width": 420,
+    "position": "bottom",
+    "width": 600,
     "itemCount": 6,
     "terminalCommand": "kitty -e",
     "smartRanking": true
@@ -156,7 +156,8 @@
     "visibleElements": 7,
     "hoverScale": 130,
     "cascadeScale": true,
-    "onTop": false
+    "onTop": false,
+    "smartAutohide": true
   },
   "notifications": {
     "dnd": false,
@@ -164,7 +165,7 @@
     "horizontalPosition": 92,
     "verticalPosition": 8,
     "sound": true,
-    "soundFile": "/nix/store/cz0pji4v3q6dmchqnf7k33b22immf92w-serpantinum-2.1.9/share/serpantinum/assets/sounds/notifications/Botanica.wav",
+    "soundFile": "/nix/store/kvbbajc0qsh21zv4mwqbvhmsf0cgsyby-serpantinum-2.2.0/share/serpantinum/assets/sounds/notifications/Botanica.wav",
     "showEmptyGraphic": true
   },
   "osd": {
