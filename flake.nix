@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     git-hooks.url = "github:cachix/git-hooks.nix";
     serpantinum.url = "github:ilyamiro/serpantinum";
 
@@ -9,10 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #disko = {
+    #  url = "github:nix-community/disko";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     fcitx5-lotus = {
       url = "github:LotusInputMethod/fcitx5-lotus";
@@ -35,21 +35,10 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./host/default.nix
-          ./system/default.nix
+          ./host
+          ./system
 
           inputs.serpantinum.nixosModules.default
-          inputs.home-manager.nixosModules.default
-
-          {
-            home-manager = {
-              backupFileExtension = "bak";
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              users.ann9cht = import ./home/default.nix;
-            };
-          }
         ];
       };
 
