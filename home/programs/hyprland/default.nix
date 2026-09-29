@@ -42,7 +42,7 @@
       ];
 
       animation = import ./settings/animation.nix;
-      window_rule = import ./settings/window_rule.nix;
+      window_rule = import ./settings/rules.nix;
     };
   };
 }

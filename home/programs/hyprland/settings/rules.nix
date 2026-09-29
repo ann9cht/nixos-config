@@ -3,11 +3,7 @@ let
     "(monitor_w*0.45)"
     "(monitor_h*0.45)"
   ];
-  sizeSmall = [
-    440
-    200
-  ];
-  sizeLarge = [
+  sizeMedium = [
     750
     500
   ];
@@ -24,12 +20,12 @@ map (floatRule size45) [
   "input-remapper-gtk"
 ]
 
-++ map (floatRule sizeLarge) [
+++ map (floatRule sizeMedium) [
   "org.fcitx."
   "org.fcitx.Fcitx5.Addon.Lotus.Settings"
   "org.kde.kdeconnect.app"
 ]
 
 ++ [
-  (floatRule sizeSmall "protonvpn-app")
+  (floatRule [ 440 200 ] "protonvpn-app")
 ]
