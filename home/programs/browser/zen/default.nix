@@ -35,58 +35,34 @@
           icon = "🏠";
           theme = {
             type = "gradient";
-            gradientColors = [
+            colors = [
               {
-                c = [
-                  107
-                  125
-                  174
-                ];
-                isCustom = false;
+                red = 107;
+                green = 125;
+                blue = 174;
                 algorithm = "analogous";
-                isPrimary = true;
-                lightness = "55";
-                position = {
-                  x = 81;
-                  y = 84;
-                };
                 type = "explicit-lightness";
+                lightness = 55;
               }
               {
-                c = [
-                  144
-                  107
-                  174
-                ];
-                isCustom = false;
+                red = 144;
+                green = 107;
+                blue = 174;
                 algorithm = "analogous";
-                isPrimary = false;
-                lightness = "55";
-                position = {
-                  x = 189;
-                  y = 43;
-                };
                 type = "explicit-lightness";
+                lightness = 55;
               }
               {
-                c = [
-                  107
-                  174
-                  168
-                ];
-                isCustom = false;
+                red = 107;
+                green = 174;
+                blue = 168;
                 algorithm = "analogous";
-                isPrimary = false;
-                lightness = "55";
-                position = {
-                  x = 43;
-                  y = 193;
-                };
                 type = "explicit-lightness";
+                lightness = 55;
               }
             ];
             opacity = 0.5;
-            texture = 0;
+            texture = 0.0;
           };
         };
       };
