@@ -2,6 +2,12 @@
   force = true;
   default = "google";
   engines = {
+    "bing".metaData.hidden = true;
+    "coccoc".metaData.hidden = true;
+    "ddg".metaData.hidden = true;
+    "perplexity".metaData.hidden = true;
+    "wikipedia-vi".metaData.hidden = true;
+
     youtube = {
       name = "YouTube";
       urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
