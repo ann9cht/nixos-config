@@ -64,6 +64,8 @@
             opacity = 0.5;
             texture = 0.0;
           };
+
+          pins = import ./pins.nix;
         };
       };
     };
