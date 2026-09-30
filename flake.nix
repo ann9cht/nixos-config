@@ -1,7 +1,13 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    git-hooks.url = "github:cachix/git-hooks.nix";
+    systems.url = "github:nix-systems/default";
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     serpantinum.url = "github:ilyamiro/serpantinum";
 
     home-manager = {
@@ -29,7 +35,15 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      systems,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      forEachSystem = nixpkgs.lib.genAttrs (import systems);
+    in
     {
       nixosConfigurations.nixdesk = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -42,22 +56,40 @@
         ];
       };
 
-      checks.x86_64-linux.pre-commit-check = inputs.git-hooks.lib.x86_64-linux.run {
-        src = ./.;
-        hooks = {
-          statix.enable = true;
-          deadnix.enable = true;
-          nixfmt.enable = true;
-        };
-      };
-
-      devShells.x86_64-linux.default =
+      formatter = forEachSystem (
+        system:
         let
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages.${system};
+          config = self.checks.${system}.pre-commit-check.config;
+          inherit (config) package configFile;
+          script = ''
+            ${pkgs.lib.getExe package} run --all-files --config ${configFile}
+          '';
         in
-        pkgs.mkShell {
-          inherit (self.checks.x86_64-linux.pre-commit-check) shellHook;
-          buildInputs = self.checks.x86_64-linux.pre-commit-check.enabledPackages;
+        pkgs.writeShellScriptBin "pre-commit-run" script
+      );
+
+      checks = forEachSystem (system: {
+        pre-commit-check = inputs.git-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            statix.enable = true;
+            deadnix.enable = true;
+            nixfmt.enable = true;
+          };
         };
+      });
+
+      devShells = forEachSystem (system: {
+        default =
+          let
+            pkgs = nixpkgs.legacyPackages.${system};
+            inherit (self.checks.${system}.pre-commit-check) shellHook enabledPackages;
+          in
+          pkgs.mkShell {
+            inherit shellHook;
+            buildInputs = enabledPackages;
+          };
+      });
     };
 }

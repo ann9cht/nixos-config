@@ -93,7 +93,9 @@
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1790500375,
@@ -131,22 +133,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1787631388,
-        "narHash": "sha256-vMiXptXarfSdJb1Gkc+FYVOAibuBRj7qxGa8z68q1Uw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ac6b2166e7a9375683b8e98f860f273222337b16",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1790578696,
         "narHash": "sha256-ZoxIApko70jCdbH3l20HWXOBaT2HZd87orzd2yJ9dVE=",
         "owner": "nixos",
@@ -161,7 +147,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1790463110,
         "narHash": "sha256-hKlVl12B1dF0Q5vd9dY3lIJM5mFGWYSlXwSLAqHZ1+s=",
@@ -182,14 +168,15 @@
         "fcitx5-lotus": "fcitx5-lotus",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "serpantinum": "serpantinum",
+        "systems": "systems_2",
         "zen-browser": "zen-browser"
       }
     },
     "serpantinum": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "serpantinum-wallpapers": "serpantinum-wallpapers"
       },
       "locked": {
@@ -246,6 +233,21 @@
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
