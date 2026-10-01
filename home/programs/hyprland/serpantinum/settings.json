@@ -64,8 +64,7 @@
     "workspaceCount": 6,
     "groupColors": {
       "g_kb": "#c6a0f6",
-      "g_tray": "#f5bde6",
-      "g_wifi": "#8aadf4"
+      "g_tray": "#f5bde6"
     },
     "modules": {
       "left": [
@@ -80,10 +79,8 @@
       "right": [
         "tray",
         "sysmon",
-        [
-          "wifi",
-          "vol"
-        ]
+        "wifi",
+        "vol"
       ]
     },
     "workspacesStyle": "pacman",
@@ -102,9 +99,9 @@
     "position": "bottom",
     "elementSize": 46,
     "floating": true,
-    "opacity": 40,
+    "opacity": 45,
     "exclusive": false,
-    "autohide": false,
+    "autohide": true,
     "autohideTimeout": 250,
     "editing": false,
     "apps": [
@@ -151,12 +148,12 @@
         "icon": "kitty"
       }
     ],
-    "overrideBoundsCorrection": true,
+    "overrideBoundsCorrection": false,
     "enableScrolling": false,
     "visibleElements": 7,
     "hoverScale": 130,
     "cascadeScale": true,
-    "onTop": false,
+    "onTop": true,
     "smartAutohide": true
   },
   "notifications": {
@@ -165,7 +162,7 @@
     "horizontalPosition": 92,
     "verticalPosition": 8,
     "sound": true,
-    "soundFile": "/nix/store/3jbdahwb0pma5k2f6jz3v0zv8297srzd-serpantinum-2.2.1/share/serpantinum/assets/sounds/notifications/Botanica.wav",
+    "soundFile": "/nix/store/2zlg0srk57wbm1z7njyc8hcsw1ajj0l0-serpantinum-2.2.3/share/serpantinum/assets/sounds/notifications/Botanica.wav",
     "showEmptyGraphic": true
   },
   "osd": {
