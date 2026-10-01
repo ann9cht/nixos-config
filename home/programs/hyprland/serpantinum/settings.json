@@ -91,7 +91,7 @@
     "timeShowDate": true
   },
   "launcher": {
-    "position": "bottom",
+    "position": "center",
     "width": 600,
     "itemCount": 6,
     "terminalCommand": "kitty -e",
@@ -109,10 +109,10 @@
     "editing": false,
     "apps": [
       {
-        "name": "Firefox",
+        "name": "Zen Browser (Beta)",
         "comment": "",
-        "desktop_id": "firefox",
-        "icon": "firefox"
+        "desktop_id": "zen-beta",
+        "icon": "zen-browser"
       },
       {
         "name": "VSCodium",
@@ -165,7 +165,7 @@
     "horizontalPosition": 92,
     "verticalPosition": 8,
     "sound": true,
-    "soundFile": "/nix/store/kvbbajc0qsh21zv4mwqbvhmsf0cgsyby-serpantinum-2.2.0/share/serpantinum/assets/sounds/notifications/Botanica.wav",
+    "soundFile": "/nix/store/3jbdahwb0pma5k2f6jz3v0zv8297srzd-serpantinum-2.2.1/share/serpantinum/assets/sounds/notifications/Botanica.wav",
     "showEmptyGraphic": true
   },
   "osd": {

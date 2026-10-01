@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./cava.nix
     ./mpv.nix
   ];
 

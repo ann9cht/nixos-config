@@ -32,7 +32,6 @@
         "Bảo An" = {
           id = "822a73b3-d5b3-47d5-8c0c-89e7e1f682fe";
           position = 1000;
-          icon = "🏠";
           theme = {
             type = "gradient";
             colors = [

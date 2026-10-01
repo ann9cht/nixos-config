@@ -9,7 +9,7 @@ let
   terminalMini = "[float; size 630 380; move 35 75] kitty";
   file = "nautilus";
   fileMini = "[float; size 800 600; move 765 265] dbus-run-session nautilus";
-  browser = "firefox";
+  browser = "zen-beta";
   editor = "codium";
 
   b = keys: dsp: {
