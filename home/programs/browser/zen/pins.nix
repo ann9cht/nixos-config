@@ -55,7 +55,7 @@
   };
   "Google" = {
     id = "359ce17d-8148-4301-806a-d1633bf7fe65";
-    isFolderCollapsed = false;
+    isFolderCollapsed = true;
     position = 110;
 
     pins = {

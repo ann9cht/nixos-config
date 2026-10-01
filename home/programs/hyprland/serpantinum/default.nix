@@ -7,7 +7,7 @@
 
   programs.serpantinum = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
 
     settings = {
       wallpaperDir = "/home/ann9cht/Pictures/Wallpapers";
