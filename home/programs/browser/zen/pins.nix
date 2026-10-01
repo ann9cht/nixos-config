@@ -61,7 +61,7 @@
     pins = {
       "Gemini" = {
         id = "cb05eb72-68ca-4f72-85d3-cc1210bd1c59";
-        url = "https://gemini.google.com";
+        url = "https://gemini.google.com/u/1/app?hl=vi";
         position = 1101;
       };
       "Gmail" = {
@@ -71,27 +71,27 @@
       };
       "Drive" = {
         id = "1a900810-8bf1-49ca-ab99-fa264cb57487";
-        url = "https://drive.google.com/drive/u/1/home";
+        url = "https://drive.google.com/drive/my-drive?hl=vi";
         position = 1103;
       };
       "Docs" = {
         id = "8a6e669c-7de8-407b-a977-b321cd6f5ac0";
-        url = "https://docs.google.com/document/u/0/";
+        url = "https://docs.google.com/document/u/1/?hl=vi&pli=1";
         position = 1104;
       };
       "Photos" = {
         id = "ef69ab96-b8f2-45b9-a838-174fd8270a5b";
-        url = "https://photos.google.com/u/1/";
+        url = "https://photos.google.com/?pli=1";
         position = 1105;
       };
       "Calendar" = {
         id = "65470e5f-32c5-4c08-9031-b25f8f052e78";
-        url = "https://calendar.google.com/calendar/u/1/r";
+        url = "https://calendar.google.com/calendar/u/0/r?pli=1";
         position = 1106;
       };
       "Keep" = {
         id = "e79a5a39-79e8-4d2f-afa2-4b6c6577c91b";
-        url = "https://keep.google.com/u/1/";
+        url = "https://keep.google.com/u/0/";
         position = 1107;
       };
     };
