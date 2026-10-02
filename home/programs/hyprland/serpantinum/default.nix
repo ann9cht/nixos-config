@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -8,6 +8,12 @@
   programs.serpantinum = {
     enable = true;
     systemd.enable = true;
+
+    package =
+      inputs.serpantinum.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
+        (old: {
+          patches = (old.patches or [ ]) ++ [ ./am-lich.patch ];
+        });
 
     settings = {
       wallpaperDir = "/home/ann9cht/Pictures/Wallpapers";
