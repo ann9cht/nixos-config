@@ -1,4 +1,5 @@
 {
+  # cat /proc/sys/kernel/random/uuid
   "Facebook" = {
     id = "1de20d17-6573-46dc-8b3e-f94edaebdbdf";
     url = "https://www.facebook.com";
