@@ -1,9 +1,32 @@
 { lib, ... }:
 
+let
+  bezierName = "myBezier";
+
+  animations = {
+    windows = "popin 80%";
+    windowsOut = "popin 80%";
+    layers = "fade";
+    layersIn = "fade";
+    layersOut = "fade";
+    fade = null;
+    workspaces = "slide";
+    specialWorkspaceIn = "fade";
+    specialWorkspaceOut = "fade";
+  };
+
+  mkAnimation =
+    leaf: style:
+    {
+      inherit leaf;
+      enabled = true;
+      speed = 5;
+      bezier = bezierName;
+    }
+    // lib.optionalAttrs (style != null) { inherit style; };
+in
 {
-  imports = [
-    ./serpantinum
-  ];
+  imports = [ ./serpantinum ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -19,6 +42,8 @@
     '';
 
     settings = {
+      config = import ./settings.nix;
+
       monitor = [
         {
           output = "";
@@ -28,12 +53,10 @@
         }
       ];
 
-      config = import ./settings.nix;
-
       curve = [
         {
           _args = [
-            "myBezier"
+            bezierName
             {
               type = "bezier";
               points = [
@@ -50,75 +73,10 @@
           ];
         }
       ];
+      animation = lib.mapAttrsToList mkAnimation animations;
 
       bind = import ./binds.nix { inherit lib; };
       on = import ./autostart.nix { inherit lib; };
-
-      animation = [
-        {
-          leaf = "windows";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "popin 80%";
-        }
-        {
-          leaf = "windowsOut";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "popin 80%";
-        }
-        {
-          leaf = "layers";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "fade";
-        }
-        {
-          leaf = "layersIn";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "fade";
-        }
-        {
-          leaf = "layersOut";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "fade";
-        }
-        {
-          leaf = "fade";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-        }
-        {
-          leaf = "workspaces";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "slide";
-        }
-        {
-          leaf = "specialWorkspaceIn";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "fade";
-        }
-        {
-          leaf = "specialWorkspaceOut";
-          enabled = true;
-          speed = 5;
-          bezier = "myBezier";
-          style = "fade";
-        }
-      ];
-
       window_rule = import ./windowrules.nix;
     };
   };

@@ -29,7 +29,7 @@
       wheel_scroll_min_lines = 1;
 
       enable_audio_bell = "no";
-      #copy_on_select = "clipboard";
+      copy_on_select = "clipboard";
       open_url_with = "default";
       notify_on_cmd_finish = "unfocused 10.0";
       shell_integration = "enabled";
