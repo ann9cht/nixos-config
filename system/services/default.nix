@@ -1,5 +1,6 @@
 {
   imports = [
+    ./bluetooth.nix
     ./remapper.nix
     ./snapper.nix
     ./sunshine.nix
