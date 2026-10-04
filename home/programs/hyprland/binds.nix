@@ -89,7 +89,6 @@ in
   (bLockedRepeat "${mainMod} + L" (serp "lock"))
 
   # Media
-  (bLocked "${mainMod} + ALT" (exec "playerctl play-pause"))
   (bLocked "XF86AudioPause" (exec "playerctl play-pause"))
   (bLocked "XF86AudioPlay" (exec "playerctl play-pause"))
   (bLocked "XF86AudioPrev" (exec "playerctl previous"))
