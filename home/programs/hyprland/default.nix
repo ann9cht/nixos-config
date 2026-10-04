@@ -28,7 +28,7 @@
         }
       ];
 
-      config = import ./settings/config.nix;
+      config = import ./settings.nix;
 
       curve = [
         {
@@ -51,8 +51,8 @@
         }
       ];
 
-      bind = import ./settings/binds.nix { inherit lib; };
-      on = import ./settings/autostart.nix { inherit lib; };
+      bind = import ./binds.nix { inherit lib; };
+      on = import ./autostart.nix { inherit lib; };
 
       animation = [
         {
@@ -119,7 +119,7 @@
         }
       ];
 
-      window_rule = import ./settings/rules.nix;
+      window_rule = import ./windowrules.nix;
     };
   };
 }

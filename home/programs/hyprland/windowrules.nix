@@ -1,8 +1,4 @@
 let
-  size45 = [
-    "(monitor_w*0.45)"
-    "(monitor_h*0.45)"
-  ];
   sizeMedium = [
     750
     500
@@ -13,9 +9,14 @@ let
     float = true;
     inherit size;
   };
+
+  floatFree = class: {
+    match = { inherit class; };
+    float = true;
+  };
 in
 
-map (floatRule size45) [
+map floatFree [
   "org.gnome.Loupe"
   "input-remapper-gtk"
 ]

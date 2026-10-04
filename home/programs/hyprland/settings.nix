@@ -36,11 +36,7 @@
 
   # https://github.com/hyprwm/Hyprland/issues/9786
   render = {
-    direct_scanout = false;
-    cm_enabled = false;
     send_content_type = false;
-    cm_auto_hdr = false;
-    non_shader_cm = false;
   };
 
   misc = {
