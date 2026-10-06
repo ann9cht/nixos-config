@@ -6,6 +6,8 @@
 
     defaultSettings.app = {
       alwaysUpdateLinks = true;
+      defaultViewMode = "preview";
+      spellcheck = false;
     };
   };
 }
