@@ -12,7 +12,7 @@
     package =
       inputs.serpantinum.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
         (old: {
-          patches = (old.patches or [ ]) ++ [ ./am-lich.patch ];
+          patches = (old.patches or [ ]) ++ [ ./lunar.patch ];
         });
 
     settings = {

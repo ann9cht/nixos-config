@@ -1,0 +1,1192 @@
+diff --git a/src/assets/languages/en.json b/src/assets/languages/en.json
+old mode 100755
+new mode 100644
+index fa9c1e1e..644c4571
+--- a/src/assets/languages/en.json
++++ b/src/assets/languages/en.json
+@@ -205,6 +205,26 @@
+         "title": "Quickactions",
+         "desc": "Enable floating quickactions overlay"
+       },
++      "lunar": {
++        "title": "Vietnamese lunar calendar",
++        "desc": "Show lunar dates under each day in the calendar"
++      },
++      "lunar_canchi": {
++        "title": "Can Chi",
++        "desc": "Show day, month and year Can Chi when hovering a day"
++      },
++      "lunar_hoangdao": {
++        "title": "Auspicious hours",
++        "desc": "Show auspicious hours when hovering a day"
++      },
++      "lunar_tietkhi": {
++        "title": "Solar terms",
++        "desc": "Show the solar term when hovering a day"
++      },
++      "lunar_holidays": {
++        "title": "Lunar festivals",
++        "desc": "Mark festivals such as Tet and Trung Thu with a dot and show their names on hover"
++      },
+       "location": {
+         "title": "Location",
+         "desc": "Configure location for automatic sun schedule and weather",
+@@ -785,6 +805,23 @@
+       "fr": "Fr",
+       "sa": "Sa",
+       "su": "Su"
++    },
++    "lunar": {
++      "date": "Lunar date",
++      "month": "month",
++      "leap": "leap",
++      "can_chi": "Can Chi",
++      "day_cc": "Day",
++      "month_cc": "Month",
++      "year_cc": "Year",
++      "solar_term": "Solar term",
++      "solar_term_starts": "starts today",
++      "gio_hoang_dao": "Auspicious hours",
++      "today": "today",
++      "tomorrow": "tomorrow",
++      "in": "in",
++      "days": "days",
++      "next_festival": "Next festival"
+     }
+   },
+   "clipboard": {
+diff --git a/src/assets/languages/vi.json b/src/assets/languages/vi.json
+old mode 100755
+new mode 100644
+index 369c9d92..a44856e8
+--- a/src/assets/languages/vi.json
++++ b/src/assets/languages/vi.json
+@@ -205,6 +205,26 @@
+         "title": "Thao tác nhanh",
+         "desc": "Bật lớp phủ thao tác nhanh nổi"
+       },
++      "lunar": {
++        "title": "Lịch âm",
++        "desc": "Hiển thị ngày âm lịch dưới mỗi ngày trong lịch"
++      },
++      "lunar_canchi": {
++        "title": "Can chi",
++        "desc": "Hiển thị can chi của ngày, tháng, năm khi rê chuột vào một ngày"
++      },
++      "lunar_hoangdao": {
++        "title": "Giờ hoàng đạo",
++        "desc": "Hiển thị các giờ hoàng đạo khi rê chuột vào một ngày"
++      },
++      "lunar_tietkhi": {
++        "title": "Tiết khí",
++        "desc": "Hiển thị tiết khí khi rê chuột vào một ngày"
++      },
++      "lunar_holidays": {
++        "title": "Ngày lễ âm lịch",
++        "desc": "Đánh dấu các ngày lễ như Tết, Trung Thu và hiện tên lễ khi rê chuột"
++      },
+       "location": {
+         "title": "Vị trí",
+         "desc": "Cấu hình vị trí cho lịch trình mặt trời tự động và thời tiết",
+@@ -785,6 +805,23 @@
+       "fr": "T6",
+       "sa": "T7",
+       "su": "CN"
++    },
++    "lunar": {
++      "date": "Âm lịch",
++      "month": "tháng",
++      "leap": "nhuận",
++      "can_chi": "Can chi",
++      "day_cc": "Ngày",
++      "month_cc": "Tháng",
++      "year_cc": "Năm",
++      "solar_term": "Tiết khí",
++      "solar_term_starts": "bắt đầu hôm nay",
++      "gio_hoang_dao": "Giờ hoàng đạo",
++      "today": "hôm nay",
++      "tomorrow": "ngày mai",
++      "in": "còn",
++      "days": "ngày",
++      "next_festival": "Lễ sắp tới"
+     }
+   },
+   "clipboard": {
+@@ -895,7 +932,7 @@
+     "timer": {
+       "tabs": {
+         "timer": "Hẹn giờ",
+-        "stopwatch": "Đồng hồ bấm giờ",
++        "stopwatch": "Bấm giờ",
+         "pomodoro": "Pomodoro"
+       },
+       "stopwatch": {
+diff --git a/src/quickshell/calendar/CalendarPopup.qml b/src/quickshell/calendar/CalendarPopup.qml
+index 8bbe5898..81ba4170 100644
+--- a/src/quickshell/calendar/CalendarPopup.qml
++++ b/src/quickshell/calendar/CalendarPopup.qml
+@@ -7,6 +7,7 @@ import Quickshell.Io
+ import QtQuick.Window
+ import "../"
+ import "../reusables"
++import "LunarCalendar.js" as Lunar
+ 
+ Item {
+     id: window
+@@ -125,10 +126,12 @@ Item {
+             forceActiveFocus();
+             focusTimer.restart();
+             window.currentTime = new Date();
++            refreshLunarSetting();
+             updateCalendarGrid();
+             Weather.refresh(false);
+             resetAndPlayIntro();
+         } else {
++            window.hoverIndex = -1;
+             introAnim.stop();
+             exitAnim.stop();
+             weatherTransitionAnim.stop();
+@@ -337,6 +340,123 @@ Item {
+     property string targetMonthName: ""
+     ListModel { id: calendarModel }
+ 
++    property bool lunarEnabled: false
++    property bool lunarShowCanChi: true
++    property bool lunarShowGioHoangDao: true
++    property bool lunarShowTietKhi: true
++    property bool lunarShowHolidays: true
++
++    function refreshLunarSetting() {
++        let gs = Config.getSetting("general", {});
++        let lang = gs.language !== undefined ? gs.language : I18n.currentLang;
++        window.lunarEnabled = (lang === "vi") && gs.lunarCalendar !== false;
++        window.lunarShowCanChi = gs.lunarCanChi !== false;
++        window.lunarShowGioHoangDao = gs.lunarGioHoangDao !== false;
++        window.lunarShowTietKhi = gs.lunarTietKhi !== false;
++        window.lunarShowHolidays = gs.lunarHolidays !== false;
++    }
++
++    onLunarEnabledChanged: updateCalendarGrid()
++    onLunarShowHolidaysChanged: updateCalendarGrid()
++
++    property int hoverIndex: -1
++    property real hoverY: 0
++    property string hoverTitle: ""
++    property var hoverInfo: null
++    property string hoverCountdown: ""
++    property var hoverNext: null
++    property var tipRows: buildTipRows(hoverInfo, hoverNext, lunarShowHolidays, lunarShowCanChi, lunarShowTietKhi, lunarShowGioHoangDao)
++
++    Timer {
++        id: hoverHideTimer
++        interval: 90
++        repeat: false
++        onTriggered: window.hoverIndex = -1
++    }
++
++    function lt(key, fallback) {
++        let full = "calendar.lunar." + key;
++        let v = I18n.t(full);
++        return (v && v !== full) ? v : fallback;
++    }
++
++    function pad2(n) {
++        return n < 10 ? "0" + n : "" + n;
++    }
++
++    function countdownText(days) {
++        if (days < 0) return "";
++        if (days === 0) return lt("today", "hôm nay");
++        if (days === 1) return lt("tomorrow", "ngày mai");
++        return lt("in", "còn") + " " + days + " " + lt("days", "ngày");
++    }
++
++    function buildTipRows(info, next, showHolidays, showCanChi, showTietKhi, showGio) {
++        if (!info) return [];
++        let rows = [];
++        let l = info.lunar;
++        rows.push({
++            label: lt("date", "Âm lịch"),
++            value: l.day + " " + lt("month", "tháng") + " " + l.month + (l.leap ? " " + lt("leap", "nhuận") : "")
++        });
++        if (showCanChi) {
++            rows.push({
++                label: lt("can_chi", "Can chi"),
++                value: lt("day_cc", "Ngày") + " " + info.dayCanChi + "\n"
++                     + lt("month_cc", "Tháng") + " " + info.monthCanChi + "\n"
++                     + lt("year_cc", "Năm") + " " + info.yearCanChi
++            });
++        }
++        if (showTietKhi) {
++            rows.push({
++                label: lt("solar_term", "Tiết khí"),
++                value: info.solarTerm + (info.solarTermStarts ? " (" + lt("solar_term_starts", "bắt đầu hôm nay") + ")" : "")
++            });
++        }
++        if (showGio) {
++            let hours = [];
++            for (let i = 0; i < info.gioHoangDao.length; i++) {
++                let h = info.gioHoangDao[i];
++                hours.push(h.chi + " (" + h.from + "–" + h.to + ")");
++            }
++            rows.push({ label: lt("gio_hoang_dao", "Giờ hoàng đạo"), value: hours.join(", ") });
++        }
++        if (showHolidays && next) {
++            rows.push({ label: lt("next_festival", "Lễ sắp tới"), value: next.name + " · " + countdownText(next.days) });
++        }
++        return rows;
++    }
++
++    function setHoverCell(idx, hovered, cellItem) {
++        if (!window.lunarEnabled) return;
++        if (hovered) {
++            hoverHideTimer.stop();
++            let m = calendarModel.get(idx);
++            if (!m) return;
++            let info = Lunar.getDayInfo(m.cellD, m.cellM, m.cellY, 7);
++            window.hoverTitle = info.weekday + ", " + pad2(m.cellD) + "/" + pad2(m.cellM) + "/" + m.cellY;
++            window.hoverInfo = info;
++
++            let now = new Date();
++            let todayJd = Lunar.jdFromDate(now.getDate(), now.getMonth() + 1, now.getFullYear());
++            let diff = info.jd - todayJd;
++            window.hoverCountdown = info.festivals.length > 0 ? countdownText(diff) : "";
++            let nf = (diff === 0) ? Lunar.nextFestival(todayJd + 1, 7) : null;
++            window.hoverNext = nf ? { name: nf.name, days: nf.jd - todayJd } : null;
++
++            let pt = cellItem.mapToItem(calendarRect, 0, 0);
++            window.hoverY = pt.y + cellItem.height / 2;
++            window.hoverIndex = idx;
++        } else if (window.hoverIndex === idx) {
++            hoverHideTimer.restart();
++        }
++    }
++
++    Connections {
++        target: Config
++        function onSettingsLoaded() { window.refreshLunarSetting(); }
++    }
++
+     property real calendarContentOpacity: 1.0
+     property real calendarContentOffset: 0.0
+     property int calendarAnimDirection: 1
+@@ -395,22 +515,53 @@ Item {
+         let daysInPrevMonth = new Date(targetYear, targetMonth, 0).getDate();
+ 
+         calendarModel.clear();
++        window.hoverIndex = -1;
++
++        let showLunar = window.lunarEnabled;
++        let showHoliday = window.lunarShowHolidays;
++
++        for (let idx = 0; idx < 42; idx++) {
++            let cell = new Date(targetYear, targetMonth, 1 - firstDay + idx);
++            let inMonth = (cell.getMonth() === targetMonth);
++
++            let cd = cell.getDate();
++            let cm = cell.getMonth() + 1;
++            let cy = cell.getFullYear();
++
++            let lunarLabel = "";
++            let isFirst = false;
++            let isMark = false;
++            let isHoliday = false;
++            if (showLunar) {
++                let lunar = Lunar.convertSolar2Lunar(cd, cm, cy, 7);
++                isFirst = (lunar.day === 1);
++                isMark = (lunar.day === 1 || lunar.day === 15);
++                lunarLabel = isFirst
++                    ? (lunar.day + "/" + lunar.month + (lunar.leap ? "N" : ""))
++                    : lunar.day.toString();
++                if (showHoliday) {
++                    isHoliday = Lunar.findFestivals(lunar, Lunar.jdFromDate(cd, cm, cy), 7).length > 0;
++                }
++            }
+ 
+-        for (let i = firstDay - 1; i >= 0; i--) {
+-            calendarModel.append({ dayNum: (daysInPrevMonth - i).toString(), isCurrentMonth: false, isToday: false });
+-        }
+-        for (let i = 1; i <= daysInMonth; i++) {
+-            calendarModel.append({ dayNum: i.toString(), isCurrentMonth: true, isToday: (isRealCurrentMonth && i === todayDate) });
+-        }
+-        let remaining = 42 - calendarModel.count;
+-        for (let i = 1; i <= remaining; i++) {
+-            calendarModel.append({ dayNum: i.toString(), isCurrentMonth: false, isToday: false });
++            calendarModel.append({
++                dayNum: cd.toString(),
++                isCurrentMonth: inMonth,
++                isToday: (inMonth && isRealCurrentMonth && cd === todayDate),
++                lunarText: lunarLabel,
++                lunarHighlight: isMark,
++                hasHoliday: isHoliday,
++                cellD: cd,
++                cellM: cm,
++                cellY: cy
++            });
+         }
+     }
+ 
+     onMonthOffsetChanged: updateCalendarGrid()
+ 
+     Component.onCompleted: {
++        refreshLunarSetting();
+         updateCalendarGrid();
+         if (visible) {
+             forceActiveFocus();
+@@ -777,6 +928,82 @@ Item {
+ 
+                 HoverHandler { id: calHover }
+ 
++                Rectangle {
++                    id: dayTip
++                    z: 100
++                    width: window.s(236)
++                    height: tipColumn.implicitHeight + window.s(24)
++                    x: calendarRect.width + window.s(10)
++                    y: Math.max(0, Math.min(calendarRect.height - height, window.hoverY - height / 2))
++                    Behavior on y { NumberAnimation { duration: 90; easing.type: Easing.OutQuad } }
++                    radius: ThemeBackend.borderRadius
++                    color: Qt.alpha(window.mantle, 0.97)
++                    border.color: Qt.alpha(window.surface2, 0.7)
++                    border.width: 1
++                    opacity: (window.lunarEnabled && window.hoverIndex >= 0) ? 1.0 : 0.0
++                    visible: opacity > 0
++                    Behavior on opacity { NumberAnimation { duration: 120 } }
++
++                    ColumnLayout {
++                        id: tipColumn
++                        anchors.left: parent.left
++                        anchors.right: parent.right
++                        anchors.top: parent.top
++                        anchors.margins: window.s(12)
++                        spacing: window.s(8)
++
++                        Text {
++                            Layout.fillWidth: true
++                            text: window.hoverTitle
++                            font.family: ThemeBackend.fontFamily
++                            font.weight: Font.Black
++                            font.pixelSize: window.s(13)
++                            color: window.text
++                            wrapMode: Text.WordWrap
++                        }
++
++                        Text {
++                            Layout.fillWidth: true
++                            visible: !!(window.lunarShowHolidays && window.hoverInfo && window.hoverInfo.festivals.length > 0)
++                            text: window.hoverInfo
++                                ? ("● " + window.hoverInfo.festivals.join(" · ")
++                                    + (window.hoverCountdown !== "" ? " · " + window.hoverCountdown : ""))
++                                : ""
++                            font.family: ThemeBackend.fontFamily
++                            font.weight: Font.Bold
++                            font.pixelSize: window.s(12)
++                            color: window.textAccent
++                            wrapMode: Text.WordWrap
++                        }
++
++                        Repeater {
++                            model: window.tipRows
++                            delegate: ColumnLayout {
++                                Layout.fillWidth: true
++                                spacing: window.s(1)
++
++                                Text {
++                                    text: modelData.label.toUpperCase()
++                                    font.family: ThemeBackend.fontFamily
++                                    font.weight: Font.Black
++                                    font.pixelSize: window.s(9)
++                                    color: window.overlay0
++                                }
++
++                                Text {
++                                    Layout.fillWidth: true
++                                    text: modelData.value
++                                    font.family: ThemeBackend.fontFamily
++                                    font.weight: Font.Bold
++                                    font.pixelSize: window.s(11.5)
++                                    color: window.text
++                                    wrapMode: Text.WordWrap
++                                }
++                            }
++                        }
++                    }
++                }
++
+                 ColumnLayout {
+                     anchors.fill: parent
+                     anchors.topMargin: window.s(12)
+@@ -874,16 +1101,61 @@ Item {
+ 
+                         Repeater {
+                             model: calendarModel
+-                            ClickButton {
++                            Rectangle {
++                                id: dayCell
+                                 Layout.fillWidth: true
+                                 Layout.fillHeight: true
+-                                enabled: false
+-                                buttonText: dayNum
+-                                textFontSize: window.s(11.5)
+-                                cornerRadius: window.s(5)
+-                                horizontalPadding: 0
+-                                accentColor: isToday ? window.textAccent : "transparent"
+-                                textColor: isToday ? window.base : (isCurrentMonth ? window.text : window.surface0)
++                                radius: window.s(5)
++                                color: isToday
++                                    ? window.textAccent
++                                    : (dayHover.hovered && window.lunarEnabled ? Qt.alpha(window.surface1, 0.5) : "transparent")
++
++                                HoverHandler {
++                                    id: dayHover
++                                    enabled: window.lunarEnabled
++                                    onHoveredChanged: window.setHoverCell(index, hovered, dayCell)
++                                }
++
++                                Rectangle {
++                                    visible: window.lunarEnabled && window.lunarShowHolidays && hasHoliday
++                                    width: window.s(4)
++                                    height: width
++                                    radius: width / 2
++                                    anchors.top: parent.top
++                                    anchors.right: parent.right
++                                    anchors.topMargin: window.s(4)
++                                    anchors.rightMargin: window.s(5)
++                                    color: isToday ? window.base : window.textAccent
++                                    opacity: isCurrentMonth ? 1.0 : 0.35
++                                }
++
++                                ColumnLayout {
++                                    anchors.centerIn: parent
++                                    spacing: 0
++
++                                    Text {
++                                        Layout.alignment: Qt.AlignHCenter
++                                        text: dayNum
++                                        font.family: ThemeBackend.fontFamily
++                                        font.weight: Font.Bold
++                                        font.pixelSize: window.s(11.5)
++                                        color: isToday ? window.base : (isCurrentMonth ? window.text : window.surface0)
++                                    }
++
++                                    Text {
++                                        Layout.alignment: Qt.AlignHCenter
++                                        visible: window.lunarEnabled
++                                        text: lunarText
++                                        font.family: ThemeBackend.fontFamily
++                                        font.weight: lunarHighlight ? Font.Bold : Font.Medium
++                                        font.pixelSize: window.s(8.5)
++                                        color: isToday
++                                            ? Qt.alpha(window.base, 0.75)
++                                            : (isCurrentMonth
++                                                ? (lunarHighlight ? window.textAccent : window.overlay0)
++                                                : window.surface0)
++                                    }
++                                }
+                             }
+                         }
+                     }
+diff --git a/src/quickshell/calendar/LunarCalendar.js b/src/quickshell/calendar/LunarCalendar.js
+new file mode 100644
+index 00000000..c4c9d76f
+--- /dev/null
++++ b/src/quickshell/calendar/LunarCalendar.js
+@@ -0,0 +1,338 @@
++.pragma library
++
++/*
++ * Vietnamese lunar calendar algorithms.
++ * Based on the JavaScript implementation by Ho Ngoc Duc
++ */
++
++var PI = Math.PI;
++
++function INT(d) {
++    return Math.floor(d);
++}
++
++function jdFromDate(dd, mm, yy) {
++    var a = INT((14 - mm) / 12);
++    var y = yy + 4800 - a;
++    var m = mm + 12 * a - 3;
++    var jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - INT(y / 100) + INT(y / 400) - 32045;
++    if (jd < 2299161) {
++        jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - 32083;
++    }
++    return jd;
++}
++
++function newMoon(k) {
++    var T = k / 1236.85;
++    var T2 = T * T;
++    var T3 = T2 * T;
++    var dr = PI / 180;
++    var Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
++    Jd1 = Jd1 + 0.00033 * Math.sin((166.56 + 132.87 * T - 0.009173 * T2) * dr);
++    var M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
++    var Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
++    var F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
++    var C1 = (0.1734 - 0.000393 * T) * Math.sin(M * dr) + 0.0021 * Math.sin(2 * dr * M);
++    C1 = C1 - 0.4068 * Math.sin(Mpr * dr) + 0.0161 * Math.sin(dr * 2 * Mpr);
++    C1 = C1 - 0.0004 * Math.sin(dr * 3 * Mpr);
++    C1 = C1 + 0.0104 * Math.sin(dr * 2 * F) - 0.0051 * Math.sin(dr * (M + Mpr));
++    C1 = C1 - 0.0074 * Math.sin(dr * (M - Mpr)) + 0.0004 * Math.sin(dr * (2 * F + M));
++    C1 = C1 - 0.0004 * Math.sin(dr * (2 * F - M)) - 0.0006 * Math.sin(dr * (2 * F + Mpr));
++    C1 = C1 + 0.0010 * Math.sin(dr * (2 * F - Mpr)) + 0.0005 * Math.sin(dr * (2 * Mpr + M));
++    var deltat;
++    if (T < -11) {
++        deltat = 0.001 + 0.000839 * T + 0.0002261 * T2 - 0.00000845 * T3 - 0.000000081 * T * T3;
++    } else {
++        deltat = -0.000278 + 0.000265 * T + 0.000262 * T2;
++    }
++    return Jd1 + C1 - deltat;
++}
++
++function sunLongitude(jdn) {
++    var T = (jdn - 2451545.0) / 36525;
++    var T2 = T * T;
++    var dr = PI / 180;
++    var M = 357.52910 + 35999.05030 * T - 0.0001559 * T2 - 0.00000048 * T * T2;
++    var L0 = 280.46645 + 36000.76983 * T + 0.0003032 * T2;
++    var DL = (1.914600 - 0.004817 * T - 0.000014 * T2) * Math.sin(dr * M);
++    DL = DL + (0.019993 - 0.000101 * T) * Math.sin(dr * 2 * M) + 0.000290 * Math.sin(dr * 3 * M);
++    var L = (L0 + DL) * dr;
++    L = L - PI * 2 * INT(L / (PI * 2));
++    return L;
++}
++
++function getSunLongitude(dayNumber, timeZone) {
++    return INT(sunLongitude(dayNumber - 0.5 - timeZone / 24.0) / PI * 6);
++}
++
++function getNewMoonDay(k, timeZone) {
++    return INT(newMoon(k) + 0.5 + timeZone / 24.0);
++}
++
++function getLunarMonth11(yy, timeZone) {
++    var off = jdFromDate(31, 12, yy) - 2415021;
++    var k = INT(off / 29.530588853);
++    var nm = getNewMoonDay(k, timeZone);
++    var sunLong = getSunLongitude(nm, timeZone);
++    if (sunLong >= 9) {
++        nm = getNewMoonDay(k - 1, timeZone);
++    }
++    return nm;
++}
++
++function getLeapMonthOffset(a11, timeZone) {
++    var k = INT((a11 - 2415021.076998695) / 29.530588853 + 0.5);
++    var last = 0;
++    var i = 1;
++    var arc = getSunLongitude(getNewMoonDay(k + i, timeZone), timeZone);
++    do {
++        last = arc;
++        i++;
++        arc = getSunLongitude(getNewMoonDay(k + i, timeZone), timeZone);
++    } while (arc !== last && i < 14);
++    return i - 1;
++}
++
++function convertSolar2Lunar(dd, mm, yy, timeZone) {
++    if (timeZone === undefined) {
++        timeZone = 7;
++    }
++    var dayNumber = jdFromDate(dd, mm, yy);
++    var k = INT((dayNumber - 2415021.076998695) / 29.530588853);
++    var monthStart = getNewMoonDay(k + 1, timeZone);
++    if (monthStart > dayNumber) {
++        monthStart = getNewMoonDay(k, timeZone);
++    }
++    while (monthStart > dayNumber) {
++        k--;
++        monthStart = getNewMoonDay(k, timeZone);
++    }
++    var a11 = getLunarMonth11(yy, timeZone);
++    var b11 = a11;
++    var lunarYear;
++    if (a11 >= monthStart) {
++        lunarYear = yy;
++        a11 = getLunarMonth11(yy - 1, timeZone);
++    } else {
++        lunarYear = yy + 1;
++        b11 = getLunarMonth11(yy + 1, timeZone);
++    }
++    var lunarDay = dayNumber - monthStart + 1;
++    var diff = INT((monthStart - a11) / 29);
++    var lunarLeap = 0;
++    var lunarMonth = diff + 11;
++    if (b11 - a11 > 365) {
++        var leapMonthDiff = getLeapMonthOffset(a11, timeZone);
++        if (diff >= leapMonthDiff) {
++            lunarMonth = diff + 10;
++            if (diff === leapMonthDiff) {
++                lunarLeap = 1;
++            }
++        }
++    }
++    if (lunarMonth > 12) {
++        lunarMonth = lunarMonth - 12;
++    }
++    if (lunarMonth >= 11 && diff < 4) {
++        lunarYear -= 1;
++    }
++    return { day: lunarDay, month: lunarMonth, year: lunarYear, leap: lunarLeap };
++}
++
++function jdToDate(jd) {
++    var a, b, c;
++    if (jd > 2299160) {
++        a = jd + 32044;
++        b = INT((4 * a + 3) / 146097);
++        c = a - INT((b * 146097) / 4);
++    } else {
++        b = 0;
++        c = jd + 32082;
++    }
++    var d = INT((4 * c + 3) / 1461);
++    var e = c - INT((1461 * d) / 4);
++    var m = INT((5 * e + 2) / 153);
++    return {
++        day: e - INT((153 * m + 2) / 5) + 1,
++        month: m + 3 - 12 * INT(m / 10),
++        year: b * 100 + d - 4800 + INT(m / 10)
++    };
++}
++
++function convertLunar2Solar(lunarDay, lunarMonth, lunarYear, lunarLeap, timeZone) {
++    if (timeZone === undefined) {
++        timeZone = 7;
++    }
++    var a11, b11;
++    if (lunarMonth < 11) {
++        a11 = getLunarMonth11(lunarYear - 1, timeZone);
++        b11 = getLunarMonth11(lunarYear, timeZone);
++    } else {
++        a11 = getLunarMonth11(lunarYear, timeZone);
++        b11 = getLunarMonth11(lunarYear + 1, timeZone);
++    }
++    var k = INT(0.5 + (a11 - 2415021.076998695) / 29.530588853);
++    var off = lunarMonth - 11;
++    if (off < 0) {
++        off += 12;
++    }
++    if (b11 - a11 > 365) {
++        var leapOff = getLeapMonthOffset(a11, timeZone);
++        var leapMonth = leapOff - 2;
++        if (leapMonth < 0) {
++            leapMonth += 12;
++        }
++        if (lunarLeap && lunarMonth !== leapMonth) {
++            return null;
++        } else if (lunarLeap || off >= leapOff) {
++            off += 1;
++        }
++    } else if (lunarLeap) {
++        return null;
++    }
++    return jdToDate(getNewMoonDay(k + off, timeZone) + lunarDay - 1);
++}
++
++var TUAN = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
++var CAN = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
++var CHI = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
++
++var TIETKHI = [
++    "Xuân phân", "Thanh minh", "Cốc vũ", "Lập hạ", "Tiểu mãn", "Mang chủng",
++    "Hạ chí", "Tiểu thử", "Đại thử", "Lập thu", "Xử thử", "Bạch lộ",
++    "Thu phân", "Hàn lộ", "Sương giáng", "Lập đông", "Tiểu tuyết", "Đại tuyết",
++    "Đông chí", "Tiểu hàn", "Đại hàn", "Lập xuân", "Vũ Thủy", "Kinh trập"
++];
++
++var GIO_HD = ["110100101100", "001101001011", "110011010010", "101100110100", "001011001101", "010010110011"];
++
++function yearCanChi(lunarYear) {
++    return CAN[(lunarYear + 6) % 10] + " " + CHI[(lunarYear + 8) % 12];
++}
++
++function monthCanChi(lunarYear, lunarMonth) {
++    return CAN[(lunarYear * 12 + lunarMonth + 3) % 10] + " " + CHI[(lunarMonth + 1) % 12];
++}
++
++function dayCanChi(jd) {
++    return CAN[(jd + 9) % 10] + " " + CHI[(jd + 1) % 12];
++}
++
++function hour0Can(jd) {
++    return CAN[((jd - 1) * 2) % 10];
++}
++
++function gioHoangDao(jd) {
++    var pattern = GIO_HD[((jd + 1) % 12) % 6];
++    var out = [];
++    for (var i = 0; i < 12; i++) {
++        if (pattern.charAt(i) === "1") {
++            out.push({ chi: CHI[i], from: (i * 2 + 23) % 24, to: (i * 2 + 1) % 24 });
++        }
++    }
++    return out;
++}
++
++function sunLongitudeApparent(jdn) {
++    var T = (jdn - 2451545.0) / 36525;
++    var T2 = T * T;
++    var dr = PI / 180;
++    var M = 357.52910 + 35999.05030 * T - 0.0001559 * T2 - 0.00000048 * T * T2;
++    var L0 = 280.46645 + 36000.76983 * T + 0.0003032 * T2;
++    var DL = (1.914600 - 0.004817 * T - 0.000014 * T2) * Math.sin(dr * M);
++    DL = DL + (0.019993 - 0.000101 * T) * Math.sin(dr * 2 * M) + 0.000290 * Math.sin(dr * 3 * M);
++    var theta = L0 + DL;
++    var omega = 125.04 - 1934.136 * T;
++    var lambda = (theta - 0.00569 - 0.00478 * Math.sin(omega * dr)) * dr;
++    lambda = lambda - PI * 2 * INT(lambda / (PI * 2));
++    return lambda;
++}
++
++function getSolarTerm(dayNumber, timeZone) {
++    return INT(sunLongitudeApparent(dayNumber - 0.5 - timeZone / 24.0) / PI * 12);
++}
++
++var LUNAR_FESTIVALS = [
++    { day: 1,  month: 1,  name: "Tết Nguyên Đán" },
++    { day: 15, month: 1,  name: "Rằm tháng Giêng" },
++    { day: 3,  month: 3,  name: "Tết Hàn Thực" },
++    { day: 10, month: 3,  name: "Giỗ Tổ Hùng Vương" },
++    { day: 15, month: 4,  name: "Lễ Phật Đản" },
++    { day: 5,  month: 5,  name: "Tết Đoan Ngọ" },
++    { day: 15, month: 7,  name: "Lễ Vu Lan" },
++    { day: 15, month: 8,  name: "Tết Trung Thu" },
++    { day: 23, month: 12, name: "Ông Công, Ông Táo chầu trời" }
++];
++
++function findFestivals(lunar, jd, timeZone) {
++    var out = [];
++    if (lunar.leap) {
++        return out;
++    }
++    for (var i = 0; i < LUNAR_FESTIVALS.length; i++) {
++        var f = LUNAR_FESTIVALS[i];
++        if (f.day === lunar.day && f.month === lunar.month) {
++            out.push(f.name);
++        }
++    }
++    if (lunar.month === 12 && lunar.day >= 29) {
++        var n = jdToDate(jd + 1);
++        var next = convertSolar2Lunar(n.day, n.month, n.year, timeZone);
++        if (next.day === 1 && next.month === 1) {
++            out.push("Giao thừa");
++        }
++    }
++    return out;
++}
++
++function nextFestival(fromJd, timeZone) {
++    if (timeZone === undefined) {
++        timeZone = 7;
++    }
++    var d = jdToDate(fromJd);
++    var lunarYear = convertSolar2Lunar(d.day, d.month, d.year, timeZone).year;
++    var best = null;
++
++    function consider(name, jd) {
++        if (jd >= fromJd && (best === null || jd < best.jd)) {
++            best = { name: name, jd: jd };
++        }
++    }
++
++    for (var y = lunarYear; y <= lunarYear + 1; y++) {
++        for (var i = 0; i < LUNAR_FESTIVALS.length; i++) {
++            var f = LUNAR_FESTIVALS[i];
++            var s = convertLunar2Solar(f.day, f.month, y, 0, timeZone);
++            if (s) {
++                consider(f.name, jdFromDate(s.day, s.month, s.year));
++            }
++        }
++        var tet = convertLunar2Solar(1, 1, y, 0, timeZone);
++        if (tet) {
++            consider("Giao thừa", jdFromDate(tet.day, tet.month, tet.year) - 1);
++        }
++    }
++    return best;
++}
++
++function getDayInfo(dd, mm, yy, timeZone) {
++    if (timeZone === undefined) {
++        timeZone = 7;
++    }
++    var jd = jdFromDate(dd, mm, yy);
++    var lunar = convertSolar2Lunar(dd, mm, yy, timeZone);
++    var term = getSolarTerm(jd + 1, timeZone);
++    var termAtStart = getSolarTerm(jd, timeZone);
++    return {
++        jd: jd,
++        weekday: TUAN[(jd + 1) % 7],
++        lunar: lunar,
++        yearCanChi: yearCanChi(lunar.year),
++        monthCanChi: monthCanChi(lunar.year, lunar.month),
++        dayCanChi: dayCanChi(jd),
++        solarTerm: TIETKHI[term],
++        solarTermStarts: term !== termAtStart,
++        gioHoangDao: gioHoangDao(jd),
++        festivals: findFestivals(lunar, jd, timeZone)
++    };
++}
+diff --git a/src/quickshell/calendar/LunarTest.js b/src/quickshell/calendar/LunarTest.js
+new file mode 100644
+index 00000000..7dd85b02
+--- /dev/null
++++ b/src/quickshell/calendar/LunarTest.js
+@@ -0,0 +1,150 @@
++// Run (Node 18+, no dependencies):
++//     node --test LunarTest.js
++// On NixOS without node installed:
++//     nix shell nixpkgs#nodejs -c node --test LunarTest.js
++
++const test = require("node:test");
++const assert = require("node:assert/strict");
++const fs = require("node:fs");
++const path = require("node:path");
++
++const file = process.env.LUNAR_JS || path.join(__dirname, "LunarCalendar.js");
++const source = fs.readFileSync(file, "utf8").replace(/^\s*\.pragma library\s*$/m, "");
++const L = new Function(
++    source + `;return { convertSolar2Lunar, convertLunar2Solar, getDayInfo, jdFromDate, jdToDate,
++                         findFestivals, gioHoangDao, yearCanChi, dayCanChi, nextFestival };`
++)();
++
++const lunar = (d, m, y) => L.convertSolar2Lunar(d, m, y, 7);
++
++test("solar to lunar: known dates", () => {
++    const cases = [
++        [[1, 1, 2000],  { day: 25, month: 11, year: 1999, leap: 0 }],
++        [[22, 1, 2023], { day: 1,  month: 1,  year: 2023, leap: 0 }],
++        [[10, 2, 2024], { day: 1,  month: 1,  year: 2024, leap: 0 }],
++        [[29, 1, 2025], { day: 1,  month: 1,  year: 2025, leap: 0 }],
++        [[25, 7, 2025], { day: 1,  month: 6,  year: 2025, leap: 1 }],
++        [[17, 2, 2026], { day: 1,  month: 1,  year: 2026, leap: 0 }],
++        [[25, 9, 2026], { day: 15, month: 8,  year: 2026, leap: 0 }],
++    ];
++    for (const [[d, m, y], want] of cases) {
++        assert.deepEqual(lunar(d, m, y), want, `${d}/${m}/${y}`);
++    }
++});
++
++test("leap months between 2020 and 2030", () => {
++    const found = [];
++    for (let y = 2020; y <= 2030; y++) {
++        for (let m = 1; m <= 12; m++) {
++            if (L.convertLunar2Solar(1, m, y, 1, 7)) found.push(`${y}:${m}`);
++        }
++    }
++    assert.deepEqual(found, ["2020:4", "2023:2", "2025:6", "2028:5"]);
++});
++
++test("asking for a leap month in a year without one returns null", () => {
++    assert.equal(L.convertLunar2Solar(1, 3, 2026, 1, 7), null);
++});
++
++test("round trip 2000-2060", () => {
++    const end = L.jdFromDate(1, 1, 2060);
++    for (let jd = L.jdFromDate(1, 1, 2000); jd < end; jd++) {
++        const s = L.jdToDate(jd);
++        const l = lunar(s.day, s.month, s.year);
++        const back = L.convertLunar2Solar(l.day, l.month, l.year, l.leap, 7);
++        assert.deepEqual(back, s, `${s.day}/${s.month}/${s.year} -> ${JSON.stringify(l)}`);
++    }
++});
++
++test("year Can Chi", () => {
++    assert.equal(L.yearCanChi(1984), "Giáp Tý");
++    assert.equal(L.yearCanChi(2000), "Canh Thìn");
++    assert.equal(L.yearCanChi(2024), "Giáp Thìn");
++    assert.equal(L.yearCanChi(2026), "Bính Ngọ");
++});
++
++test("day Can Chi: 1/1/2000 was a Mau Ngo day", () => {
++    assert.equal(L.dayCanChi(L.jdFromDate(1, 1, 2000)), "Mậu Ngọ");
++});
++
++test("weekday names", () => {
++    assert.equal(L.getDayInfo(1, 1, 2000).weekday, "Thứ Bảy");
++    assert.equal(L.getDayInfo(7, 10, 2026).weekday, "Thứ Tư");
++});
++
++test("solar terms start on the equinox and solstice days (UTC+7)", () => {
++    const cases = [
++        [[20, 3, 2026],  "Xuân phân"],
++        [[21, 6, 2026],  "Hạ chí"],
++        [[23, 9, 2026],  "Thu phân"],
++        [[22, 12, 2026], "Đông chí"],
++        [[8, 10, 2026],  "Hàn lộ"],
++    ];
++    for (const [[d, m, y], name] of cases) {
++        const info = L.getDayInfo(d, m, y);
++        assert.equal(info.solarTerm, name, `${d}/${m}/${y}`);
++        assert.equal(info.solarTermStarts, true, `${d}/${m}/${y} should start the term`);
++        const prev = L.jdToDate(L.jdFromDate(d, m, y) - 1);
++        assert.equal(L.getDayInfo(prev.day, prev.month, prev.year).solarTermStarts, false);
++    }
++});
++
++test("auspicious hours: a Ty day gives Ty, Suu, Mao, Ngo, Than, Dau", () => {
++    let jd = L.jdFromDate(1, 1, 2000);
++    while (L.dayCanChi(jd).split(" ")[1] !== "Tý") jd++;
++    const names = L.gioHoangDao(jd).map((h) => h.chi);
++    assert.deepEqual(names, ["Tý", "Sửu", "Mão", "Ngọ", "Thân", "Dậu"]);
++    assert.equal(L.gioHoangDao(jd)[0].from, 23);
++    assert.equal(L.gioHoangDao(jd)[0].to, 1);
++});
++
++test("auspicious hours: always 6 hours", () => {
++    for (let jd = 2451545; jd < 2451545 + 24; jd++) {
++        assert.equal(L.gioHoangDao(jd).length, 6);
++    }
++});
++
++test("festivals: Trung Thu, Tet, Giao thua", () => {
++    assert.deepEqual(L.getDayInfo(25, 9, 2026).festivals, ["Tết Trung Thu"]);
++    assert.deepEqual(L.getDayInfo(17, 2, 2026).festivals, ["Tết Nguyên Đán"]);
++    assert.deepEqual(L.getDayInfo(16, 2, 2026).festivals, ["Giao thừa"]);
++    assert.deepEqual(L.getDayInfo(10, 10, 2026).festivals, []);
++});
++
++test("festivals are not repeated in a leap month", () => {
++    const normal = L.convertLunar2Solar(15, 4, 2020, 0, 7);
++    const leap = L.convertLunar2Solar(15, 4, 2020, 1, 7);
++    assert.deepEqual(L.getDayInfo(normal.day, normal.month, normal.year).festivals, ["Lễ Phật Đản"]);
++    assert.deepEqual(L.getDayInfo(leap.day, leap.month, leap.year).festivals, []);
++});
++
++test("next festival: known cases", () => {
++    const at = (d, m, y) => L.jdFromDate(d, m, y);
++
++    let n = L.nextFestival(at(25, 9, 2026), 7);
++    assert.equal(n.name, "Tết Trung Thu");
++    assert.equal(n.jd, at(25, 9, 2026));
++
++    n = L.nextFestival(at(11, 2, 2026), 7);
++    assert.equal(n.name, "Giao thừa");
++    assert.equal(n.jd, at(16, 2, 2026));
++
++    n = L.nextFestival(at(18, 2, 2026), 7);
++    assert.equal(n.name, "Rằm tháng Giêng");
++    assert.equal(n.jd, at(3, 3, 2026));
++});
++
++test("next festival: consistent with the per-day festival list", () => {
++    const start = L.jdFromDate(1, 1, 2025);
++    const end = L.jdFromDate(1, 1, 2028);
++    for (let jd = start; jd < end; jd += 5) {
++        const n = L.nextFestival(jd, 7);
++        assert.ok(n && n.jd >= jd, `jd ${jd}`);
++        for (let j = jd; j < n.jd; j++) {
++            const s = L.jdToDate(j);
++            assert.deepEqual(L.getDayInfo(s.day, s.month, s.year).festivals, [], `unexpected festival on ${s.day}/${s.month}/${s.year}`);
++        }
++        const t = L.jdToDate(n.jd);
++        assert.ok(L.getDayInfo(t.day, t.month, t.year).festivals.includes(n.name), `${n.name} on ${t.day}/${t.month}/${t.year}`);
++    }
++});
+diff --git a/src/quickshell/guide/general/GeneralTab.qml b/src/quickshell/guide/general/GeneralTab.qml
+index 51a95a1a..c167dfc7 100644
+--- a/src/quickshell/guide/general/GeneralTab.qml
++++ b/src/quickshell/guide/general/GeneralTab.qml
+@@ -41,7 +41,12 @@ Item {
+         "screenshotCaptureOnRelease": false,
+         "weatherInterval": 15,
+         "weatherUnit": "metric",
+-        "quickactions": true
++        "quickactions": true,
++        "lunarCalendar": true,
++        "lunarCanChi": true,
++        "lunarGioHoangDao": true,
++        "lunarTietKhi": true,
++        "lunarHolidays": true
+     }
+ 
+     property var generalSettings: Config.getSetting("general", defaultGeneralSettings)
+@@ -50,6 +55,11 @@ Item {
+     property real sfxVolume: generalSettings.sfxVolume !== undefined ? generalSettings.sfxVolume : 100
+     property bool screenshotCaptureOnRelease: generalSettings.screenshotCaptureOnRelease !== undefined ? generalSettings.screenshotCaptureOnRelease : false
+     property bool quickactions: generalSettings.quickactions !== undefined ? generalSettings.quickactions : true
++    property bool lunarCalendar: generalSettings.lunarCalendar !== undefined ? generalSettings.lunarCalendar : true
++    property bool lunarCanChi: generalSettings.lunarCanChi !== undefined ? generalSettings.lunarCanChi : true
++    property bool lunarGioHoangDao: generalSettings.lunarGioHoangDao !== undefined ? generalSettings.lunarGioHoangDao : true
++    property bool lunarTietKhi: generalSettings.lunarTietKhi !== undefined ? generalSettings.lunarTietKhi : true
++    property bool lunarHolidays: generalSettings.lunarHolidays !== undefined ? generalSettings.lunarHolidays : true
+     property int weatherInterval: generalSettings.weatherInterval !== undefined ? generalSettings.weatherInterval : 15
+     property string weatherUnit: generalSettings.weatherUnit !== undefined ? generalSettings.weatherUnit : "metric"
+     property bool isLocEditOpen: false
+@@ -87,6 +97,11 @@ Item {
+             generalTabRoot.sfxVolume = gs.sfxVolume !== undefined ? gs.sfxVolume : 100;
+             generalTabRoot.screenshotCaptureOnRelease = gs.screenshotCaptureOnRelease !== undefined ? gs.screenshotCaptureOnRelease : false;
+             generalTabRoot.quickactions = gs.quickactions !== undefined ? gs.quickactions : true;
++            generalTabRoot.lunarCalendar = gs.lunarCalendar !== undefined ? gs.lunarCalendar : true;
++            generalTabRoot.lunarCanChi = gs.lunarCanChi !== undefined ? gs.lunarCanChi : true;
++            generalTabRoot.lunarGioHoangDao = gs.lunarGioHoangDao !== undefined ? gs.lunarGioHoangDao : true;
++            generalTabRoot.lunarTietKhi = gs.lunarTietKhi !== undefined ? gs.lunarTietKhi : true;
++            generalTabRoot.lunarHolidays = gs.lunarHolidays !== undefined ? gs.lunarHolidays : true;
+             generalTabRoot.weatherInterval = gs.weatherInterval !== undefined ? gs.weatherInterval : 15;
+             generalTabRoot.weatherUnit = gs.weatherUnit !== undefined ? gs.weatherUnit : "metric";
+             generalTabRoot.generalSettings = gs;
+@@ -117,6 +132,11 @@ Item {
+         current.sfxVolume = generalTabRoot.sfxVolume;
+         current.screenshotCaptureOnRelease = generalTabRoot.screenshotCaptureOnRelease;
+         current.quickactions = generalTabRoot.quickactions;
++        current.lunarCalendar = generalTabRoot.lunarCalendar;
++        current.lunarCanChi = generalTabRoot.lunarCanChi;
++        current.lunarGioHoangDao = generalTabRoot.lunarGioHoangDao;
++        current.lunarTietKhi = generalTabRoot.lunarTietKhi;
++        current.lunarHolidays = generalTabRoot.lunarHolidays;
+         current.weatherInterval = generalTabRoot.weatherInterval;
+         current.weatherUnit = generalTabRoot.weatherUnit;
+         Config.setSetting("general", current);
+@@ -325,6 +345,149 @@ Item {
+                 }
+             }
+ 
++            SettingsGroup {
++                rootObj: generalTabRoot.rootObj
++                icon: "󰃭"
++                title: I18n.t("guide.general.lunar.title") || "Vietnamese lunar calendar"
++                description: I18n.t("guide.general.lunar.desc") || "Show lunar dates under each day in the calendar"
++                visible: generalTabRoot.currentLanguage === "vi"
++                expanded: generalTabRoot.lunarCalendar
++
++                Toggle {
++                    id: lunarToggle
++                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
++                    checked: generalTabRoot.lunarCalendar
++                    accentColor: ThemeBackend.mauve
++                    baseColor: ThemeBackend.surface1
++                    handleColor: ThemeBackend.crust
++                    handleOffColor: ThemeBackend.text
++                    onToggled: function(c) {
++                        generalTabRoot.lunarCalendar = c;
++                        generalTabRoot.updateGeneralSettings();
++                    }
++
++                    Binding {
++                        target: lunarToggle
++                        property: "checked"
++                        value: generalTabRoot.lunarCalendar
++                    }
++                }
++
++                subSettings: [
++                    SettingsRow {
++                        rootObj: generalTabRoot.rootObj
++                        baseColor: Qt.alpha(ThemeBackend.surface1, 0.35)
++                        icon: "󰃮"
++                        title: I18n.t("guide.general.lunar_canchi.title") || "Can Chi"
++                        description: I18n.t("guide.general.lunar_canchi.desc") || "Show day, month and year Can Chi when hovering a day"
++
++                        Toggle {
++                            id: lunarCanChiToggle
++                            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
++                            checked: generalTabRoot.lunarCanChi
++                            accentColor: ThemeBackend.mauve
++                            baseColor: ThemeBackend.surface1
++                            handleColor: ThemeBackend.crust
++                            handleOffColor: ThemeBackend.text
++                            onToggled: function(c) {
++                                generalTabRoot.lunarCanChi = c;
++                                generalTabRoot.updateGeneralSettings();
++                            }
++
++                            Binding {
++                                target: lunarCanChiToggle
++                                property: "checked"
++                                value: generalTabRoot.lunarCanChi
++                            }
++                        }
++                    },
++
++                    SettingsRow {
++                        rootObj: generalTabRoot.rootObj
++                        baseColor: Qt.alpha(ThemeBackend.surface1, 0.35)
++                        icon: "󰥔"
++                        title: I18n.t("guide.general.lunar_hoangdao.title") || "Auspicious hours"
++                        description: I18n.t("guide.general.lunar_hoangdao.desc") || "Show auspicious hours (giờ hoàng đạo) when hovering a day"
++
++                        Toggle {
++                            id: lunarGioHoangDaoToggle
++                            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
++                            checked: generalTabRoot.lunarGioHoangDao
++                            accentColor: ThemeBackend.mauve
++                            baseColor: ThemeBackend.surface1
++                            handleColor: ThemeBackend.crust
++                            handleOffColor: ThemeBackend.text
++                            onToggled: function(c) {
++                                generalTabRoot.lunarGioHoangDao = c;
++                                generalTabRoot.updateGeneralSettings();
++                            }
++
++                            Binding {
++                                target: lunarGioHoangDaoToggle
++                                property: "checked"
++                                value: generalTabRoot.lunarGioHoangDao
++                            }
++                        }
++                    },
++
++                    SettingsRow {
++                        rootObj: generalTabRoot.rootObj
++                        baseColor: Qt.alpha(ThemeBackend.surface1, 0.35)
++                        icon: "󰖙"
++                        title: I18n.t("guide.general.lunar_tietkhi.title") || "Solar terms"
++                        description: I18n.t("guide.general.lunar_tietkhi.desc") || "Show the solar term (tiết khí) when hovering a day"
++
++                        Toggle {
++                            id: lunarTietKhiToggle
++                            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
++                            checked: generalTabRoot.lunarTietKhi
++                            accentColor: ThemeBackend.mauve
++                            baseColor: ThemeBackend.surface1
++                            handleColor: ThemeBackend.crust
++                            handleOffColor: ThemeBackend.text
++                            onToggled: function(c) {
++                                generalTabRoot.lunarTietKhi = c;
++                                generalTabRoot.updateGeneralSettings();
++                            }
++
++                            Binding {
++                                target: lunarTietKhiToggle
++                                property: "checked"
++                                value: generalTabRoot.lunarTietKhi
++                            }
++                        }
++                    },
++
++                    SettingsRow {
++                        rootObj: generalTabRoot.rootObj
++                        baseColor: Qt.alpha(ThemeBackend.surface1, 0.35)
++                        icon: "󰓎"
++                        title: I18n.t("guide.general.lunar_holidays.title") || "Lunar festivals"
++                        description: I18n.t("guide.general.lunar_holidays.desc") || "Mark festivals such as Tết and Trung Thu with a dot"
++
++                        Toggle {
++                            id: lunarHolidaysToggle
++                            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
++                            checked: generalTabRoot.lunarHolidays
++                            accentColor: ThemeBackend.mauve
++                            baseColor: ThemeBackend.surface1
++                            handleColor: ThemeBackend.crust
++                            handleOffColor: ThemeBackend.text
++                            onToggled: function(c) {
++                                generalTabRoot.lunarHolidays = c;
++                                generalTabRoot.updateGeneralSettings();
++                            }
++
++                            Binding {
++                                target: lunarHolidaysToggle
++                                property: "checked"
++                                value: generalTabRoot.lunarHolidays
++                            }
++                        }
++                    }
++                ]
++            }
++
+             SettingsRow {
+                 rootObj: generalTabRoot.rootObj
+                 icon: "󱓞"
