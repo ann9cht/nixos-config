@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    serpantinum.url = "github:ilyamiro/serpantinum";
+    serpantinum.url = "github:ann9cht/serpantinum";
 
     home-manager = {
       url = "github:nix-community/home-manager";

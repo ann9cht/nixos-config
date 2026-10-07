@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -9,11 +9,11 @@
     enable = true;
     systemd.enable = true;
 
-    package =
-      inputs.serpantinum.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
-        (old: {
-          patches = (old.patches or [ ]) ++ [ ./lunar.patch ];
-        });
+    #package =
+    #  inputs.serpantinum.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
+    #    (old: {
+    #      patches = (old.patches or [ ]) ++ [ ./lunar.patch ];
+    #    });
 
     settings = {
       wallpaperDir = "/home/ann9cht/Pictures/Wallpapers";
