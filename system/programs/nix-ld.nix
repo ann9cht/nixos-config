@@ -4,8 +4,35 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
+      # nix-locate -w lib
+      wayland
+      libxkbcommon
+      vulkan-loader
       libglvnd
-      stdenv.cc.cc.lib
+      glib
+      nss
+      nspr
+      at-spi2-core
+      cups
+      dbus
+      libdrm
+      gtk3
+      pango
+      cairo
+      libx11
+      libxcomposite
+      libxdamage
+      libxext
+      libxfixes
+      alsa-lib
+      ffmpeg_4
+      dbus-glib
+      libdbusmenu
+      libxrandr
+      libgbm
+      expat
+      gdk-pixbuf
+      libxcb
     ];
   };
 }
