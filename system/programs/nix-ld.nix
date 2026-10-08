@@ -25,14 +25,14 @@
       libxext
       libxfixes
       alsa-lib
-      ffmpeg_4
-      dbus-glib
-      libdbusmenu
       libxrandr
       libgbm
       expat
-      gdk-pixbuf
       libxcb
+      #gdk-pixbuf
+      #ffmpeg_4
+      #dbus-glib
+      #libdbusmenu
     ];
   };
 }
