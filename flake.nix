@@ -51,8 +51,6 @@
         modules = [
           ./host
           ./system
-
-          inputs.serpantinum.nixosModules.default
         ];
       };
 

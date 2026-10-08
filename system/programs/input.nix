@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [ inputs.fcitx5-lotus.nixosModules.fcitx5-lotus ];
