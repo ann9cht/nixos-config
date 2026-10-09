@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 let
   color_theme = "catppuccin_latte";
 in
