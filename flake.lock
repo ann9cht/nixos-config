@@ -201,11 +201,11 @@
         "serpantinum-wallpapers": "serpantinum-wallpapers"
       },
       "locked": {
-        "lastModified": 1791504575,
-        "narHash": "sha256-pbRQy9TXW6AXfTC1JYvTmBWqZtTsZkBI3o/gdMuQnC0=",
+        "lastModified": 1791547983,
+        "narHash": "sha256-uOt3HJz4RcAZ1iznsjh4Xtzq/SlhJEUAJHu/v76Eb8M=",
         "owner": "ann9cht",
         "repo": "serpantinum",
-        "rev": "03ad0c7c3d43ba56f8edb97f4b0623acbc41ad24",
+        "rev": "7e4965b1b9f08b071619f55f768962a36b202561",
         "type": "github"
       },
       "original": {

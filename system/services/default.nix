@@ -2,10 +2,9 @@
   imports = [
     ./bluetooth.nix
     ./remapper.nix
+    ./sddm.nix
     ./snapper.nix
     ./sunshine.nix
-
-    ./sddm
   ];
 
   services = {
