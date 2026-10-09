@@ -4,7 +4,6 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-
     theme = "material-you";
     extraPackages = with pkgs.kdePackages; [
       qt5compat
@@ -17,7 +16,7 @@
   environment.systemPackages = [
     (pkgs.stdenv.mkDerivation {
       name = "sddm-theme-material-you";
-      src = ./themes;
+      src = ./themes; # "${inputs.serpantinum}/config/sddm/themes/material-you"
       installPhase = ''
         mkdir -p $out/share/sddm/themes/material-you
         cp -r * $out/share/sddm/themes/material-you/
