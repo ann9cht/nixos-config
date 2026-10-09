@@ -29,10 +29,6 @@
       libgbm
       expat
       libxcb
-      #gdk-pixbuf
-      #ffmpeg_4
-      #dbus-glib
-      #libdbusmenu
     ];
   };
 }
