@@ -1,5 +1,5 @@
 let
-  color_theme = "catppuccin_latte";
+  color_theme = "catppuccin_macchiato";
 in
 {
   programs.btop = {
