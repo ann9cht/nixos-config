@@ -39,4 +39,13 @@ map floatFree [
       dim_around = true;
     }
   )
+  (
+    (floatRule [ 800 680 ] "zalo")
+    // {
+      move = [
+        75
+        120
+      ];
+    }
+  )
 ]
