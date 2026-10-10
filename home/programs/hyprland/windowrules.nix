@@ -1,8 +1,8 @@
 let
-  sizeMedium = [
-    750
-    500
-  ];
+  floatFree = class: {
+    match = { inherit class; };
+    float = true;
+  };
 
   floatRule = size: class: {
     match = { inherit class; };
@@ -10,10 +10,16 @@ let
     inherit size;
   };
 
-  floatFree = class: {
+  floatRuleAt = size: move: class: {
     match = { inherit class; };
     float = true;
+    inherit size move;
   };
+
+  sizeMedium = [
+    750
+    500
+  ];
 in
 
 map floatFree [
@@ -29,4 +35,5 @@ map floatFree [
 
 ++ [
   (floatRule [ 440 200 ] "protonvpn-app")
+  (floatRuleAt [ 800 600 ] [ 25 65 ] "xdg-desktop-portal-gtk")
 ]
