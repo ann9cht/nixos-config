@@ -10,12 +10,6 @@ let
     inherit size;
   };
 
-  floatRuleAt = size: move: class: {
-    match = { inherit class; };
-    float = true;
-    inherit size move;
-  };
-
   sizeMedium = [
     750
     500
@@ -35,5 +29,14 @@ map floatFree [
 
 ++ [
   (floatRule [ 440 200 ] "protonvpn-app")
-  (floatRuleAt [ 800 600 ] [ 25 65 ] "xdg-desktop-portal-gtk")
+  (
+    (floatRule [ 800 600 ] "xdg-desktop-portal-gtk")
+    // {
+      move = [
+        25
+        65
+      ];
+      dim_around = true;
+    }
+  )
 ]
