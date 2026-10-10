@@ -7,7 +7,7 @@ in
     settings = { inherit color_theme; };
     themes.${color_theme} = ''
       # Main background, empty for terminal default, need to be empty if you want transparent background
-      theme[main_bg]="#24273a"
+      theme[main_bg]=""
 
       # Main text color
       theme[main_fg]="#cad3f5"
