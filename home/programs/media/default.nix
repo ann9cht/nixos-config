@@ -6,6 +6,10 @@
   ];
 
   home.packages = with pkgs; [
-    loupe # Trình xem ảnh
+    # Xem ảnh
+    loupe
+
+    # Torrent
+    transmission_4-gtk
   ];
 }
