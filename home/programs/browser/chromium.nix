@@ -4,5 +4,8 @@
     extensions = [
       "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock origin lite
     ];
+    extraOpts = {
+      "SpellcheckEnabled" = false;
+    };
   };
 }
