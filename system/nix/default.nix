@@ -5,8 +5,18 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix = {
+    optimise = {
+      automatic = true;
+      dates = "Sun 20:00";
+    };
+
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+  };
 }
