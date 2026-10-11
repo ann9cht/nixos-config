@@ -1,7 +1,7 @@
 {
   imports = [
     ./bluetooth.nix
-    ./remapper.nix
+    ./keyd.nix
     ./sddm.nix
     ./snapper.nix
     ./sunshine.nix
