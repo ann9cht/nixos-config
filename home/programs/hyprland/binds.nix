@@ -107,7 +107,7 @@ in
   (b "${mainMod} + W" (exec "waydroid show-full-ui"))
   (b "${mainMod} + ALT + W" (exec "waydroid session stop"))
   (b "${mainMod} + O" (exec "obsidian"))
-  (b "${mainMod} + ALT + Z" (exec "chromium"))
+  (b "${mainMod} + SHIFT + Z" (exec "chromium"))
 
   # Serpantinum
   (b "${mainMod} + R" (serp "reload"))
