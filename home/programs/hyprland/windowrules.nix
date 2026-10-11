@@ -36,7 +36,6 @@ map floatFree [
         25
         65
       ];
-      dim_around = true;
     }
   )
   (
