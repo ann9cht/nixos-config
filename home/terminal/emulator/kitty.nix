@@ -3,8 +3,8 @@
     enable = true;
 
     keybindings = {
-      "XF86Copy" = "copy_to_clipboard";
-      "XF86Paste" = "paste_from_clipboard";
+      "ctrl+insert" = "copy_to_clipboard";
+      "shift+insert" = "paste_from_clipboard";
     };
 
     settings = {
