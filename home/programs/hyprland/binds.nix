@@ -80,9 +80,7 @@ in
   (bLocked "SHIFT + Print" (serp "screenshot --edit"))
   (bLocked "SUPER + SHIFT + S" (serp "screenshot --edit"))
   (bLocked "SUPER + Print" (serp "screenshot --full"))
-  (bLocked "SUPER + P" (serp "screenshot --full"))
   (bLocked "SUPER + SHIFT + Print" (serp "screenshot --full --edit"))
-  (bLocked "SUPER + SHIFT + P" (serp "screenshot --full --edit"))
 
   # Khóa phiên
   (bLocked "XF86PowerOff" (serp "lock"))

@@ -5,14 +5,14 @@
       mouse = {
         ids = [ "30fa:1701" ];
         settings.main = {
-          mouse1 = "C-insert"; # copy
-          mouse2 = "S-insert"; # paste
+          mouse1 = "C-insert";
+          mouse2 = "S-insert";
         };
       };
 
       keyboard = {
         ids = [ "1c4f:0002" ];
-        settings.main.f10 = "sysrq"; # Print Screen
+        settings.main.f10 = "print";
       };
     };
   };
