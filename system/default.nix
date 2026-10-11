@@ -1,11 +1,11 @@
 {
   imports = [
     ./hm.nix
-    ./nix.nix
     ./virtualisation.nix
 
     ./core
     ./network
+    ./nix
     ./programs
     ./services
   ];
