@@ -1,3 +1,8 @@
 {
-  programs.chromium.enable = true;
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock origin lite
+    ];
+  };
 }

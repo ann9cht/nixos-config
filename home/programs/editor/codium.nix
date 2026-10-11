@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ nixd ];
-
   programs.vscodium = {
     enable = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
@@ -10,4 +8,6 @@
       sumneko.lua
     ];
   };
+
+  home.packages = with pkgs; [ nixd ];
 }
