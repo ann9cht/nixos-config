@@ -8,12 +8,14 @@
       isNormalUser = true;
       initialPassword = "1";
       description = "ann9cht";
+
+      shell = pkgs.fish;
+
       extraGroups = [
         "networkmanager"
         "wheel"
         "uinput"
       ];
-      shell = pkgs.fish;
     };
   };
 }

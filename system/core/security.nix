@@ -3,6 +3,7 @@
 {
   security = {
     polkit.enable = true;
+
     wrappers.pkexec = {
       enable = lib.mkForce true;
       owner = "root";

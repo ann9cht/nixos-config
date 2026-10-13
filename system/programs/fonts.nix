@@ -23,14 +23,17 @@
           "Times New Roman"
           "Liberation Serif"
         ];
+
         sansSerif = [
           "Arial"
           "Liberation Sans"
         ];
+
         monospace = [
           "Consolas"
           "DejaVu Sans Mono"
         ];
+
         emoji = [ "Noto Color Emoji" ];
       };
     };
