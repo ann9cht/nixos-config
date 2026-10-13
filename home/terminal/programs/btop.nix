@@ -5,6 +5,7 @@ in
   programs.btop = {
     enable = true;
     settings = { inherit color_theme; };
+
     themes.${color_theme} = ''
       # Main background, empty for terminal default, need to be empty if you want transparent background
       theme[main_bg]=""

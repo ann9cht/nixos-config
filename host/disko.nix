@@ -20,6 +20,7 @@
                 ];
               };
             };
+
             root = {
               size = "100%";
               content = {
@@ -33,14 +34,17 @@
                       "noatime"
                     ];
                   };
+
                   "@home" = {
                     mountpoint = "/home";
                     mountOptions = [ "compress=zstd" ];
                   };
+
                   "@home-snapshots" = {
                     mountpoint = "/home/.snapshots";
                     mountOptions = [ "compress=zstd" ];
                   };
+
                   "@nix" = {
                     mountpoint = "/nix";
                     mountOptions = [

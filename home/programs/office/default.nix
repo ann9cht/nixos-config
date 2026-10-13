@@ -7,6 +7,7 @@
 
   home = {
     packages = with pkgs; [ onlyoffice-desktopeditors ];
+
     activation.copyOfficeFonts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/fonts"
       cp -f ${pkgs.corefonts}/share/fonts/truetype/*.ttf "$HOME/.local/share/fonts/" 2>/dev/null || true

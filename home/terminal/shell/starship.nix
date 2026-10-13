@@ -5,21 +5,30 @@
 
     settings = {
       add_newline = false;
-
       format = " $cmd_duration $directory$git_branch\n   $character";
 
-      fill = {
-        symbol = "-";
-        style = "fg:245";
+      cmd_duration = {
+        min_time = 0;
+        format = "[](bold fg:252)[󰪢 $duration](bold bg:252 fg:235)[](bold fg:252)";
       };
 
-      character = {
-        success_symbol = "[ ](bold fg:#cdd6f4)";
-        error_symbol = "[ ](bold fg:#cdd6f4)";
-      };
+      directory = {
+        home_symbol = " ";
+        read_only = "  ";
+        style = "bg:#313244 fg:#cdd6f4";
+        truncation_length = 2;
+        truncation_symbol = ".../";
+        format = "[](bold fg:#313244)[󰉋 → $path]($style)[](bold fg:#313244)";
 
-      package = {
-        disabled = true;
+        substitutions = {
+          "Desktop" = "  ";
+          "Documents" = "  ";
+          "Downloads" = "  ";
+          "Music" = " 󰎈 ";
+          "Pictures" = "  ";
+          "Videos" = "  ";
+          "GitHub" = " 󰊤 ";
+        };
       };
 
       git_branch = {
@@ -28,6 +37,31 @@
         truncation_length = 12;
         truncation_symbol = "";
         format = " 󰜥 [](bold fg:252)[$symbol $branch(:$remote_branch)](fg:235 bg:252)[ ](bold fg:252)";
+      };
+
+      character = {
+        success_symbol = "[ ](bold fg:#cdd6f4)";
+        error_symbol = "[ ](bold fg:#cdd6f4)";
+      };
+
+      fill = {
+        symbol = "-";
+        style = "fg:245";
+      };
+
+      hostname = {
+        ssh_only = false;
+        format = "[•$hostname](bg:252 bold fg:235)[](bold fg:252)";
+        trim_at = ".companyname.com";
+        disabled = false;
+      };
+
+      username = {
+        style_user = "bold bg:252 fg:235";
+        style_root = "red bold";
+        format = "[](bold fg:252)[$user]($style)";
+        disabled = false;
+        show_always = true;
       };
 
       git_commit = {
@@ -53,16 +87,11 @@
         deleted = " 🗑 ";
       };
 
-      hostname = {
-        ssh_only = false;
-        format = "[•$hostname](bg:252 bold fg:235)[](bold fg:252)";
-        trim_at = ".companyname.com";
-        disabled = false;
-      };
-
       line_break = {
         disabled = false;
       };
+
+      package.disabled = true;
 
       memory_usage = {
         disabled = true;
@@ -75,38 +104,6 @@
         disabled = true;
         format = "🕙[\\[ $time \\]]($style) ";
         time_format = "%T";
-      };
-
-      username = {
-        style_user = "bold bg:252 fg:235";
-        style_root = "red bold";
-        format = "[](bold fg:252)[$user]($style)";
-        disabled = false;
-        show_always = true;
-      };
-
-      directory = {
-        home_symbol = " ";
-        read_only = "  ";
-        style = "bg:#313244 fg:#cdd6f4";
-        truncation_length = 2;
-        truncation_symbol = ".../";
-        format = "[](bold fg:#313244)[󰉋 → $path]($style)[](bold fg:#313244)";
-
-        substitutions = {
-          "Desktop" = "  ";
-          "Documents" = "  ";
-          "Downloads" = "  ";
-          "Music" = " 󰎈 ";
-          "Pictures" = "  ";
-          "Videos" = "  ";
-          "GitHub" = " 󰊤 ";
-        };
-      };
-
-      cmd_duration = {
-        min_time = 0;
-        format = "[](bold fg:252)[󰪢 $duration](bold bg:252 fg:235)[](bold fg:252)";
       };
     };
   };

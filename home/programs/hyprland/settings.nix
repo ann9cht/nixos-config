@@ -12,12 +12,14 @@
     rounding = 12;
     active_opacity = 1.0;
     inactive_opacity = 1.0;
+
     blur = {
       enabled = true;
       size = 8;
       passes = 2;
       new_optimizations = true;
     };
+
     shadow = {
       enabled = false;
     };
@@ -35,9 +37,7 @@
   };
 
   # https://github.com/hyprwm/Hyprland/issues/9786
-  render = {
-    send_content_type = false;
-  };
+  render.send_content_type = false;
 
   misc = {
     vrr = false;

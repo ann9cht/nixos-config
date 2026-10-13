@@ -18,6 +18,7 @@ let
       dsp
     ];
   };
+
   withOpts = opts: keys: dsp: {
     _args = [
       keys
@@ -25,13 +26,14 @@ let
       opts
     ];
   };
+
+  bMouse = withOpts { mouse = true; };
   bLocked = withOpts { locked = true; };
   bRepeat = withOpts { repeating = true; };
   bLockedRepeat = withOpts {
     locked = true;
     repeating = true;
   };
-  bMouse = withOpts { mouse = true; };
 
   exec = cmd: mkLuaInline "hl.dsp.exec_cmd(${lua cmd})";
   serp = args: exec "serpantinum ${args}";

@@ -3,6 +3,7 @@
     home = {
       SUBVOLUME = "/home";
       ALLOW_USERS = [ "ann9cht" ];
+
       TIMELINE_CREATE = true;
       TIMELINE_CLEANUP = true;
       TIMELINE_LIMIT_HOURLY = 5;

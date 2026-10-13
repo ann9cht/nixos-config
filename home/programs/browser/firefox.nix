@@ -8,6 +8,7 @@
       id = 0;
       name = "default";
       isDefault = true;
+
       settings = {
         # Tắt gạch chân đỏ chính tả
         "layout.spellcheckDefault" = 0;

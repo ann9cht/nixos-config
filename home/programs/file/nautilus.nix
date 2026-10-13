@@ -32,6 +32,7 @@ in
   xdg.userDirs = {
     enable = true;
     createDirectories = true; # Tự động tạo thư mục (nếu chưa có)
+
     desktop = "${home}/Desktop";
     documents = "${home}/Documents";
     download = "${home}/Downloads";
