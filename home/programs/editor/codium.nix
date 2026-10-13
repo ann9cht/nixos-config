@@ -29,6 +29,8 @@ in
 
         "diffEditor.ignoreTrimWhitespace" = false;
 
+        "[nix]"."editor.formatOnSave" = true;
+
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
         "nix.serverSettings".nixd = {
