@@ -18,7 +18,12 @@
     "screenshotCaptureOnRelease": true,
     "quickactions": true,
     "weatherInterval": 15,
-    "weatherUnit": "metric"
+    "weatherUnit": "metric",
+    "lunarCalendar": true,
+    "lunarCanChi": true,
+    "lunarGioHoangDao": true,
+    "lunarTietKhi": true,
+    "lunarHolidays": true
   },
   "theme": {
     "fontFamily": "Noto Sans",
@@ -53,7 +58,7 @@
   "bar": {
     "position": "top",
     "width": 100,
-    "opacity": 75,
+    "opacity": 45,
     "style": "modular",
     "distinctPills": false,
     "time": {
@@ -80,12 +85,19 @@
         "tray",
         "sysmon",
         "wifi",
-        "vol"
+        "vol",
+        "bat"
       ]
     },
     "workspacesStyle": "pacman",
     "timeStyle": "classic",
-    "timeShowDate": true
+    "timeShowDate": true,
+    "sysmonStyle": "wave",
+    "sysmonStats": [
+      "cpu",
+      "ram",
+      "temp"
+    ]
   },
   "launcher": {
     "position": "center",
@@ -99,7 +111,7 @@
     "position": "bottom",
     "elementSize": 46,
     "floating": true,
-    "opacity": 45,
+    "opacity": 30,
     "exclusive": false,
     "autohide": true,
     "autohideTimeout": 250,
@@ -126,7 +138,7 @@
       {
         "name": "Obsidian",
         "comment": "Knowledge base",
-        "desktop_id": "obsidian",
+        "desktop_id": "md.obsidian.Obsidian",
         "icon": "obsidian"
       },
       {
@@ -162,7 +174,7 @@
     "horizontalPosition": 92,
     "verticalPosition": 8,
     "sound": true,
-    "soundFile": "/nix/store/2zlg0srk57wbm1z7njyc8hcsw1ajj0l0-serpantinum-2.2.3/share/serpantinum/assets/sounds/notifications/Botanica.wav",
+    "soundFile": "/nix/store/l893d46cd1alhrkpy7c8h28cq0km6i7k-serpantinum-2.2.7/share/serpantinum/assets/sounds/notifications/Botanica.wav",
     "showEmptyGraphic": true
   },
   "osd": {
@@ -170,7 +182,7 @@
     "verticalPosition": 90,
     "orientation": "horizontal",
     "showCapsLock": true,
-    "showNumLock": true,
+    "showNumLock": false,
     "showAirplane": true,
     "attachToBar": false
   },
@@ -240,6 +252,8 @@
         "enabled": false
       }
     }
+  },
+  "widgets": {
+    "hideBarInRedactor": false
   }
 }
-
