@@ -29,6 +29,8 @@
       libgbm
       expat
       libxcb
+      libxcursor
+      libxi
     ];
   };
 }
