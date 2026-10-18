@@ -6,7 +6,6 @@
       dust
       duf
       fd
-      file
       ripgrep
     ];
 
