@@ -38,6 +38,8 @@
     numlock_by_default = true;
   };
 
+  cursor.no_warps = true;
+
   # https://github.com/hyprwm/Hyprland/issues/9786
   render.send_content_type = false;
 
