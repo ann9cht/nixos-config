@@ -8,8 +8,9 @@
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
-      addons = [
+      addons = with pkgs; [
         inputs.fcitx5-lotus.packages.${pkgs.stdenv.hostPlatform.system}.fcitx5-lotus
+        fcitx5-areca
       ];
     };
   };
