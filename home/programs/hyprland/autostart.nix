@@ -1,21 +1,22 @@
-{ lib }:
+{ lib, ... }:
 
 let
-  inherit (lib.generators) mkLuaInline;
+  commands = [
+    "wl-paste --type text --watch cliphist store"
+    "wl-paste --type image --watch cliphist store"
+    "systemctl --user enable --now easyeffects"
+    "hyprctl setcursor Bibata-Modern-Ice 24"
+    "fcitx5 -d"
+  ];
 in
-[
-  {
+{
+  wayland.windowManager.hyprland.settings.on = {
     _args = [
       "hyprland.start"
-      (mkLuaInline ''
+      (lib.generators.mkLuaInline ''
         function()
-          hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
-          hl.exec_cmd("wl-paste --type text --watch cliphist store")
-          hl.exec_cmd("wl-paste --type image --watch cliphist store")
-          hl.exec_cmd("systemctl --user enable --now easyeffects")
-          hl.exec_cmd("fcitx5 -d")
-        end
-      '')
+          ${lib.concatMapStringsSep "\n  " (c: "hl.exec_cmd(${builtins.toJSON c})") commands}
+        end'')
     ];
-  }
-]
+  };
+}

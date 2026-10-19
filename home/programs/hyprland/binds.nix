@@ -1,144 +1,137 @@
-{ lib }:
+{ lib, ... }:
 
 let
-  inherit (lib.generators) mkLuaInline toLua;
-  lua = toLua { };
+  vars = import ./variables.nix;
+  h = import ./helpers.nix { inherit lib; };
+  inherit (h)
+    lua
+    exec
+    m
+    bind
+    bindWith
+    locked
+    repeating
+    lockedRepeating
+    ;
+  inherit (vars)
+    browser
+    file
+    fileMini
+    terminal
+    terminalMini
+    editor
+    ;
 
-  mainMod = "SUPER";
-  terminal = "kitty";
-  terminalMini = "[float; size 630 380; move 35 75] kitty";
-  file = "nautilus";
-  fileMini = "[float; size 800 600; move 765 265] dbus-run-session nautilus";
-  browser = "zen-beta";
-  editor = "codium";
-
-  b = keys: dsp: {
-    _args = [
-      keys
-      dsp
-    ];
-  };
-
-  withOpts = opts: keys: dsp: {
-    _args = [
-      keys
-      dsp
-      opts
-    ];
-  };
-
-  bLocked = withOpts { locked = true; };
-  bRepeat = withOpts { repeating = true; };
-  bLockedRepeat = withOpts {
-    locked = true;
-    repeating = true;
-  };
-  bMouse = withOpts { mouse = true; };
-
-  exec = cmd: mkLuaInline "hl.dsp.exec_cmd(${lua cmd})";
-  serp = args: exec "serpantinum ${args}";
-  focusDir = d: mkLuaInline "hl.dsp.focus({ direction = ${lua d} })";
-  moveDir = d: mkLuaInline "hl.dsp.window.move({ direction = ${lua d} })";
-  focusWs = ws: mkLuaInline "hl.dsp.focus({ workspace = ${lua ws} })";
-  resizeBy =
-    x: y: mkLuaInline "hl.dsp.window.resize({ x = ${toString x}, y = ${toString y}, relative = true })";
+  workspaceBinds = lib.concatMap (
+    i:
+    let
+      ws = toString i;
+      key = toString (lib.mod i 10);
+    in
+    [
+      (bind (m key) (exec "serpantinum msg workspace ${ws}"))
+      (bind (m "ALT + ${key}") (exec "serpantinum msg workspace ${ws} move"))
+    ]
+  ) (lib.range 1 10);
 in
-[
-  # Đổi kích thước bằng chuột
-  (bMouse "${mainMod} + mouse:272" (mkLuaInline "hl.dsp.window.drag()"))
-  (bMouse "${mainMod} + mouse:273" (mkLuaInline "hl.dsp.window.resize()"))
+{
+  wayland.windowManager.hyprland.settings = {
+    gesture = {
+      fingers = 3;
+      direction = "horizontal";
+      action = "workspace";
+    };
 
-  # Đổi kích thước bằng phím
-  (bRepeat "${mainMod} + SHIFT + Left" (resizeBy (-50) 0))
-  (bRepeat "${mainMod} + SHIFT + Right" (resizeBy 50 0))
-  (bRepeat "${mainMod} + SHIFT + Up" (resizeBy 0 (-50)))
-  (bRepeat "${mainMod} + SHIFT + Down" (resizeBy 0 50))
+    bind = [
+      # Chuột
+      (bindWith (m "mouse:272") (lua "hl.dsp.window.drag()") { mouse = true; })
+      (bindWith (m "mouse:273") (lua "hl.dsp.window.resize()") { mouse = true; })
 
-  # Di chuyển cửa sổ
-  (b "${mainMod} + CTRL + Left" (moveDir "l"))
-  (b "${mainMod} + CTRL + Right" (moveDir "r"))
-  (b "${mainMod} + CTRL + Up" (moveDir "u"))
-  (b "${mainMod} + CTRL + Down" (moveDir "d"))
+      # Resize cửa sổ
+      (bindWith (m "SHIFT + Left") (lua "hl.dsp.window.resize({ x = -50, y = 0, relative = true })")
+        repeating
+      )
+      (bindWith (m "SHIFT + Right") (lua "hl.dsp.window.resize({ x = 50, y = 0, relative = true })")
+        repeating
+      )
+      (bindWith (m "SHIFT + Up") (lua "hl.dsp.window.resize({ x = 0, y = -50, relative = true })")
+        repeating
+      )
+      (bindWith (m "SHIFT + Down") (lua "hl.dsp.window.resize({ x = 0, y = 50, relative = true })")
+        repeating
+      )
 
-  # Đổi focus
-  (b "${mainMod} + Left" (focusDir "left"))
-  (b "${mainMod} + Right" (focusDir "right"))
-  (b "${mainMod} + Up" (focusDir "up"))
-  (b "${mainMod} + Down" (focusDir "down"))
+      # Di chuyển cửa sổ
+      (bind (m "CTRL + Left") (lua ''hl.dsp.window.move({ direction = "l" })''))
+      (bind (m "CTRL + Right") (lua ''hl.dsp.window.move({ direction = "r" })''))
+      (bind (m "CTRL + Up") (lua ''hl.dsp.window.move({ direction = "u" })''))
+      (bind (m "CTRL + Down") (lua ''hl.dsp.window.move({ direction = "d" })''))
 
-  # Cửa sổ
-  (b "${mainMod} + Q" (mkLuaInline "hl.dsp.window.close()"))
-  (b "${mainMod} + F" (
-    mkLuaInline ''hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })''
-  ))
-  (b "${mainMod} + ALT + SPACE" (mkLuaInline ''hl.dsp.window.float({ action = "toggle" })''))
+      # Focus
+      (bind (m "Left") (lua ''hl.dsp.focus({ direction = "left" })''))
+      (bind (m "Right") (lua ''hl.dsp.focus({ direction = "right" })''))
+      (bind (m "Up") (lua ''hl.dsp.focus({ direction = "up" })''))
+      (bind (m "Down") (lua ''hl.dsp.focus({ direction = "down" })''))
 
-  # Độ sáng
-  (bLocked "XF86MonBrightnessDown" (serp "brightness lower"))
-  (bLocked "XF86MonBrightnessUp" (serp "brightness raise"))
+      (bind (m "mouse_up") (lua ''hl.dsp.focus({ workspace = "-1" })''))
+      (bind (m "mouse_down") (lua ''hl.dsp.focus({ workspace = "+1" })''))
 
-  # Chụp màn hình
-  (bLocked "Print" (serp "screenshot"))
-  (bLocked "SHIFT + Print" (serp "screenshot --edit"))
-  (bLocked "SUPER + SHIFT + S" (serp "screenshot --edit"))
-  (bLocked "SUPER + Print" (serp "screenshot --full"))
-  (bLocked "SUPER + SHIFT + Print" (serp "screenshot --full --edit"))
+      # Cửa sổ
+      (bind (m "Q") (lua "hl.dsp.window.close()"))
+      (bind (m "F") (lua ''hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })''))
+      (bind (m "ALT + SPACE") (lua ''hl.dsp.window.float({ action = "toggle" })''))
 
-  # Khóa phiên
-  (bLocked "XF86PowerOff" (serp "lock"))
-  (bLockedRepeat "${mainMod} + L" (serp "lock"))
+      # Độ sáng
+      (bindWith "XF86MonBrightnessDown" (exec "serpantinum brightness lower") locked)
+      (bindWith "XF86MonBrightnessUp" (exec "serpantinum brightness raise") locked)
 
-  # Media
-  (bLocked "XF86AudioPause" (exec "playerctl play-pause"))
-  (bLocked "XF86AudioPlay" (exec "playerctl play-pause"))
-  (bLocked "XF86AudioPrev" (exec "playerctl previous"))
-  (bLocked "XF86AudioNext" (exec "playerctl next"))
-  (bLocked "XF86AudioMicMute" (serp "volume mic-toggle"))
-  (bLocked "XF86AudioMute" (serp "volume mute-toggle"))
-  (bLockedRepeat "XF86AudioLowerVolume" (serp "volume lower"))
-  (bLockedRepeat "XF86AudioRaiseVolume" (serp "volume raise"))
+      # Chụp màn hình
+      (bindWith "Print" (exec "serpantinum screenshot") locked)
+      (bindWith "SHIFT + Print" (exec "serpantinum screenshot --edit") locked)
+      (bindWith (m "SHIFT + S") (exec "serpantinum screenshot --edit") locked)
+      (bindWith (m "Print") (exec "serpantinum screenshot --full") locked)
+      (bindWith (m "SHIFT + Print") (exec "serpantinum screenshot --full --edit") locked)
 
-  # Mở app thường ngày
-  (b "${mainMod} + T" (exec terminal))
-  (b "${mainMod} + ALT + Q" (exec terminalMini))
-  (b "${mainMod} + E" (exec file))
-  (b "${mainMod} + ALT + E" (exec fileMini))
-  (b "${mainMod} + Z" (exec browser))
-  (b "${mainMod} + C" (exec editor))
+      # Khóa / nguồn
+      (bindWith "XF86PowerOff" (exec "serpantinum lock") locked)
+      (bindWith (m "L") (exec "serpantinum lock") lockedRepeating)
 
-  (b "${mainMod} + W" (exec "waydroid show-full-ui"))
-  (b "${mainMod} + ALT + W" (exec "waydroid session stop"))
-  (b "${mainMod} + O" (exec "obsidian"))
-  (b "${mainMod} + SHIFT + Z" (exec "chromium"))
+      # Media
+      (bindWith "XF86AudioPause" (exec "playerctl play-pause") locked)
+      (bindWith "XF86AudioPlay" (exec "playerctl play-pause") locked)
+      (bindWith "XF86AudioPrev" (exec "playerctl previous") locked)
+      (bindWith "XF86AudioNext" (exec "playerctl next") locked)
+      (bindWith "XF86AudioMicMute" (exec "serpantinum volume mic-toggle") locked)
+      (bindWith "XF86AudioMute" (exec "serpantinum volume mute-toggle") locked)
+      (bindWith "XF86AudioLowerVolume" (exec "serpantinum volume lower") lockedRepeating)
+      (bindWith "XF86AudioRaiseVolume" (exec "serpantinum volume raise") lockedRepeating)
 
-  # Serpantinum
-  (b "${mainMod} + R" (serp "reload"))
-  (b "${mainMod} + V" (serp "msg toggle clipboard"))
-  (b "${mainMod} + SPACE" (serp "msg toggle launcher"))
-  (b "${mainMod} + M" (serp "msg toggle music"))
-  (b "${mainMod} + N" (serp "msg toggle system"))
-  (b "${mainMod} + SHIFT + W" (serp "msg toggle wallpaper"))
-  (b "${mainMod} + SHIFT + C" (serp "msg toggle calendar"))
-  (b "${mainMod} + D" (serp "msg toggle network"))
-  (b "${mainMod} + S" (serp "msg toggle volume"))
-  (b "${mainMod} + comma" (serp "msg toggle guide"))
-  (b "${mainMod} + A" (serp "msg toggle autohide"))
-]
+      # Phần mềm hay dùng
+      (bind (m "Z") (exec browser))
+      (bind (m "E") (exec file))
+      (bind (m "ALT + E") (exec fileMini))
+      (bind (m "T") (exec terminal))
+      (bind (m "ALT + T") (exec terminalMini))
+      (bind (m "C") (exec editor))
 
-# Chuyển KGLV
-++ lib.concatMap (
-  i:
-  let
-    ws = toString i;
-    key = toString (lib.mod i 10); # 10 thành phím 0
-  in
-  [
-    (b "${mainMod} + ${key}" (serp "msg workspace ${ws}"))
-    (b "${mainMod} + ALT + ${key}" (serp "msg workspace ${ws} move"))
-  ]
-) (lib.range 1 10)
+      (bind (m "W") (exec "waydroid show-full-ui"))
+      (bind (m "ALT + W") (exec "waydroid session stop"))
+      (bind (m "O") (exec "obsidian"))
+      (bind (m "SHIFT + Z") (exec "chromium"))
 
-++ [
-  (b "${mainMod} + mouse_up" (focusWs "-1"))
-  (b "${mainMod} + mouse_down" (focusWs "+1"))
-]
+      # Serpantinum
+      (bind (m "R") (exec "serpantinum reload"))
+      (bind (m "V") (exec "serpantinum msg toggle clipboard"))
+      (bind (m "SPACE") (exec "serpantinum msg toggle launcher"))
+      (bind (m "M") (exec "serpantinum msg toggle music"))
+      (bind (m "N") (exec "serpantinum msg toggle system"))
+      (bind (m "SHIFT + W") (exec "serpantinum msg toggle wallpaper"))
+      (bind (m "SHIFT + C") (exec "serpantinum msg toggle calendar"))
+      (bind (m "D") (exec "serpantinum msg toggle network"))
+      (bind (m "S") (exec "serpantinum msg toggle volume"))
+      (bind (m "comma") (exec "serpantinum msg toggle guide"))
+      (bind (m "A") (exec "serpantinum msg toggle autohide"))
+    ]
+    ++ workspaceBinds;
+  };
+}

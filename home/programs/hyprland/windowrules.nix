@@ -1,50 +1,55 @@
+{ lib, ... }:
+
 let
-  floatFree = class: {
-    match = { inherit class; };
-    float = true;
-  };
-
-  floatRule = size: class: {
-    match = { inherit class; };
-    float = true;
-    inherit size;
-  };
-
-  sizeMedium = [
-    750
-    500
-  ];
+  inherit (import ./helpers.nix { inherit lib; }) floatRule;
 in
-
-map floatFree [
-  "org.gnome.Loupe"
-  "input-remapper-gtk"
-]
-
-++ map (floatRule sizeMedium) [
-  "org.fcitx."
-  "org.fcitx.Fcitx5.Addon.Lotus.Settings"
-  "org.kde.kdeconnect.app"
-]
-
-++ [
-  (floatRule [ 440 200 ] "protonvpn-app")
-  (
-    (floatRule [ 800 600 ] "xdg-desktop-portal-gtk")
-    // {
-      move = [
-        25
-        65
+{
+  wayland.windowManager.hyprland.settings.window_rule = [
+    (floatRule "org.gnome.Loupe" { })
+    (floatRule "input-remapper-gtk" { })
+    (floatRule "org.fcitx." {
+      size = [
+        750
+        500
       ];
-    }
-  )
-  (
-    (floatRule [ 800 680 ] "zalo")
-    // {
+    })
+    (floatRule "org.fcitx.Fcitx5.Addon.Lotus.Settings" {
+      size = [
+        750
+        500
+      ];
+    })
+    (floatRule "org.kde.kdeconnect.app" {
+      size = [
+        750
+        500
+      ];
+    })
+    (floatRule "protonvpn-app" {
+      size = [
+        440
+        200
+      ];
+    })
+    (floatRule "zalo" {
+      size = [
+        800
+        680
+      ];
       move = [
         75
         120
       ];
-    }
-  )
-]
+    })
+    (floatRule "xdg-desktop-portal-gtk" {
+      size = [
+        800
+        600
+      ];
+      move = [
+        25
+        65
+      ];
+    })
+  ];
+}
