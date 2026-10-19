@@ -1,9 +1,9 @@
 { inputs, pkgs, ... }:
 
 let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  hyprPkgs = inputs.hyprland.packages.${system};
+  hyprPkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in
+
 {
   imports = [
     ./serpantinum.nix
