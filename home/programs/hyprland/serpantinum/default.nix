@@ -1,7 +1,9 @@
 { inputs, ... }:
 
 {
-  imports = [ inputs.serpantinum.homeManagerModules.default ];
+  imports = [
+    inputs.serpantinum.homeManagerModules.default
+  ];
 
   programs.serpantinum = {
     enable = true;
