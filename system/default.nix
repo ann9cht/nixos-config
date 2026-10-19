@@ -1,6 +1,8 @@
 {
   imports = [
-    ./hm.nix
+    ./hardware/graphics.nix
+
+    ./home-manager.nix
     ./virtualisation.nix
 
     ./core

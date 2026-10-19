@@ -30,8 +30,10 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    configType = "lua";
     systemd.enable = false;
+
+    package = null;
+    portalPackage = null;
 
     extraConfig = ''
       hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })

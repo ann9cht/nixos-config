@@ -1,5 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+  hyprPkgs = inputs.hyprland.packages.${system};
+in
 {
   imports = [
     ./serpantinum.nix
@@ -9,6 +13,9 @@
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
+
+    package = hyprPkgs.hyprland;
+    portalPackage = hyprPkgs.xdg-desktop-portal-hyprland;
   };
 
   xdg.portal = {
