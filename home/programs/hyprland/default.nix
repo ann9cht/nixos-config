@@ -6,6 +6,8 @@
     ./binds.nix
     ./settings.nix
     ./windowrules.nix
+
+    ./serpantinum
   ];
 
   wayland.windowManager.hyprland = {
