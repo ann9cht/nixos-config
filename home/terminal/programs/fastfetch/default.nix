@@ -30,9 +30,8 @@
           format = "{release}";
         }
         {
-          type = "command";
+          type = "uptime";
           key = "  uptime";
-          text = "uptime -p | cut -d ' ' -f 2-";
           keyColor = "#74c7ec";
         }
         {
