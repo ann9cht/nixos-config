@@ -111,7 +111,7 @@ in
       (bind (m "E") (exec file))
       (bind (m "ALT + E") (exec fileMini))
       (bind (m "T") (exec terminal))
-      (bind (m "ALT + T") (exec terminalMini))
+      (bind (m "ALT + Q") (exec terminalMini))
       (bind (m "C") (exec editor))
 
       (bind (m "W") (exec "waydroid show-full-ui"))
