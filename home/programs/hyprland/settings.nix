@@ -110,6 +110,12 @@ in
           "Hyprland"
         ];
       }
+      {
+        _args = [
+          "GTK_USE_PORTAL"
+          "1"
+        ];
+      }
     ];
   };
 }
