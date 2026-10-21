@@ -4,8 +4,7 @@
     ./btop.nix
     ./cli.nix
     ./direnv.nix
+    ./fastfetch.nix
     ./git.nix
-
-    ./fastfetch
   ];
 }
