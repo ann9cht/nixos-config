@@ -5,7 +5,12 @@
     git-hooks.url = "github:cachix/git-hooks.nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    serpantinum.url = "github:ilyamiro/serpantinum";
+    pixie-sddm.url = "github:xCaptaiN09/pixie-sddm";
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -48,7 +53,6 @@
         modules = [
           ./host
           ./system
-          inputs.serpantinum.nixosModules.default
           inputs.nix-index-database.nixosModules.default
         ];
       };

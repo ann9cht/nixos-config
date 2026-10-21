@@ -1,17 +1,9 @@
-{ ... }:
-
 {
   imports = [
-    ./autostart.nix
-    ./binds.nix
-    ./settings.nix
-    ./windowrules.nix
-
-    ./serpantinum
+    ./calestia.nix
   ];
 
   wayland.windowManager.hyprland = {
-    enable = true;
     systemd.enable = false;
 
     package = null;

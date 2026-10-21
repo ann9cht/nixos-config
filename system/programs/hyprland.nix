@@ -5,10 +5,6 @@ let
 in
 
 {
-  imports = [
-    ./serpantinum.nix
-  ];
-
   programs.hyprland = {
     enable = true;
     withUWSM = true;

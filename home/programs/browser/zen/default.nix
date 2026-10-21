@@ -25,7 +25,11 @@
 
       presets.betterfox.enable = true;
 
-      search = import ./search.nix;
+      search = {
+        force = true;
+        default = "google";
+        engines = import ./engines.nix;
+      };
 
       spacesForce = true;
       spaces = {

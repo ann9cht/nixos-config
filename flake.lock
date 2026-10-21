@@ -33,6 +33,53 @@
         "type": "github"
       }
     },
+    "caelestia-cli": {
+      "inputs": {
+        "caelestia-shell": [
+          "caelestia-shell"
+        ],
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792255116,
+        "narHash": "sha256-eG+ssQCNLOBbqK8zKaQ77Qv/Yoq1bzazuZtHPgCTxNg=",
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "rev": "287802be3fbdbb81c8234587f9ccdd667505f6f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "type": "github"
+      }
+    },
+    "caelestia-shell": {
+      "inputs": {
+        "caelestia-cli": "caelestia-cli",
+        "m3shapes": "m3shapes",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1792507819,
+        "narHash": "sha256-7ZdS2iVqBoXrVqDNIQYwhiZEpr+bemPfVqtYfWZQPUg=",
+        "owner": "caelestia-dots",
+        "repo": "shell",
+        "rev": "6c70d5cb0cbf31413d300699540c858ad28c1539",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "shell",
+        "type": "github"
+      }
+    },
     "fcitx5-lotus": {
       "inputs": {
         "nixpkgs": [
@@ -136,6 +183,24 @@
         "owner": "gytis-ivaskevicius",
         "repo": "flake-utils-plus",
         "rev": "3542fe9126dc492e53ddd252bb0260fe035f2c0f",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -494,6 +559,28 @@
         "type": "github"
       }
     },
+    "m3shapes": {
+      "inputs": {
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787906858,
+        "narHash": "sha256-YZelgEZflFNwGutX4/tIzBdbOeghJgE2oDw0uWYGxns=",
+        "owner": "soramanew",
+        "repo": "m3shapes",
+        "rev": "32ad9ce328bb77ed349b40a3be10ee9ea610b8ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soramanew",
+        "repo": "m3shapes",
+        "rev": "32ad9ce328bb77ed349b40a3be10ee9ea610b8ab",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -564,17 +651,36 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1791956154,
-        "narHash": "sha256-jBYGPi4udQ9uo4KQp9m2J0546nJVQitG15gvZSaVVAs=",
-        "owner": "nixos",
+        "lastModified": 1776877367,
+        "narHash": "sha256-EHq1/OX139R1RvBzOJ0aMRT3xnWyqtHBRUBuO1gFzjI=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "55bfb4d7437bd4e09ab7cba58a43bd68eb310044",
+        "rev": "0726a0ecb6d4e08f6adced58726b95db924cef57",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pixie-sddm": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1788628135,
+        "narHash": "sha256-wV5XnU+4ME1HZAsGad+Lb+zTCqryn0WWo75FaoOFefc=",
+        "owner": "xCaptaiN09",
+        "repo": "pixie-sddm",
+        "rev": "1e1a863761f742e8d509d569382b17c112e29fdc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xCaptaiN09",
+        "repo": "pixie-sddm",
         "type": "github"
       }
     },
@@ -600,52 +706,39 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792214446,
+        "narHash": "sha256-tq6x6CRG8Qikrjri59tzu9+b2gri8TjnShkGeh8kUgQ=",
+        "ref": "refs/heads/master",
+        "rev": "2b4501a282689792b62e94f3fb30d8f512324fe6",
+        "revCount": 875,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "root": {
       "inputs": {
+        "caelestia-shell": "caelestia-shell",
         "fcitx5-lotus": "fcitx5-lotus",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",
-        "serpantinum": "serpantinum",
-        "systems": "systems_3",
+        "pixie-sddm": "pixie-sddm",
+        "systems": "systems_4",
         "zen-browser": "zen-browser"
-      }
-    },
-    "serpantinum": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_4",
-        "serpantinum-wallpapers": "serpantinum-wallpapers"
-      },
-      "locked": {
-        "lastModified": 1792393283,
-        "narHash": "sha256-9GwoKl/i24fiB0d9iMJ5mwYkE8S/1th6GG2q+GUMBYs=",
-        "owner": "ilyamiro",
-        "repo": "serpantinum",
-        "rev": "bc630542648b532753a1c410acf5efd8138c925a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ilyamiro",
-        "repo": "serpantinum",
-        "type": "github"
-      }
-    },
-    "serpantinum-wallpapers": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1789127588,
-        "narHash": "sha256-L3xRtDXH1ERwVIP+ztT6qn7YYh3aHpfpy1/nvyjvKIc=",
-        "owner": "ilyamiro",
-        "repo": "shell-wallpapers",
-        "rev": "4f5994aff60403f88d3f0378e6f9c9d0a00b0289",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ilyamiro",
-        "repo": "shell-wallpapers",
-        "type": "github"
       }
     },
     "snowfall-lib": {
@@ -702,6 +795,21 @@
       }
     },
     "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_4": {
       "locked": {
         "lastModified": 1791244623,
         "narHash": "sha256-uuanbkFk8a313Zfrxdcz8Us/yQtaxNnKJtX8v0ZPpd8=",

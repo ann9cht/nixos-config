@@ -4,21 +4,21 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    theme = "material-you";
-    extraPackages = [ pkgs.kdePackages.qt5compat ];
+
+    theme = "pixie";
+
+    package = pkgs.kdePackages.sddm;
+    extraPackages = with pkgs.kdePackages; [
+      qtsvg
+      qtdeclarative
+      qt5compat
+    ];
   };
 
   environment.systemPackages = [
-    (pkgs.stdenv.mkDerivation {
-      name = "sddm-theme-material-you";
-      src = "${inputs.serpantinum}/config/sddm/themes/material-you";
-      patches = [ ./sddm-theme-material-you.patch ];
-      installPhase = ''
-        dest=$out/share/sddm/themes/material-you
-        cp ${./bg.png} bg.png
-        mkdir -p $dest
-        cp -r . $dest/
-      '';
+    (inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
+      background = ./bg.jpg;
+      avatar = ./avt.jpg;
     })
   ];
 }

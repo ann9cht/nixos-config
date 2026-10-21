@@ -1,3 +1,6 @@
+let
+  locale = "vi_VN";
+in
 {
   imports = [
     ./boot.nix
@@ -8,17 +11,17 @@
   time.timeZone = "Asia/Ho_Chi_Minh";
 
   i18n = {
-    defaultLocale = "vi_VN";
+    defaultLocale = locale;
     extraLocaleSettings = {
-      LC_ADDRESS = "vi_VN";
-      LC_IDENTIFICATION = "vi_VN";
-      LC_MEASUREMENT = "vi_VN";
-      LC_MONETARY = "vi_VN";
-      LC_NAME = "vi_VN";
-      LC_NUMERIC = "vi_VN";
-      LC_PAPER = "vi_VN";
-      LC_TELEPHONE = "vi_VN";
-      LC_TIME = "vi_VN";
+      LC_ADDRESS = locale;
+      LC_IDENTIFICATION = locale;
+      LC_MEASUREMENT = locale;
+      LC_MONETARY = locale;
+      LC_NAME = locale;
+      LC_NUMERIC = locale;
+      LC_PAPER = locale;
+      LC_TELEPHONE = locale;
+      LC_TIME = locale;
     };
   };
 

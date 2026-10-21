@@ -24,6 +24,5 @@
     };
   };
 
-  # KDE connect
   programs.kdeconnect.enable = true;
 }
