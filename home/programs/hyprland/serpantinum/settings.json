@@ -12,7 +12,7 @@
       "source": "manual",
       "updated_at": 1789819859
     },
-    "avatarPath": "/home/ann9cht/Pictures/IMG_20260308_184916.jpg",
+    "avatarPath": "/home/ann9cht/Pictures/avt.jpg",
     "muteSfx": false,
     "sfxVolume": 100,
     "screenshotCaptureOnRelease": true,
@@ -28,32 +28,35 @@
   "theme": {
     "fontFamily": "Noto Sans",
     "borderRadius": 24,
-    "activePreset": "Macchiato",
-    "matugen": false,
+    "activePreset": "Matugen",
+    "matugen": true,
     "colors": {
-      "base": "#24273a",
-      "blue": "#8aadf4",
-      "crust": "#181926",
-      "green": "#a6da95",
-      "mantle": "#1e2030",
-      "maroon": "#ee99a0",
-      "mauve": "#c6a0f6",
-      "overlay0": "#6e738d",
-      "overlay1": "#8087a2",
-      "overlay2": "#939ab7",
-      "peach": "#f5a97f",
-      "pink": "#f5bde6",
-      "red": "#ed8796",
-      "sapphire": "#7dc4e4",
-      "subtext0": "#a5adcb",
-      "subtext1": "#b8c0e0",
-      "surface0": "#363a4f",
-      "surface1": "#494d64",
-      "surface2": "#5b6078",
-      "teal": "#8bd5ca",
-      "text": "#cad3f5",
-      "yellow": "#eed49f"
-    }
+      "base": "#000000",
+      "blue": "#ffffff",
+      "crust": "#000000",
+      "green": "#ffffff",
+      "mantle": "#050505",
+      "maroon": "#808080",
+      "mauve": "#d0d0d0",
+      "overlay0": "#5a5a5a",
+      "overlay1": "#7a7a7a",
+      "overlay2": "#9a9a9a",
+      "peach": "#cccccc",
+      "pink": "#e0e0e0",
+      "red": "#a0a0a0",
+      "sapphire": "#e0e0e0",
+      "subtext0": "#a0a0a0",
+      "subtext1": "#c0c0c0",
+      "surface0": "#1a1a1a",
+      "surface1": "#2a2a2a",
+      "surface2": "#3a3a3a",
+      "teal": "#c0c0c0",
+      "text": "#ffffff",
+      "yellow": "#ffffff"
+    },
+    "elementOpacity": 65,
+    "blurBackground": true,
+    "blurStyle": "liquid"
   },
   "bar": {
     "position": "top",
@@ -97,7 +100,14 @@
       "cpu",
       "ram",
       "temp"
-    ]
+    ],
+    "height": 40,
+    "centerByEdges": true,
+    "menuStyle": "button",
+    "batStyle": "classic",
+    "wifiStyle": "button",
+    "btStyle": "text",
+    "volStyle": "button"
   },
   "launcher": {
     "position": "center",
@@ -166,7 +176,8 @@
     "hoverScale": 130,
     "cascadeScale": true,
     "onTop": true,
-    "smartAutohide": true
+    "smartAutohide": true,
+    "showRunningApps": false
   },
   "notifications": {
     "dnd": false,
@@ -174,7 +185,7 @@
     "horizontalPosition": 92,
     "verticalPosition": 8,
     "sound": true,
-    "soundFile": "/nix/store/l893d46cd1alhrkpy7c8h28cq0km6i7k-serpantinum-2.2.7/share/serpantinum/assets/sounds/notifications/Botanica.wav",
+    "soundFile": "/nix/store/k11slxl3ybn6j36ljpxig70llg1d8ahr-serpantinum-2.3.0/share/serpantinum/assets/sounds/notifications/Botanica.wav",
     "showEmptyGraphic": true
   },
   "osd": {
@@ -255,5 +266,14 @@
   },
   "widgets": {
     "hideBarInRedactor": false
+  },
+  "lockscreen": {
+    "fingerprintEnabled": true,
+    "attemptLimitEnabled": true,
+    "passwordMaxAttempts": 4,
+    "fingerprintMaxAttempts": 5,
+    "backgroundMode": "follow",
+    "customBackground": ""
   }
 }
+
