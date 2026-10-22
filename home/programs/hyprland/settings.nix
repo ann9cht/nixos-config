@@ -1,7 +1,13 @@
-{ lib, ... }:
-
 let
-  inherit (import ./helpers.nix { inherit lib; }) anim;
+  anim =
+    leaf: extra:
+    {
+      inherit leaf;
+      enabled = true;
+      speed = 5;
+      bezier = "myBezier";
+    }
+    // extra;
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -45,7 +51,6 @@ in
       render.send_content_type = false;
 
       misc = {
-        vrr = false;
         focus_on_activate = false;
         font_family = "JetBrains Mono";
         disable_hyprland_logo = true;
@@ -82,40 +87,6 @@ in
       (anim "workspaces" { style = "slide"; })
       (anim "specialWorkspaceIn" { style = "fade"; })
       (anim "specialWorkspaceOut" { style = "fade"; })
-    ];
-
-    monitor = {
-      output = "";
-      mode = "preferred";
-      position = "auto";
-      scale = 1.0;
-    };
-
-    env = [
-      {
-        _args = [
-          "XDG_CURRENT_DESKTOP"
-          "Hyprland"
-        ];
-      }
-      {
-        _args = [
-          "XDG_SESSION_TYPE"
-          "wayland"
-        ];
-      }
-      {
-        _args = [
-          "XDG_SESSION_DESKTOP"
-          "Hyprland"
-        ];
-      }
-      {
-        _args = [
-          "GTK_USE_PORTAL"
-          "1"
-        ];
-      }
     ];
   };
 }

@@ -1,9 +1,9 @@
-{ ... }:
-
 {
   imports = [
     ./autostart.nix
-    ./binds.nix
+    ./env.nix
+    ./keybinds.nix
+    ./monitors.nix
     ./settings.nix
     ./windowrules.nix
 
