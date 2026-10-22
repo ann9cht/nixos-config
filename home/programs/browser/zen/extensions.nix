@@ -7,11 +7,13 @@ let
   );
 in
 {
-  ExtensionSettings = mkExtensionSettings {
-    # about:debugging#/runtime/this-firefox
-    "uBlock0@raymondhill.net" = "ublock-origin";
-    "sponsorBlocker@ajay.app" = "sponsorblock";
-    "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}" = "video-downloadhelper";
-    "jid1-wC71d7poAZYEGA@jetpack" = "ddict";
+  programs.zen-browser.policies = {
+    ExtensionSettings = mkExtensionSettings {
+      # about:debugging#/runtime/this-firefox
+      "uBlock0@raymondhill.net" = "ublock-origin";
+      "sponsorBlocker@ajay.app" = "sponsorblock";
+      "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}" = "video-downloadhelper";
+      "jid1-wC71d7poAZYEGA@jetpack" = "ddict";
+    };
   };
 }
