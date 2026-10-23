@@ -37,8 +37,6 @@
 
     extraConfig = ''
       include ~/.config/kitty/colors.conf
-      background #303446
-      cursor #c6a0f6
     '';
   };
 }

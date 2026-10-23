@@ -5,7 +5,7 @@
     settings = {
       logo = {
         type = "auto";
-        source = "${./lg.webp}";
+        source = "${./lg.webp}"; # nix run nixpkgs#imagemagick -- -background none -density 384 ~/Projects/serpantinum/src/assets/logo.svg -resize 1024x1024 ~/Projects/nixos-config/home/terminal/programs/fastfetch/lg.webp
         height = 9;
         width = 23;
         padding = {
