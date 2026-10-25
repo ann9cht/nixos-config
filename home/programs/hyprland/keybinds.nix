@@ -72,7 +72,7 @@ in
       # cửa sổ
       (bind "${mod} + Q" (dsp "window.close()") { })
       (bind "${mod} + F" (dsp ''window.fullscreen({ mode = "maximized", action = "toggle" })'') { })
-      (bind "${mod} + ALT + SPACE" (dsp ''window.float({ action = "toggle" })'') { })
+      (bind "${mod} + SPACE" (dsp ''window.float({ action = "toggle" })'') { })
 
       # độ sáng
       (bind "XF86MonBrightnessDown" (exec "serpantinum brightness lower") locked)
@@ -114,11 +114,12 @@ in
       (bind "${mod} + SHIFT + Z" (exec "chromium") { })
 
       (bind "${mod} + X" (exec "/home/ann9cht/Programs/Zalo-*.AppImage") { })
+      (bind "${mod} + SHIFT + D" (exec "/home/ann9cht/Programs/artcraft-launcher-*.AppImage") { })
 
       # serp
       (bind "${mod} + R" (exec "serpantinum reload") { })
       (bind "${mod} + V" (exec "serpantinum msg toggle clipboard") { })
-      (bind "${mod} + SPACE" (exec "serpantinum msg toggle launcher") { })
+      (bind "${mod}" (exec "serpantinum msg toggle launcher") { })
       (bind "${mod} + M" (exec "serpantinum msg toggle music") { })
       (bind "${mod} + N" (exec "serpantinum msg toggle system") { })
       (bind "${mod} + SHIFT + W" (exec "serpantinum msg toggle wallpaper") { })
