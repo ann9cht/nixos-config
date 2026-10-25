@@ -36,16 +36,6 @@ in
           200
         ];
       })
-      (floatRule "zalo" {
-        size = [
-          800
-          680
-        ];
-        move = [
-          75
-          120
-        ];
-      })
       (floatRule "xdg-desktop-portal-gtk" {
         size = [
           800
