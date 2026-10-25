@@ -119,7 +119,7 @@ in
       # serp
       (bind "${mod} + R" (exec "serpantinum reload") { })
       (bind "${mod} + V" (exec "serpantinum msg toggle clipboard") { })
-      (bind "${mod}" (exec "serpantinum msg toggle launcher") { })
+      (bind "${mod} + SUPER_L" (exec "serpantinum msg toggle launcher") { })
       (bind "${mod} + M" (exec "serpantinum msg toggle music") { })
       (bind "${mod} + N" (exec "serpantinum msg toggle system") { })
       (bind "${mod} + SHIFT + W" (exec "serpantinum msg toggle wallpaper") { })
