@@ -100,21 +100,19 @@ in
       (bind "XF86AudioRaiseVolume" (exec "serpantinum volume raise") lockedRepeating)
 
       # phần mềm hay dùng
-      (bind "${mod} + Z" (exec browser) { })
+      (bind "${mod} + W" (exec browser) { })
       (bind "${mod} + E" (exec file) { })
       (bind "${mod} + ALT + E" (exec fileMini) { })
       (bind "${mod} + T" (exec terminal) { })
       (bind "${mod} + ALT + Q" (exec terminalMini) { })
       (bind "${mod} + C" (exec editor) { })
 
-      (bind "${mod} + W" (exec "waydroid show-full-ui") { })
       (bind "${mod} + ALT + W" (exec "waydroid session stop") { })
-
       (bind "${mod} + O" (exec "obsidian") { })
       (bind "${mod} + SHIFT + Z" (exec "chromium") { })
 
-      (bind "${mod} + X" (exec "/home/ann9cht/Programs/Zalo-*.AppImage") { })
-      (bind "${mod} + SHIFT + D" (exec "/home/ann9cht/Programs/artcraft-launcher-*.AppImage") { })
+      (bind "${mod} + Z" (exec "/home/ann9cht/Programs/Zalo-*.AppImage") { })
+      (bind "${mod} + X" (exec "/home/ann9cht/Programs/artcraft-launcher-*.AppImage") { })
 
       # serp
       (bind "${mod} + R" (exec "serpantinum reload") { })
