@@ -113,6 +113,8 @@ in
       (bind "${mod} + O" (exec "obsidian") { })
       (bind "${mod} + SHIFT + Z" (exec "chromium") { })
 
+      (bind "${mod} + X" (exec "/home/ann9cht/Programs/Zalo-*.AppImage") { })
+
       # serp
       (bind "${mod} + R" (exec "serpantinum reload") { })
       (bind "${mod} + V" (exec "serpantinum msg toggle clipboard") { })
