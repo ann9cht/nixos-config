@@ -2,13 +2,17 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
-    git-hooks.url = "github:cachix/git-hooks.nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
     serpantinum.url = "github:ilyamiro/serpantinum";
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
