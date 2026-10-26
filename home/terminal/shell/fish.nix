@@ -8,8 +8,16 @@
       if test "$TERM_PROGRAM" != vscode
         fastfetch
       end
-
-      bind \es 'commandline -C 0; commandline -i "sudo "; commandline -f end-of-line'
     '';
+
+    shellAbbrs = {
+      ns = "nh os switch";
+      nsu = "nh os switch --update";
+      nb = "nh os boot";
+      nt = "nh os test";
+      nc = "nh clean all --keep-one";
+
+      cnc = "codium ~/Projects/nixos-config; exit";
+    };
   };
 }
