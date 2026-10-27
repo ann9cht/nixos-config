@@ -1,9 +1,9 @@
 {
   imports = [
-    ./agenix.nix
     ./fcitx5.nix
     ./fonts.nix
     ./home-manager.nix
+    ./secrets.nix
     ./virtualisation.nix
 
     ./core
