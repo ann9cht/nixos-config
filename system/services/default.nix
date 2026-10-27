@@ -3,6 +3,7 @@
     ./keyd.nix
     ./pipewire.nix
     ./snapper.nix
+    ./ssh.nix
     ./sunshine.nix
 
     ./sddm
