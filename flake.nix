@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     fcitx5-lotus = {
       url = "github:LotusInputMethod/fcitx5-lotus";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +57,7 @@
         modules = [
           ./host
           ./system
+          inputs.agenix.nixosModules.default
           inputs.nix-index-database.nixosModules.default
         ];
       };

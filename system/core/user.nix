@@ -5,7 +5,6 @@
 
   users.users."ann9cht" = {
     isNormalUser = true;
-    initialPassword = "1";
     shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
