@@ -118,12 +118,12 @@ in
       (anim "layersIn" {
         speed = 5;
         bezier = "emphasizedDecel";
-        style = "slide";
+        style = "fade";
       })
       (anim "layersOut" {
         speed = 4;
         bezier = "emphasizedAccel";
-        style = "slide";
+        style = "fade";
       })
       (anim "fadeLayers" { speed = 5; })
 
