@@ -1,19 +1,12 @@
 { pkgs, ... }:
 
 {
-  home = {
-    packages = with pkgs; [
-      dust
-      duf
-      fd
-      ripgrep
-    ];
-
-    sessionVariables = {
-      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-      MANROFFOPT = "-c";
-    };
-  };
+  home.packages = with pkgs; [
+    dust
+    duf
+    fd
+    ripgrep
+  ];
 
   programs = {
     eza.enable = true;
