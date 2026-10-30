@@ -26,10 +26,13 @@ in
 
     config = {
       common.default = [ "gtk" ];
-      hyprland.default = [
-        "hyprland"
-        "gtk"
-      ];
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "ski" ];
+      };
     };
   };
 }

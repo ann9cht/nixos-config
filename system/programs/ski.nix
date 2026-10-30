@@ -5,7 +5,7 @@
 
   programs.ski = {
     enable = true;
-    defaultFileManager = false; # giữ file manager hiện tại
-    filePicker = false; # giữ hộp thoại Open/Save của GTK
+    # defaultFileManager = false; # k đặt như file manager mặc định
+    # filePicker = false; # k đặt làm portal mặc định
   };
 }
