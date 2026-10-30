@@ -18,21 +18,8 @@ in
     portalPackage = hyprPkgs.xdg-desktop-portal-hyprland;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-
-    config = {
-      common.default = [ "gtk" ];
-      hyprland = {
-        default = [
-          "hyprland"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.FileChooser" = [ "ski" ];
-      };
-    };
+  xdg.portal.config.hyprland = {
+    default = [ "hyprland" ];
+    "org.freedesktop.impl.portal.FileChooser" = [ "ski" ];
   };
 }
