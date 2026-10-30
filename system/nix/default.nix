@@ -5,6 +5,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  documentation = {
+    doc.enable = false;
+    dev.enable = false;
+    info.enable = false;
+    nixos.enable = false;
+  };
+
   nix = {
     settings = {
       auto-optimise-store = true;
