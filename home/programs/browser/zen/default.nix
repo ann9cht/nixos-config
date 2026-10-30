@@ -24,6 +24,7 @@
         "intl.locale.requested" = "vi";
         "layout.spellcheckDefault" = 0;
         "dom.events.testing.asyncClipboard" = true; # Tắt cái bảng "Dán (P)"
+        "browser.tabs.warnOnClose" = true;
       };
     };
   };
