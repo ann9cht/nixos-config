@@ -616,6 +616,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "serpantinum": "serpantinum",
+        "ski": "ski",
         "systems": "systems_3",
         "zen-browser": "zen-browser"
       }
@@ -652,6 +653,22 @@
       "original": {
         "owner": "ilyamiro",
         "repo": "shell-wallpapers",
+        "type": "github"
+      }
+    },
+    "ski": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793311025,
+        "narHash": "sha256-t9ND5cNkE0q6tcq04Emthv7q2EpCEwEmQ4yijqNav+U=",
+        "owner": "ilyamiro",
+        "repo": "Ski",
+        "rev": "65293b299329c483542514f8397e823b6fc87275",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ilyamiro",
+        "repo": "Ski",
         "type": "github"
       }
     },
