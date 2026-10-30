@@ -8,7 +8,7 @@
 
       user = {
         name = "ann9cht";
-        email = "ann9cht@proton.me";
+        email = "90591960+ann9cht@users.noreply.github.com";
       };
     };
   };
