@@ -43,68 +43,6 @@
         success_symbol = "[ ](bold fg:#cdd6f4)";
         error_symbol = "[ ](bold fg:#cdd6f4)";
       };
-
-      fill = {
-        symbol = "-";
-        style = "fg:245";
-      };
-
-      hostname = {
-        ssh_only = false;
-        format = "[•$hostname](bg:252 bold fg:235)[](bold fg:252)";
-        trim_at = ".companyname.com";
-        disabled = false;
-      };
-
-      username = {
-        style_user = "bold bg:252 fg:235";
-        style_root = "red bold";
-        format = "[](bold fg:252)[$user]($style)";
-        disabled = false;
-        show_always = true;
-      };
-
-      git_commit = {
-        commit_hash_length = 4;
-        tag_symbol = " ";
-      };
-
-      git_state = {
-        format = "[\\($state( $progress_current of $progress_total)\\)]($style) ";
-        cherry_pick = "[🍒 PICKING](bold red)";
-      };
-
-      git_status = {
-        conflicted = " 🏳 ";
-        ahead = " 🏎💨 ";
-        behind = " 😰 ";
-        diverged = " 😵 ";
-        untracked = " 🤷 ‍";
-        stashed = " 📦 ";
-        modified = " 📝 ";
-        staged = "[++\\($count\\)](green)";
-        renamed = " ✍️ ";
-        deleted = " 🗑 ";
-      };
-
-      line_break = {
-        disabled = false;
-      };
-
-      package.disabled = true;
-
-      memory_usage = {
-        disabled = true;
-        threshold = -1;
-        symbol = " ";
-        style = "bold dimmed green";
-      };
-
-      time = {
-        disabled = true;
-        format = "🕙[\\[ $time \\]]($style) ";
-        time_format = "%T";
-      };
     };
   };
 }
