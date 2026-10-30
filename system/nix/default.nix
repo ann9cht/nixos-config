@@ -5,6 +5,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # rebuild nhanh hơn
   documentation = {
     doc.enable = false;
     dev.enable = false;
@@ -13,6 +14,7 @@
   };
 
   nix = {
+    channel.enable = false;
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
