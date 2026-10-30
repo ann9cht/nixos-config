@@ -11,6 +11,7 @@
     dev.enable = false;
     info.enable = false;
     nixos.enable = false;
+    man.enable = false;
   };
 
   nix = {
