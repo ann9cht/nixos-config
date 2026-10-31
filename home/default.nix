@@ -1,5 +1,7 @@
 {
   imports = [
+    ./cursor.nix
+
     ./programs
     ./services
     ./terminal
