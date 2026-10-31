@@ -3,12 +3,7 @@
     ./tailscale.nix
   ];
 
-  networking = {
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-    };
-  };
+  networking.networkmanager.dns = "systemd-resolved";
 
   services.resolved = {
     enable = true;

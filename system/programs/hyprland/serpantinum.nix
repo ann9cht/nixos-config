@@ -9,11 +9,14 @@
     # pactl
     pulseaudio
 
-    # Bảng nhớ tạm
+    # bảng nhớ tạm
     cliphist
     wl-clipboard
 
-    # Lấy mã màu
+    # lấy mã màu
     hyprpicker
+
+    # xem trước pdf
+    evince
   ];
 }
