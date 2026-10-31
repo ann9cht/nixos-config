@@ -107,9 +107,8 @@ in
       (bind "${mod} + ALT + Q" (exec terminalMini) { })
       (bind "${mod} + C" (exec editor) { })
 
-      (bind "${mod} + ALT + W" (exec "waydroid session stop") { })
       (bind "${mod} + O" (exec "obsidian") { })
-      (bind "${mod} + SHIFT + Z" (exec "chromium") { })
+      (bind "${mod} + ALT + W" (exec "helium") { })
 
       (bind "${mod} + Z" (exec "/home/ann9cht/Programs/Zalo-*.AppImage") { })
       (bind "${mod} + X" (exec "/home/ann9cht/Programs/artcraft-launcher-*.AppImage") { })
