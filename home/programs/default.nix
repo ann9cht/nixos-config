@@ -1,7 +1,7 @@
 {
   imports = [
     ./editor/codium.nix
-    
+
     ./cursor.nix
     ./xdg.nix
 
