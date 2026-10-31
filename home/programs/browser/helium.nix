@@ -6,8 +6,6 @@
   programs.helium = {
     enable = true;
 
-    # package = inputs.helium-flake.packages.${pkgs.stdenv.hostPlatform.system}.helium;
-
     flags = [
       "--ozone-platform=wayland"
       "--no-default-browser-check"
