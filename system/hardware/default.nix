@@ -3,8 +3,5 @@
     ./graphics.nix
   ];
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
-  };
+  hardware.bluetooth.powerOnBoot = false;
 }

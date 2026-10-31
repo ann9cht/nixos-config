@@ -3,7 +3,6 @@
 {
   security = {
     polkit.enable = true;
-    rtkit.enable = true;
 
     wrappers.pkexec = {
       enable = lib.mkForce true;
