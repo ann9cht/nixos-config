@@ -28,9 +28,12 @@ let
 
   mod = "SUPER";
   terminal = "kitty";
-  file = "ski";
+  file = "nautilus";
   browser = "zen-beta";
   editor = "codium";
+
+  terminalMini = "[float; size 630 380; move 35 75] ${terminal}";
+  fileMini = "[float; size 800 600; move 765 265] dbus-run-session ${file}";
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -99,7 +102,9 @@ in
       # phần mềm hay dùng
       (bind "${mod} + W" (exec browser) { })
       (bind "${mod} + E" (exec file) { })
+      (bind "${mod} + ALT + E" (exec fileMini) { })
       (bind "${mod} + T" (exec terminal) { })
+      (bind "${mod} + ALT + Q" (exec terminalMini) { })
       (bind "${mod} + C" (exec editor) { })
 
       (bind "${mod} + ALT + W" (exec "waydroid session stop") { })

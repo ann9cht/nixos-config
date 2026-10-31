@@ -3,7 +3,10 @@
 {
   imports = [ inputs.serpantinum.nixosModules.default ];
 
-  programs.serpantinum.enable = true;
+  programs = {
+    serpantinum.enable = true;
+    ski.enable = false;
+  };
 
   environment.systemPackages = with pkgs; [
     # pactl
@@ -15,8 +18,5 @@
 
     # lấy mã màu
     hyprpicker
-
-    # xem trước pdf (ski)
-    evince
   ];
 }

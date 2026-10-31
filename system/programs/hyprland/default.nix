@@ -17,6 +17,16 @@ in
     package = hyprPkgs.hyprland;
     portalPackage = hyprPkgs.xdg-desktop-portal-hyprland;
   };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
 
-  xdg.portal.config.hyprland.default = [ "hyprland" ];
+    config = {
+      common.default = [ "gtk" ];
+      hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
+    };
+  };
 }
