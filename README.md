@@ -1,16 +1,10 @@
-<table align="center">
-  <tr>
-    <td align="center" valign="middle">
-      <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake-colours.svg" alt="NixOS" height="96">
-    </td>
-    <td align="center" valign="middle">
-      <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/hyprland.svg" alt="Hyprland" height="96">
-    </td>
-    <td align="center" valign="middle">
-      <img src="https://raw.githubusercontent.com/ilyamiro/serpantinum/refs/heads/master/website/static/img/logo.svg" alt="Serpantinum" height="96">
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake-colours.svg" alt="NixOS" height="96">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/hyprland.svg" alt="Hyprland" height="96">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/ilyamiro/serpantinum/refs/heads/master/website/static/img/logo.svg" alt="Serpantinum" height="96">
+</p>
 
 <h1 align="center">ann9cht/nixos-config</h1>
 
