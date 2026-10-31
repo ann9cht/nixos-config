@@ -1,9 +1,7 @@
 { inputs, pkgs, ... }:
 
 {
-  imports = [
-    inputs.fcitx5-lotus.nixosModules.fcitx5-lotus
-  ];
+  imports = [ inputs.fcitx5-lotus.nixosModules.fcitx5-lotus ];
 
   i18n.inputMethod = {
     enable = true;

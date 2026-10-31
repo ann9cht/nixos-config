@@ -16,6 +16,7 @@
 
     policies = {
       BrowserSignin = 0;
+      SigninAllowed = false;
       SyncDisabled = true;
       SpellcheckEnabled = false;
     };
