@@ -18,8 +18,5 @@ in
     portalPackage = hyprPkgs.xdg-desktop-portal-hyprland;
   };
 
-  xdg.portal.config.hyprland = {
-    default = [ "hyprland" ];
-    "org.freedesktop.impl.portal.FileChooser" = [ "ski" ];
-  };
+  xdg.portal.config.hyprland.default = [ "hyprland" ];
 }
