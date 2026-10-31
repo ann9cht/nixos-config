@@ -16,7 +16,7 @@
     # lấy mã màu
     hyprpicker
 
-    # xem trước pdf
+    # xem trước pdf (ski)
     evince
   ];
 }
