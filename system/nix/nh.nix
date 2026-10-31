@@ -1,7 +1,7 @@
 {
   programs.nh = {
     enable = true;
-    flake = "/home/ann9cht/Projects/nixos-config";
+    flake = "/home/ann9cht/GitHub/nixos-config";
 
     clean = {
       enable = true;

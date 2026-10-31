@@ -2,7 +2,7 @@
   programs.obsidian = {
     enable = true;
 
-    vaults.notes.target = "Projects/Obsidian";
+    vaults.notes.target = "GitHub/Obsidian";
 
     defaultSettings.app = {
       alwaysUpdateLinks = true;

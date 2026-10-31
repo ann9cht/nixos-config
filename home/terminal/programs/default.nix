@@ -5,6 +5,7 @@
     ./cli.nix
     ./direnv.nix
     ./git.nix
+    ./zoxide.nix
 
     ./fastfetch
   ];

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  flakePath = "/home/ann9cht/Projects/nixos-config";
+  flakePath = "/home/ann9cht/GitHub/nixos-config";
   host = "nixdesk";
 in
 {
