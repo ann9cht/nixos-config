@@ -1,0 +1,34 @@
+<table align="center">
+  <tr>
+    <td align="center" valign="middle">
+      <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake-colours.svg" alt="NixOS" height="96">
+    </td>
+    <td align="center" valign="middle">
+      <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/hyprland.svg" alt="Hyprland" height="96">
+    </td>
+    <td align="center" valign="middle">
+      <img src="https://raw.githubusercontent.com/ilyamiro/serpantinum/refs/heads/master/website/static/img/logo.svg" alt="Serpantinum" height="96">
+    </td>
+  </tr>
+</table>
+
+<h1 align="center">ann9cht/nixos-config</h1>
+
+<p align="center">
+  Cấu hình NixOS tối thiểu để chạy Serpantinum trên Hyprland.
+</p>
+
+<p align="center">
+  <img src="assets/preview.png" alt="Ảnh xem trước" width="800">
+</p>
+
+## Giới thiệu
+
+Cấu hình sử dụng flake NixOS cùng Home Manager cho host `nixdesk`, giữ ở mức tối thiểu cần thiết để chạy shell [Serpantinum](https://github.com/ilyamiro/serpantinum) trên Hyprland.
+
+Serpantinum đã bât phần lớn dịch vụ hệ thống (mạng, Bluetooth, âm thanh, trình quản lý tệp Ski), nên cấu hình này chỉ khai báo những gì còn lại.
+
+## Cảm ơn
+
+- [Serpantinum](https://github.com/ilyamiro/serpantinum): shell mà cấu hình này xoay quanh.
+- [fufexan/dotfiles](https://github.com/fufexan/dotfiles): ý tưởng cây thư mục của repo này.
