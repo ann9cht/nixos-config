@@ -1,7 +1,6 @@
 {
   imports = [
     ./cursor.nix
-    ./xdg.nix
 
     ./programs
     ./services
