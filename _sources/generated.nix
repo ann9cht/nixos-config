@@ -8,10 +8,10 @@
 {
   ski = {
     pname = "ski";
-    version = "0.4.2";
+    version = "0.4.3";
     src = fetchurl {
-      url = "https://github.com/ilyamiro/Ski/releases/download/v0.4.2/ski-0.4.2-x86_64-linux.tar.gz";
-      sha256 = "sha256-jzh77vCW8fDV+aP4XXd5d2GLb9Qae13DazrX9UfrgaI=";
+      url = "https://github.com/ilyamiro/Ski/releases/download/v0.4.3/ski-0.4.3-x86_64-linux.tar.gz";
+      sha256 = "sha256-C4qI7UmJLN23zea7dqXHrmw8SlouS3cw2Hs1p5pEmCg=";
     };
   };
 }
