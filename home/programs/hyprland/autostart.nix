@@ -6,7 +6,6 @@ let
   autostart = [
     "wl-paste --type text --watch cliphist store"
     "wl-paste --type image --watch cliphist store"
-    "systemctl --user enable --now easyeffects"
     "fcitx5 -d"
   ];
 in
