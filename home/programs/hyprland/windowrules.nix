@@ -46,6 +46,26 @@ in
           65
         ];
       })
+      (floatRule "ski-chooser" {
+        size = [
+          800
+          600
+        ];
+        move = [
+          25
+          65
+        ];
+      })
+      (floatRule "ski-file-manager" {
+        size = [
+          800
+          600
+        ];
+        move = [
+          765
+          265
+        ];
+      })
     ];
   };
 }
