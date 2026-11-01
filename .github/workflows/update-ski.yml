@@ -1,0 +1,62 @@
+name: update-ski
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-ski
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch latest release (retry on 404 while assets upload)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '[keys]\ngithub = "%s"\n' "$GITHUB_TOKEN" > "$RUNNER_TEMP/keyfile.toml"
+          for attempt in 1 2 3 4 5 6; do
+            if nix run nixpkgs#nvfetcher -- -k "$RUNNER_TEMP/keyfile.toml"; then
+              exit 0
+            fi
+            echo "Attempt $attempt failed, waiting 10 minutes..."
+            sleep 600
+          done
+          echo "::error::nvfetcher still failing after 6 attempts"
+          exit 1
+
+      - name: Check for a new version
+        id: diff
+        run: |
+          if git diff --quiet -- _sources; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "version=$(jq -r .ski.version _sources/generated.json)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build ski (fails on missing libs or substituteInPlace errors)
+        if: steps.diff.outputs.changed == 'true'
+        run: nix build .#ski --print-build-logs
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _sources
+          git commit -m "ski: update to ${{ steps.diff.outputs.version }}"
+          git push

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  ski = pkgs.callPackage ./package.nix { };
+  ski = pkgs.callPackage ../../../pkgs/ski.nix { };
 in
 {
   programs.ski.enable = false;

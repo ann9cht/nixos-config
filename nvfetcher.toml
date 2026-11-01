@@ -1,0 +1,4 @@
+[ski]
+src.github = "ilyamiro/Ski"
+src.prefix = "v"
+fetch.url = "https://github.com/ilyamiro/Ski/releases/download/v$ver/ski-$ver-x86_64-linux.tar.gz"

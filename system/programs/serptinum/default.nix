@@ -3,7 +3,7 @@
 {
   imports = [
     inputs.serpantinum.nixosModules.default
-    ./ski
+    ./ski.nix
   ];
 
   programs.serpantinum.enable = true;

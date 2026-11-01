@@ -82,6 +82,7 @@
       checks = forEachSystem (system: {
         pre-commit-check = inputs.git-hooks.lib.${system}.run {
           src = ./.;
+          excludes = [ "^_sources/" ];
           hooks = {
             statix.enable = true;
             deadnix.enable = true;
@@ -100,6 +101,10 @@
             inherit shellHook;
             buildInputs = enabledPackages;
           };
+      });
+
+      packages = forEachSystem (system: {
+        ski = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/ski.nix { };
       });
     };
 }

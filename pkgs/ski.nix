@@ -1,7 +1,7 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  callPackage,
   autoPatchelfHook,
   makeWrapper,
   libGL,
@@ -21,6 +21,8 @@
 }:
 
 let
+  sources = callPackage ../_sources/generated.nix { };
+
   runtimeLibs = [
     libGL
     wayland
@@ -41,12 +43,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "ski-bin";
-  version = "0.4.2";
-
-  src = fetchurl {
-    url = "https://github.com/ilyamiro/Ski/releases/download/v0.4.2/ski-0.4.2-x86_64-linux.tar.gz";
-    sha256 = "8f387beef096f1f0d5f9a3f85d777977618b6fd41a7b5dc36b3ad7f547eb81a2";
-  };
+  inherit (sources.ski) version src;
   sourceRoot = ".";
 
   nativeBuildInputs = [
