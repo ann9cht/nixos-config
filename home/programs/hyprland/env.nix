@@ -12,7 +12,6 @@ in
       (envVar "XDG_CURRENT_DESKTOP" "Hyprland")
       (envVar "XDG_SESSION_TYPE" "wayland")
       (envVar "XDG_SESSION_DESKTOP" "Hyprland")
-      (envVar "GTK_USE_PORTAL" "1")
     ];
   };
 }
