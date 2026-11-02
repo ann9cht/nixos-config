@@ -637,6 +637,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "serpantinum": "serpantinum",
+        "ski": "ski",
         "systems": "systems_3",
         "zen-browser": "zen-browser"
       }
@@ -645,7 +646,9 @@
       "inputs": {
         "nixpkgs": "nixpkgs_3",
         "serpantinum-wallpapers": "serpantinum-wallpapers",
-        "ski": "ski"
+        "ski": [
+          "ski"
+        ]
       },
       "locked": {
         "lastModified": 1793527738,
@@ -680,11 +683,11 @@
     "ski": {
       "flake": false,
       "locked": {
-        "lastModified": 1793527593,
-        "narHash": "sha256-x0Nje+JvtgEjE51j9w+wkodKDelBO1LbhV9q3q9qEKU=",
+        "lastModified": 1793577248,
+        "narHash": "sha256-wtyVD3/XMac4z55Hm0V9Sney0WpURMaP+mOVpO8lhtM=",
         "owner": "ilyamiro",
         "repo": "Ski",
-        "rev": "516764af376c6e5f02885b716e92d20174a28d6a",
+        "rev": "fa9aa4dccefb3de8b191e2d61bc0b741714a66b4",
         "type": "github"
       },
       "original": {

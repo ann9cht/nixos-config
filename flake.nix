@@ -4,7 +4,16 @@
     systems.url = "github:nix-systems/default";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    serpantinum.url = "github:ilyamiro/serpantinum";
+
+    ski = {
+      url = "github:ilyamiro/Ski";
+      flake = false;
+    };
+
+    serpantinum = {
+      url = "github:ilyamiro/serpantinum";
+      inputs.ski.follows = "ski";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
