@@ -4,9 +4,8 @@
     ./games.nix
     ./hyprland.nix
     ./nix-ld.nix
+    ./serpantinum.nix
     ./tweaks.nix
     ./xdg.nix
-
-    ./serptinum
   ];
 }

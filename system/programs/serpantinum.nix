@@ -1,19 +1,17 @@
 { inputs, pkgs, ... }:
 
 {
-  imports = [
-    inputs.serpantinum.nixosModules.default
-    ./ski.nix
-  ];
+  imports = [ inputs.serpantinum.nixosModules.default ];
 
   programs.serpantinum.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # pactl
-    pulseaudio
+    pulseaudio # pactl
 
     # bảng nhớ tạm
     cliphist
     wl-clipboard
+
+    evince # Xem trước pdf
   ];
 }
