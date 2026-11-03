@@ -6,6 +6,14 @@ let
       float = true;
     }
     // extra;
+
+  floatTitleRule =
+    initial_title: extra:
+    {
+      match = { inherit initial_title; };
+      float = true;
+    }
+    // extra;
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -66,6 +74,29 @@ in
           265
         ];
       })
+      (floatTitleRule "^(Cài đặt|Settings)$" {
+        size = [
+          800
+          600
+        ];
+        move = [
+          35
+          75
+        ];
+      })
+      (floatTitleRule
+        "^(Sao chép đến|Chuyển đến|Giải nén đến|Biểu tượng thư mục|Copy to|Move to|Extract to|Folder icon).*$"
+        {
+          size = [
+            800
+            600
+          ];
+          move = [
+            35
+            75
+          ];
+        }
+      )
     ];
   };
 }
