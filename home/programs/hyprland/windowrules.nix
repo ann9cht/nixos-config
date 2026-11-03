@@ -18,8 +18,13 @@ in
 {
   wayland.windowManager.hyprland.settings = {
     window_rule = [
-      (floatRule "org.gnome.Loupe" { })
       (floatRule "input-remapper-gtk" { })
+      (floatRule "org.gnome.Loupe" {
+        move = [
+          "(monitor_w*0.25)-(window_w*0.5)"
+          "(monitor_h*0.5)-(window_h*0.5)"
+        ];
+      })
       (floatRule "org.fcitx." {
         size = [
           750
