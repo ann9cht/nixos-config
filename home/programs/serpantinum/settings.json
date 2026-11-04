@@ -23,7 +23,8 @@
     "lunarCanChi": true,
     "lunarGioHoangDao": true,
     "lunarTietKhi": true,
-    "lunarHolidays": true
+    "lunarHolidays": true,
+    "settingsSeparateWindow": true
   },
   "theme": {
     "fontFamily": "Noto Sans",
@@ -152,16 +153,10 @@
         "icon": "obsidian"
       },
       {
-        "name": "ONLYOFFICE",
-        "comment": "Edit office documents",
-        "desktop_id": "onlyoffice-desktopeditors",
-        "icon": "onlyoffice-desktopeditors"
-      },
-      {
-        "name": "Tập tin",
-        "comment": "Truy cập và tổ chức tập tin",
-        "desktop_id": "org.gnome.Nautilus",
-        "icon": "org.gnome.Nautilus"
+        "name": "Ski",
+        "comment": "A small, fast, keyboard-friendly file manager",
+        "desktop_id": "ski",
+        "icon": "ski"
       },
       {
         "name": "kitty",
@@ -185,7 +180,7 @@
     "horizontalPosition": 92,
     "verticalPosition": 8,
     "sound": true,
-    "soundFile": "/nix/store/k11slxl3ybn6j36ljpxig70llg1d8ahr-serpantinum-2.3.0/share/serpantinum/assets/sounds/notifications/Botanica.wav",
+    "soundFile": "/nix/store/m3z1as4pm70lc62amixkf8wld06d4xa2-serpantinum-2.3.2/share/serpantinum/assets/sounds/notifications/Botanica.wav",
     "showEmptyGraphic": true
   },
   "osd": {
@@ -276,4 +271,3 @@
     "customBackground": ""
   }
 }
-

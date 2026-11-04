@@ -8,5 +8,6 @@
     ./browser
     ./hyprland
     ./media
+    ./serpantinum
   ];
 }
