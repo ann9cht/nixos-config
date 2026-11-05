@@ -1,4 +1,9 @@
-{ inputs, config, vars, ... }:
+{
+  inputs,
+  config,
+  vars,
+  ...
+}:
 {
   imports = [ inputs.agenix.nixosModules.default ];
 
