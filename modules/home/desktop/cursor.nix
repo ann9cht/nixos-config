@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   home.pointerCursor = {
     enable = true;

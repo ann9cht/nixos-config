@@ -1,5 +1,4 @@
 { lib, ... }:
-
 let
   lua = lib.generators.mkLuaInline;
 

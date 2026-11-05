@@ -4,7 +4,6 @@
   modulesPath,
   ...
 }:
-
 let
   nixosPart = "/dev/disk/by-uuid/9cbf0042-bf12-48eb-b62a-583bad31551e";
 in

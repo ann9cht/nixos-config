@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 let
   flakePath = "/home/ann9cht/GitHub/nixos-config";
   host = "nixdesk";

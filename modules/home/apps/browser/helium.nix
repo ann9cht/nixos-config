@@ -1,5 +1,4 @@
 { inputs, ... }:
-
 {
   imports = [ inputs.helium-flake.homeModules.default ];
 

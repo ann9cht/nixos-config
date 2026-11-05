@@ -1,5 +1,4 @@
 { lib, config, ... }:
-
 let
   apps = {
     browser = "zen-beta.desktop";

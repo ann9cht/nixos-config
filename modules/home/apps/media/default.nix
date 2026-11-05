@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   imports = [
     ./mpv.nix

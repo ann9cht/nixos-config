@@ -1,5 +1,4 @@
 { lib, ... }:
-
 let
   hidden =
     lib.genAttrs
