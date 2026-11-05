@@ -36,4 +36,3 @@ Serpantinum đã bât phần lớn dịch vụ hệ thống (mạng, Bluetooth, 
 ## Cảm ơn
 
 - [Serpantinum](https://github.com/ilyamiro/serpantinum): shell mà cấu hình này xoay quanh.
-- [fufexan/dotfiles](https://github.com/fufexan/dotfiles): ý tưởng cây thư mục của repo này.
