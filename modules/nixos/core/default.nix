@@ -13,6 +13,6 @@
   zramSwap.enable = true;
 
   system = {
-    inherit (vars) stateVersion
+    inherit (vars) stateVersion;
   };
 }
