@@ -14,6 +14,6 @@ in
     enable = true;
     wayland.enable = true;
     theme = themeName;
-    extraPackages = "[ pkgs.kdePackages.qt5compat ]";
+    extraPackages = [ pkgs.kdePackages.qt5compat ];
   };
 }
