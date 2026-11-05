@@ -1,3 +1,4 @@
+{ vars, ... }
 {
   programs.fish = {
     enable = true;
@@ -17,7 +18,7 @@
       nt = "nh os test";
       nc = "nh clean all --keep-one";
 
-      cnc = "codium ~/GitHub/nixos-config; exit";
+      cnc = "codium ${vars.flakePath}; exit";
     };
   };
 }

@@ -1,7 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 let
-  flakePath = "/home/ann9cht/GitHub/nixos-config";
-  host = "nixdesk";
+  inherit (vars) flakePath host;
 in
 {
   programs.vscodium = {

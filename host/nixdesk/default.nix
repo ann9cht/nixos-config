@@ -1,7 +1,8 @@
+{ vars, ...}
 {
   imports = [
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "nixdesk";
+  networking.hostName = vars.host;
 }
