@@ -12,6 +12,7 @@ in
       (envVar "XDG_CURRENT_DESKTOP" "Hyprland")
       (envVar "XDG_SESSION_TYPE" "wayland")
       (envVar "XDG_SESSION_DESKTOP" "Hyprland")
+      (envVar "QT_QPA_PLATFORMTHEME" "qt6ct")
     ];
   };
 }

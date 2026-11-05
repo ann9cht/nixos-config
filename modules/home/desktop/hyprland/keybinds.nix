@@ -121,7 +121,7 @@ in
       (bind "${mod} + D" (exec "serpantinum msg toggle network") { })
       (bind "${mod} + S" (exec "serpantinum msg toggle volume") { })
       (bind "${mod} + comma" (exec "serpantinum msg toggle guide") { })
-      (bind "${mod} + A" (exec "serpantinum msg toggle autohide") { })
+      (bind "${mod} + A" (exec "serpantinum msg bar autohide") { })
     ]
     ++ lib.concatMap (
       i:
