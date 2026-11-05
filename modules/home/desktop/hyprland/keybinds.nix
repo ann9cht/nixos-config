@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, vars, ... }:
 let
   dsp = s: lib.generators.mkLuaInline "hl.dsp.${s}";
   exec = cmd: dsp ''exec_cmd("${cmd}")'';
@@ -107,8 +107,8 @@ in
       (bind "${mod} + O" (exec "obsidian") { })
       (bind "${mod} + ALT + W" (exec "helium") { })
 
-      (bind "${mod} + Z" (exec "/home/ann9cht/Programs/Zalo-*.AppImage") { })
-      (bind "${mod} + X" (exec "/home/ann9cht/Programs/artcraft-launcher-*.AppImage") { })
+      (bind "${mod} + Z" (exec "${vars.home}/Programs/Zalo-*.AppImage") { })
+      (bind "${mod} + X" (exec "${vars.home}/Programs/artcraft-launcher-*.AppImage") { })
 
       # serp
       (bind "${mod} + R" (exec "serpantinum reload") { })

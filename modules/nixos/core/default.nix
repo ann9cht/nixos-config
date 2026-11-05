@@ -1,3 +1,4 @@
+{ vars, ... }:
 {
   imports = [
     ./boot.nix
@@ -11,6 +12,7 @@
 
   zramSwap.enable = true;
 
-  # Không đc sửa
-  system.stateVersion = "26.05";
+  system = {
+    inherit (vars) stateVersion
+  };
 }

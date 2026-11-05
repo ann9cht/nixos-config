@@ -62,9 +62,14 @@
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
 
-      vars = {
+      vars = rec {
         host = "nixdesk";
-        flakePath = "/home/ann9cht/GitHub/nixos-config";
+        username = "ann9cht";
+        home = "/home/${username}";
+        flakePath = "${home}/GitHub/nixos-config";
+
+        # Không đc sửa
+        stateVersion = "26.05";
       };
     in
     {

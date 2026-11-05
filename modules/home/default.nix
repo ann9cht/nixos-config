@@ -1,3 +1,4 @@
+{ vars, ... }:
 {
   imports = [
     ./apps
@@ -7,8 +8,7 @@
   ];
 
   home = {
-    username = "ann9cht";
-    homeDirectory = "/home/ann9cht";
-    stateVersion = "26.05";
+    inherit (vars) username stateVersion;
+    homeDirectory = vars.home;
   };
 }

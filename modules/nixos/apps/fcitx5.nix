@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, vars, ... }:
 {
   imports = [ inputs.fcitx5-lotus.nixosModules.fcitx5-lotus ];
 
@@ -15,6 +15,6 @@
 
   services.fcitx5-lotus = {
     enable = true;
-    users = [ "ann9cht" ];
+    users = [ vars.username ];
   };
 }

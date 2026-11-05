@@ -33,6 +33,7 @@
     ];
   };
 
+  # zalo appimage cần, nên để chung, chứ nó k liên quan lắm
   environment = {
     systemPackages = with pkgs; [
       gsettings-desktop-schemas

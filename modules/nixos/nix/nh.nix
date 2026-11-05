@@ -1,4 +1,4 @@
-{ vars, ... }
+{ vars, ... }:
 {
   programs.nh = {
     enable = true;

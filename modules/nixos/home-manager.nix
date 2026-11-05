@@ -7,6 +7,6 @@
     useUserPackages = true;
     backupFileExtension = "bak";
     extraSpecialArgs = { inherit inputs vars; };
-    users.ann9cht = import ../home;
+    users.${vars.username} = import ../home;
   };
 }
