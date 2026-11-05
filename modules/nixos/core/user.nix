@@ -9,8 +9,6 @@
       "networkmanager"
       "wheel"
       "uinput"
-      "i2c"
-      "video"
     ];
   };
 }
