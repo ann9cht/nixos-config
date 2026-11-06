@@ -8,5 +8,11 @@
     ./windowrules.nix
   ];
 
-  wayland.windowManager.hyprland.systemd.enable = false;
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false;
+
+    package = null;
+    portalPackage = null;
+  };
 }
