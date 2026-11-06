@@ -106,7 +106,7 @@ in
 
       (bind "${mod} + O" (exec "obsidian") { })
       (bind "${mod} + ALT + W" (exec "helium") { })
-      (bind "${mod} + B" (exec "btop --utf-force") { })
+      (bind "${mod} + B" (exec "btop --force-utf") { })
 
       (bind "${mod} + Z" (exec "${vars.home}/Programs/Zalo-*.AppImage") { })
       (bind "${mod} + X" (exec "${vars.home}/Programs/artcraft-launcher-*.AppImage") { })
