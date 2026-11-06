@@ -16,9 +16,7 @@
 
       display = {
         separator = "  ";
-        color = {
-          separator = "#cdd6f4";
-        };
+        color.separator = "#cdd6f4";
       };
 
       modules = [
