@@ -5,7 +5,6 @@ let
   autostart = [
     "wl-paste --type text --watch cliphist store"
     "wl-paste --type image --watch cliphist store"
-    "serpantinumd start"
     "fcitx5 -d"
   ];
 in
