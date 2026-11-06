@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, vars, ... }:
 let
   dsp = s: lib.generators.mkLuaInline "hl.dsp.${s}";
   exec = cmd: dsp ''exec_cmd("${cmd}")'';
@@ -106,9 +106,10 @@ in
 
       (bind "${mod} + O" (exec "obsidian") { })
       (bind "${mod} + ALT + W" (exec "helium") { })
+      (bind "${mod} + B" (exec "btop --utf-force") { })
 
-      (bind "${mod} + Z" (exec "/home/ann9cht/Programs/Zalo-*.AppImage") { })
-      (bind "${mod} + X" (exec "/home/ann9cht/Programs/artcraft-launcher-*.AppImage") { })
+      (bind "${mod} + Z" (exec "${vars.home}/Programs/Zalo-*.AppImage") { })
+      (bind "${mod} + X" (exec "${vars.home}/Programs/artcraft-launcher-*.AppImage") { })
 
       # serp
       (bind "${mod} + R" (exec "serpantinum reload") { })
@@ -121,7 +122,7 @@ in
       (bind "${mod} + D" (exec "serpantinum msg toggle network") { })
       (bind "${mod} + S" (exec "serpantinum msg toggle volume") { })
       (bind "${mod} + comma" (exec "serpantinum msg toggle guide") { })
-      (bind "${mod} + A" (exec "serpantinum msg toggle autohide") { })
+      (bind "${mod} + A" (exec "serpantinum msg bar autohide") { })
     ]
     ++ lib.concatMap (
       i:

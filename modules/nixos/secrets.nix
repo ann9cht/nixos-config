@@ -1,4 +1,9 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  vars,
+  ...
+}:
 {
   imports = [ inputs.agenix.nixosModules.default ];
 
@@ -8,17 +13,9 @@
       password.file = ../../secrets/password.age;
       git-key = {
         file = ../../secrets/git-key.age;
-        owner = "ann9cht";
+        owner = vars.username;
         mode = "0400";
       };
-    };
-  };
-
-  users = {
-    mutableUsers = false;
-    users = {
-      ann9cht.hashedPasswordFile = config.age.secrets.password.path;
-      root.hashedPassword = "!";
     };
   };
 

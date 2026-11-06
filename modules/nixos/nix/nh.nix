@@ -1,7 +1,8 @@
+{ vars, ... }:
 {
   programs.nh = {
     enable = true;
-    flake = "/home/ann9cht/GitHub/nixos-config";
+    flake = vars.flakePath;
 
     clean = {
       enable = true;

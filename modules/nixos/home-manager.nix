@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, vars, ... }:
 {
   imports = [ inputs.home-manager.nixosModules.default ];
 
@@ -6,7 +6,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "bak";
-    extraSpecialArgs = { inherit inputs; };
-    users.ann9cht = import ../home;
+    extraSpecialArgs = { inherit inputs vars; };
+    users.${vars.username} = import ../home;
   };
 }

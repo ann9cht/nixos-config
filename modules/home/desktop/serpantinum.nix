@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, vars, ... }:
 {
   imports = [ inputs.serpantinum.homeManagerModules.default ];
 
@@ -7,10 +7,10 @@
     systemd.enable = true;
 
     settings = {
-      wallpaperDir = "/home/ann9cht/Pictures/Wallpapers";
+      wallpaperDir = "${vars.home}/Pictures/Wallpapers";
 
       general = {
-        language = "en";
+        language = "vi";
         weatherUnit = "metric";
         weatherInterval = 30;
       };

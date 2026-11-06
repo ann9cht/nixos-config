@@ -8,8 +8,5 @@
     ./windowrules.nix
   ];
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = false;
-  };
+  wayland.windowManager.hyprland.systemd.enable = false;
 }

@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-let
-  flakePath = "/home/ann9cht/GitHub/nixos-config";
-  host = "nixdesk";
-in
+{ pkgs, vars, ... }:
 {
+  home.packages = [ pkgs.nixd ];
+
   programs.vscodium = {
     enable = true;
 
@@ -35,13 +33,11 @@ in
         "nix.serverSettings".nixd = {
           formatting.command = [ "nixfmt" ];
           options = {
-            nixos.expr = ''(builtins.getFlake "${flakePath}").nixosConfigurations.${host}.options'';
-            home-manager.expr = ''(builtins.getFlake "${flakePath}").nixosConfigurations.${host}.options.home-manager.users.type.getSubOptions []'';
+            nixos.expr = ''(builtins.getFlake "${vars.flakePath}").nixosConfigurations.${vars.host}.options'';
+            home-manager.expr = ''(builtins.getFlake "${vars.flakePath}").nixosConfigurations.${vars.host}.options.home-manager.users.type.getSubOptions []'';
           };
         };
       };
     };
   };
-
-  home.packages = with pkgs; [ nixd ];
 }

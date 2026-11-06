@@ -61,11 +61,19 @@
     }@inputs:
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
+
+      vars = rec {
+        host = "nixdesk";
+        username = "ann9cht";
+        home = "/home/${username}";
+        flakePath = "${home}/GitHub/nixos-config";
+        stateVersion = "26.05"; # Không đc sửa
+      };
     in
     {
-      nixosConfigurations.nixdesk = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${vars.host} = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs vars; };
         modules = [
           ./host/nixdesk
           ./modules/nixos
