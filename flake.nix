@@ -67,9 +67,7 @@
         username = "ann9cht";
         home = "/home/${username}";
         flakePath = "${home}/GitHub/nixos-config";
-
-        # Không đc sửa
-        stateVersion = "26.05";
+        stateVersion = "26.05"; # Không đc sửa
       };
     in
     {
