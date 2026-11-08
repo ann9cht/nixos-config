@@ -2,6 +2,7 @@
   config,
   vars,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -11,7 +12,7 @@ let
 
   sddm-theme = pkgs.runCommandLocal "sddm-theme-${themeName}" { } ''
     mkdir -p $out/share/sddm/themes
-    cp -r ${../../../assets/sddm/${themeName}} $out/share/sddm/themes/${themeName}
+    cp -r ${inputs.sddm-themes}/themes/${themeName} $out/share/sddm/themes/${themeName}
   '';
 in
 {
@@ -25,7 +26,6 @@ in
     displayManager.sddm = {
       enable = true;
       theme = themeName;
-      extraPackages = [ pkgs.kdePackages.qt5compat ];
       settings.Theme = {
         CursorTheme = cursor.name;
         CursorSize = cursor.size;
