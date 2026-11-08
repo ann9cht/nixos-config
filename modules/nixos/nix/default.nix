@@ -1,11 +1,15 @@
+{ inputs, ... }:
 {
   imports = [
     ./nh.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ (import ../../../overlays { inherit inputs; }) ];
+  };
 
-  # tắt mấy cái k dùng để rebuild nhanh hơn
+  # tắt mấy cái k dùng
   documentation = {
     doc.enable = false;
     dev.enable = false;

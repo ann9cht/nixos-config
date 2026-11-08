@@ -1,10 +1,17 @@
-{ inputs, vars, ... }:
+{
+  inputs,
+  pkgs,
+  vars,
+  ...
+}:
 {
   imports = [ inputs.serpantinum.homeManagerModules.default ];
 
   programs.serpantinum = {
     enable = true;
     systemd.enable = true;
+
+    package = pkgs.serpantinum;
 
     settings = {
       wallpaperDir = "${vars.home}/Pictures/Wallpapers";
