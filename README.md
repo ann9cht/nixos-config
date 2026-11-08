@@ -15,10 +15,10 @@
 <table align="center">
   <tr>
     <td width="50%">
-      <img src="https://github.com/user-attachments/assets/25504fe8-5219-46bd-aecf-32bf5da46c74" alt="Ảnh xem trước 1" width="100%">
+      <img src="assets/preview/preview-1.webp" alt="Ảnh xem trước 1" width="100%">
     </td>
     <td width="50%">
-      <img src="https://github.com/user-attachments/assets/f4dc2e32-94c9-4e55-bb40-c332d251a199" alt="Ảnh xem trước 2" width="100%">
+      <img src="assets/preview/preview-2.webp" alt="Ảnh xem trước 2" width="100%">
     </td>
   </tr>
   <tr>
