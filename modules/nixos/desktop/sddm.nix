@@ -1,5 +1,12 @@
-{ pkgs, ... }:
+{
+  config,
+  vars,
+  pkgs,
+  ...
+}:
 let
+  cursor = config.home-manager.users.${vars.username}.home.pointerCursor;
+
   themeName = "material-you";
 
   sddm-theme = pkgs.runCommandLocal "sddm-theme-${themeName}" { } ''
@@ -8,12 +15,27 @@ let
   '';
 in
 {
-  environment.systemPackages = [ sddm-theme ];
+  environment.systemPackages = [
+    sddm-theme
+    cursor.package
+  ];
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    theme = themeName;
-    extraPackages = [ pkgs.kdePackages.qt5compat ];
+  services = {
+    xserver.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      theme = themeName;
+      extraPackages = [ pkgs.kdePackages.qt5compat ];
+      settings.Theme = {
+        CursorTheme = cursor.name;
+        CursorSize = cursor.size;
+      };
+      setupScript = ''
+        ${pkgs.xrdb}/bin/xrdb -merge <<EOF
+        Xcursor.theme: ${cursor.name}
+        Xcursor.size: ${toString cursor.size}
+        EOF
+      '';
+    };
   };
 }
