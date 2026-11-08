@@ -54,10 +54,10 @@ in
           natural_scroll = true;
           disable_while_typing = false;
         };
-        numlock_by_default = true;
+        numlock_by_default = true; # luôn bật đèn bàn phím mini
       };
 
-      cursor.no_warps = true;
+      cursor.no_warps = true; # k nhảy chuột vào center
 
       # https://github.com/hyprwm/Hyprland/issues/9786
       render.send_content_type = false;
