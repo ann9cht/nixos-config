@@ -18,10 +18,7 @@
       inputs.ski.follows = "ski";
     };
 
-    sddm-themes = {
-      url = "path:/home/ann9cht/GitHub/sddm-themes";
-      flake = false;
-    };
+    sddm-themes.url = "github:ann9cht/sddm-themes";
 
     git-hooks = {
       url = "github:cachix/git-hooks.nix";

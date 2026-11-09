@@ -240,16 +240,18 @@
       }
     },
     "sddm-themes": {
-      "flake": false,
       "locked": {
-        "lastModified": 1794160931,
-        "narHash": "sha256-m9G1/B7uAo0GAki3NrnOOvUTpP0KvrgtdsrlXCKHa1c=",
-        "path": "/home/ann9cht/GitHub/sddm-themes",
-        "type": "path"
+        "lastModified": 1794206992,
+        "narHash": "sha256-EjLbQeD9LH/fDZz84lUM6EyHMmhVyXlTJGe6mifg6ws=",
+        "owner": "ann9cht",
+        "repo": "sddm-themes",
+        "rev": "4d6adc0e91ebdd110fe52e3bb335e5249806abc9",
+        "type": "github"
       },
       "original": {
-        "path": "/home/ann9cht/GitHub/sddm-themes",
-        "type": "path"
+        "owner": "ann9cht",
+        "repo": "sddm-themes",
+        "type": "github"
       }
     },
     "serpantinum": {
