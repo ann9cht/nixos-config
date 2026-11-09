@@ -158,11 +158,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793979366,
-        "narHash": "sha256-7OoWDsYO9teiPxl0QdlS5lYE20Pue8/5mpscSL32FUA=",
+        "lastModified": 1794242768,
+        "narHash": "sha256-4QGSpbg6Cy1R506dLaR7s/fK5e8Uai036enYSEdO3vY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2c0c1f01521469cf0271180c453c79782d53c2f6",
+        "rev": "623253a537129f025d49363434b429714f6bea1a",
         "type": "github"
       },
       "original": {
@@ -234,7 +234,6 @@
         "nixpkgs": "nixpkgs",
         "sddm-themes": "sddm-themes",
         "serpantinum": "serpantinum",
-        "ski": "ski",
         "systems": "systems_2",
         "zen-browser": "zen-browser"
       }
@@ -258,16 +257,14 @@
       "inputs": {
         "nixpkgs": "nixpkgs_2",
         "serpantinum-wallpapers": "serpantinum-wallpapers",
-        "ski": [
-          "ski"
-        ]
+        "ski": "ski"
       },
       "locked": {
-        "lastModified": 1794209600,
-        "narHash": "sha256-f7c0Xn5mOW+iAZ6G5v2u4AgoByet4z3mXHUr3dBeF1M=",
+        "lastModified": 1794246400,
+        "narHash": "sha256-2q78iy8Psm4ByP8mfSHvPP49dgI6Dl51GIr7D3lOIr0=",
         "owner": "ilyamiro",
         "repo": "serpantinum",
-        "rev": "51a4a20dcc0566696d2a2a05764d41fcda2148c6",
+        "rev": "7ef37c8e804e240d5df14bac507e1227bf1216e4",
         "type": "github"
       },
       "original": {
@@ -295,11 +292,11 @@
     "ski": {
       "flake": false,
       "locked": {
-        "lastModified": 1794135603,
-        "narHash": "sha256-qiNSb+vTGfmaTW62hgHC+uEj/xWyrbxgNAyObMTgne8=",
+        "lastModified": 1793704142,
+        "narHash": "sha256-wxnRqzcNTWfa9ZlHkFtwJIlhxmgo+YYSmGKozIjLiBg=",
         "owner": "ilyamiro",
         "repo": "Ski",
-        "rev": "afff38b542c0dc74d204b275e70a5d0d0a8f5de9",
+        "rev": "807c744724bb7f34de09f737973aa73391a931b1",
         "type": "github"
       },
       "original": {

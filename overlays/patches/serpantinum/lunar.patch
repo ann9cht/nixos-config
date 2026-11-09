@@ -1,8 +1,8 @@
 diff --git a/src/assets/languages/vi.json b/src/assets/languages/vi.json
-index 6170d27..681b012 100755
+index 2e38e62..5753f15 100755
 --- a/src/assets/languages/vi.json
 +++ b/src/assets/languages/vi.json
-@@ -224,6 +224,26 @@
+@@ -225,6 +225,26 @@
          "title": "Thao tác nhanh",
          "desc": "Bật lớp phủ thao tác nhanh nổi"
        },
@@ -29,7 +29,7 @@ index 6170d27..681b012 100755
        "location": {
          "title": "Vị trí",
          "desc": "Cấu hình vị trí cho lịch trình mặt trời tự động và thời tiết",
-@@ -1140,6 +1160,23 @@
+@@ -1241,6 +1261,23 @@
        "fr": "T6",
        "sa": "T7",
        "su": "CN"
@@ -53,7 +53,7 @@ index 6170d27..681b012 100755
      }
    },
    "clipboard": {
-@@ -1328,7 +1365,7 @@
+@@ -1430,7 +1467,7 @@
      "timer": {
        "tabs": {
          "timer": "Hẹn giờ",
@@ -938,13 +938,13 @@ index 0000000..b3ce405
 +    }
 +}
 diff --git a/src/quickshell/guide/general/GeneralTab.qml b/src/quickshell/guide/general/GeneralTab.qml
-index b13e85f..e59dc9c 100644
+index a2fb25e..c1f0565 100644
 --- a/src/quickshell/guide/general/GeneralTab.qml
 +++ b/src/quickshell/guide/general/GeneralTab.qml
-@@ -29,7 +29,12 @@ GuideTab {
+@@ -26,7 +26,12 @@ GuideTab {
+         "avatarPath": "",
+         "muteSfx": false,
          "sfxVolume": 100,
-         "weatherInterval": 15,
-         "weatherUnit": "metric",
 -        "quickactions": true
 +        "quickactions": true,
 +        "lunarCalendar": true,
@@ -955,7 +955,7 @@ index b13e85f..e59dc9c 100644
      }
  
      property var generalSettings: Config.getSetting("general", defaultGeneralSettings)
-@@ -37,6 +42,11 @@ GuideTab {
+@@ -34,6 +39,11 @@ GuideTab {
      property bool muteSfx: generalSettings.muteSfx !== undefined ? generalSettings.muteSfx : false
      property real sfxVolume: generalSettings.sfxVolume !== undefined ? generalSettings.sfxVolume : 100
      property bool quickactions: generalSettings.quickactions !== undefined ? generalSettings.quickactions : true
@@ -964,10 +964,10 @@ index b13e85f..e59dc9c 100644
 +    property bool lunarGioHoangDao: generalSettings.lunarGioHoangDao !== undefined ? generalSettings.lunarGioHoangDao : true
 +    property bool lunarTietKhi: generalSettings.lunarTietKhi !== undefined ? generalSettings.lunarTietKhi : true
 +    property bool lunarHolidays: generalSettings.lunarHolidays !== undefined ? generalSettings.lunarHolidays : true
-     property int weatherInterval: generalSettings.weatherInterval !== undefined ? generalSettings.weatherInterval : 15
-     property string weatherUnit: generalSettings.weatherUnit !== undefined ? generalSettings.weatherUnit : "metric"
      property bool isLocEditOpen: false
-@@ -83,6 +93,11 @@ GuideTab {
+ 
+     property alias langDropdown: profileSection.langDropdown
+@@ -73,6 +83,11 @@ GuideTab {
              generalTabRoot.muteSfx = gs.muteSfx !== undefined ? gs.muteSfx : false;
              generalTabRoot.sfxVolume = gs.sfxVolume !== undefined ? gs.sfxVolume : 100;
              generalTabRoot.quickactions = gs.quickactions !== undefined ? gs.quickactions : true;
@@ -976,10 +976,10 @@ index b13e85f..e59dc9c 100644
 +            generalTabRoot.lunarGioHoangDao = gs.lunarGioHoangDao !== undefined ? gs.lunarGioHoangDao : true;
 +            generalTabRoot.lunarTietKhi = gs.lunarTietKhi !== undefined ? gs.lunarTietKhi : true;
 +            generalTabRoot.lunarHolidays = gs.lunarHolidays !== undefined ? gs.lunarHolidays : true;
-             generalTabRoot.weatherInterval = gs.weatherInterval !== undefined ? gs.weatherInterval : 15;
-             generalTabRoot.weatherUnit = gs.weatherUnit !== undefined ? gs.weatherUnit : "metric";
              generalTabRoot.generalSettings = gs;
-@@ -112,6 +127,11 @@ GuideTab {
+         }
+     }
+@@ -97,6 +112,11 @@ GuideTab {
          current.muteSfx = generalTabRoot.muteSfx;
          current.sfxVolume = generalTabRoot.sfxVolume;
          current.quickactions = generalTabRoot.quickactions;
@@ -988,10 +988,10 @@ index b13e85f..e59dc9c 100644
 +        current.lunarGioHoangDao = generalTabRoot.lunarGioHoangDao;
 +        current.lunarTietKhi = generalTabRoot.lunarTietKhi;
 +        current.lunarHolidays = generalTabRoot.lunarHolidays;
-         current.weatherInterval = generalTabRoot.weatherInterval;
-         current.weatherUnit = generalTabRoot.weatherUnit;
          Config.setSetting("general", current);
-@@ -154,6 +174,8 @@ GuideTab {
+     }
+ 
+@@ -137,6 +157,8 @@ GuideTab {
  
              GeneralBehaviorSection { tab: generalTabRoot }
  

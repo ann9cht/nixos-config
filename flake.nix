@@ -8,15 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ski = {
-      url = "github:ilyamiro/Ski";
-      flake = false;
-    };
-
-    serpantinum = {
-      url = "github:ilyamiro/serpantinum";
-      inputs.ski.follows = "ski";
-    };
+    serpantinum.url = "github:ilyamiro/serpantinum";
 
     sddm-themes.url = "github:ann9cht/sddm-themes";
 

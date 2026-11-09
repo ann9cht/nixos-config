@@ -8,7 +8,7 @@ final: prev: {
         ];
       });
 
-  ski = (final.callPackage inputs.ski { }).overrideAttrs (old: {
+  ski = inputs.serpantinum.packages.${final.stdenv.hostPlatform.system}.ski.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''
       install -Dm644 ${./assets/ski/ski.svg} $out/share/icons/hicolor/scalable/apps/ski.svg
     '';
