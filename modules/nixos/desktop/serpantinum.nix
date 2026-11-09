@@ -2,7 +2,10 @@
 {
   imports = [ inputs.serpantinum.nixosModules.default ];
 
-  programs.serpantinum.enable = true;
+  programs = {
+    serpantinum.enable = true;
+    ski.package = pkgs.ski;
+  };
 
   environment.systemPackages = with pkgs; [
     pulseaudio # pactl
