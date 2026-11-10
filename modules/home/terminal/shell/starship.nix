@@ -15,10 +15,10 @@
       directory = {
         home_symbol = " ";
         read_only = "  ";
-        style = "bg:#313244 fg:#cdd6f4";
+        style = "bg:#3a4f73 fg:#e8e4dc";
         truncation_length = 2;
         truncation_symbol = ".../";
-        format = "[](bold fg:#313244)[󰉋 → $path]($style)[](bold fg:#313244)";
+        format = "[](bold fg:#3a4f73)[󰉋 → $path]($style)[](bold fg:#3a4f73)";
 
         substitutions = {
           "Desktop" = "  ";
@@ -32,7 +32,6 @@
       };
 
       git_branch = {
-        style = "bg: 252";
         symbol = "󰘬";
         truncation_length = 12;
         truncation_symbol = "";
