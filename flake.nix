@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    serpantinum.url = "github:ilyamiro/serpantinum";
+    serpantinum.url = "github:ilyamiro/serpantinum/320fece13b69451e8e46e2285c1574dd2c0ad1de";
 
     sddm-themes.url = "github:ann9cht/sddm-themes";
 

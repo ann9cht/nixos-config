@@ -138,11 +138,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793894983,
-        "narHash": "sha256-Edf2dXsfHch4YEjzSdBY5+CEmBTBWa5psnlDWExBKWk=",
+        "lastModified": 1794326795,
+        "narHash": "sha256-u/bFiTT2reDPGKDeOWEJMBd7iNYFkbdcIsrymwCF8OU=",
         "owner": "oxcl",
         "repo": "nix-flake-helium-browser",
-        "rev": "9fe3f8f48c8c25b0d245d13d6c91d4cf77adc729",
+        "rev": "ee8c73c6432d7337216775ccbe726c3004af6542",
         "type": "github"
       },
       "original": {
@@ -158,11 +158,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794242768,
-        "narHash": "sha256-4QGSpbg6Cy1R506dLaR7s/fK5e8Uai036enYSEdO3vY=",
+        "lastModified": 1794278858,
+        "narHash": "sha256-rkrJwLgLSHBnXfgoSKIDa+2LLGdTqynsV3GAxOTGhUU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "623253a537129f025d49363434b429714f6bea1a",
+        "rev": "82ce401aa350502897c3f2e85f384d61cd3b0b6d",
         "type": "github"
       },
       "original": {
@@ -260,16 +260,17 @@
         "ski": "ski"
       },
       "locked": {
-        "lastModified": 1794246400,
-        "narHash": "sha256-2q78iy8Psm4ByP8mfSHvPP49dgI6Dl51GIr7D3lOIr0=",
+        "lastModified": 1794229563,
+        "narHash": "sha256-ttMqKdHjcIGyKLfYxapVDWMOHf1lGmW8ZhhifzwrSzU=",
         "owner": "ilyamiro",
         "repo": "serpantinum",
-        "rev": "7ef37c8e804e240d5df14bac507e1227bf1216e4",
+        "rev": "320fece13b69451e8e46e2285c1574dd2c0ad1de",
         "type": "github"
       },
       "original": {
         "owner": "ilyamiro",
         "repo": "serpantinum",
+        "rev": "320fece13b69451e8e46e2285c1574dd2c0ad1de",
         "type": "github"
       }
     },
