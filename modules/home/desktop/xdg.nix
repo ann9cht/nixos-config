@@ -2,6 +2,7 @@
 let
   apps = {
     browser = "zen-beta.desktop";
+    fileManager = "org.gnome.Nautilus.desktop";
     imageViewer = "org.gnome.Loupe.desktop";
     mediaPlayer = "mpv.desktop";
     pdfViewer = "org.gnome.Evince.desktop";
@@ -89,7 +90,8 @@ in
     mimeApps = {
       enable = true;
       defaultApplications =
-        assoc apps.imageViewer images
+        assoc apps.fileManager [ "inode/directory" ]
+        // assoc apps.imageViewer images
         // assoc apps.mediaPlayer (videos ++ audios)
         // assoc apps.pdfViewer [ "application/pdf" ]
         // assoc apps.textEditor texts

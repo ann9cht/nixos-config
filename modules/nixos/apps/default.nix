@@ -4,4 +4,6 @@
     ./steam.nix
     ./waydroid.nix
   ];
+
+  programs.dconf.enable = true;
 }

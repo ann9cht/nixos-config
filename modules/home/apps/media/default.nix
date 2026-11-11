@@ -6,10 +6,8 @@
   ];
 
   home.packages = with pkgs; [
-    # Xem ảnh
-    loupe
-
-    # Torrent
-    transmission_4-gtk
+    loupe # xem ảnh
+    evince # xem pdf
+    transmission_4-gtk # torrent
   ];
 }
