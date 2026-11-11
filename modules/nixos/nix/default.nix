@@ -1,6 +1,7 @@
 {
   imports = [
     ./nh.nix
+    ./substituters.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
