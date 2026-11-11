@@ -12,7 +12,7 @@
         "Mod+T" = "spawn kitty";
         "Mod+Q" = "window-close";
         "Mod+Space" = "spawn noctalia msg panel-toggle launcher";
-        "Mod+Comma" = "spawn:noctalia msg settings-toggle";
+        "Mod+Comma" = "spawn noctalia msg settings-toggle";
       };
     };
   };
