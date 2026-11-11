@@ -9,9 +9,10 @@
       layout.gap = 5;
       input.keyboard.layout = "us";
       keybinds = {
-        "Mod+Return" = "spawn kitty";
+        "Mod+T" = "spawn kitty";
         "Mod+Q" = "window-close";
-        "Mod" = "spawn noctalia msg panel-toggle launcher";
+        "Mod+Space" = "spawn noctalia msg panel-toggle launcher";
+        "Mod+Comma" = "spawn:noctalia msg settings-toggle";
       };
     };
   };
