@@ -12,7 +12,7 @@ in
 
   programs.sddm-themes = {
     enable = true;
-    theme = "material-you";
+    theme = "material-you"; # material-you-v2 nếu muốn match vs serpantinum
     cursor = { inherit (cursor) name size package; };
   };
 }
