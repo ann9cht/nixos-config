@@ -8,10 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    serpantinum.url = "github:ilyamiro/serpantinum/320fece13b69451e8e46e2285c1574dd2c0ad1de";
-
-    sddm-themes.url = "github:ann9cht/sddm-themes";
-
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +22,8 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    umbriel.url = "github:noctalia-dev/umbriel/cachix";
 
     fcitx5-lotus = {
       url = "github:LotusInputMethod/fcitx5-lotus";
