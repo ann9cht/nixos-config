@@ -36,6 +36,8 @@
 
         p = "push";
         pl = "pull";
+
+        rv = "revert";
       };
     };
   };
