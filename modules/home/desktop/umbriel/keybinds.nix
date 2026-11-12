@@ -22,9 +22,13 @@ let
 in
 {
   programs.umbriel.settings.keybinds = {
-    # apps, phiên
-    "Mod+Return" = {
+    # apps
+    "Mod+T" = {
       action = "spawn kitty";
+      repeat = false;
+    };
+    "Mod+B" = {
+      action = "spawn kitty -e btop --force-utf";
       repeat = false;
     };
     "Mod+E" = {
@@ -39,17 +43,25 @@ in
       action = "spawn codium";
       repeat = false;
     };
-    "Mod+Space" = "spawn noctalia msg panel-toggle launcher";
+
+    # phiên
     "Mod+Q" = {
       action = "window-close";
       repeat = false;
     };
-    "Mod+Escape" = "session-quit";
+    "Mod+Alt+Escape" = "session-quit";
     "Mod+Shift+Escape" = {
       action = "shortcuts-inhibit-toggle";
       allow_when_inhibited = true;
       repeat = false;
     };
+
+    # noctalia
+    "Mod+Space" = "spawn noctalia msg panel-toggle launcher";
+    "Mod+V" = "spawn noctalia msg panel-toggle clipboard";
+    "Mod+Shift+W" = "spawn noctalia msg panel-toggle wallpaper";
+    "Mod+Shift+S" = "spawn noctalia msg screenshot-region";
+    "Mod+Escape" = "spawn noctalia msg panel-toggle session";
 
     # media, âm lượng, độ sáng
     "XF86AudioRaiseVolume" = {
@@ -103,7 +115,7 @@ in
     "Mod+Shift+Right" = "column-move-right";
 
     # trạng thái, bố cục cửa sổ
-    "Mod+T" = {
+    "Mod+Alt+Space" = {
       action = "window-toggle-floating";
       repeat = false;
     };
@@ -141,7 +153,7 @@ in
     "Mod+Alt+Left" = "column-focus-tab-previous";
     "Mod+WheelUp" = "window-focus-left";
     "Mod+WheelDown" = "window-focus-right";
-    "Mod+O" = {
+    "Mod+Tab" = {
       action = "overview-toggle";
       repeat = false;
     };
@@ -156,7 +168,7 @@ in
       action = "window-restore-from-scratchpad";
       repeat = false;
     };
-    "Mod+Tab" = "scratchpad-focus-next";
+    "Mod+Alt+Tab" = "scratchpad-focus-next";
   }
   // workspaceBinds;
 }
