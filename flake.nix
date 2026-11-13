@@ -69,8 +69,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs vars; };
         modules = [
-          ./host/nixdesk
           ./modules/nixos
+          ./modules/host/nixdesk
           inputs.nix-index-database.nixosModules.default
         ];
       };
