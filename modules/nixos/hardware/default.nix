@@ -5,6 +5,5 @@
     ./ddc.nix
     ./graphics.nix
     ./keyd.nix
-    ./power.nix
   ];
 }
