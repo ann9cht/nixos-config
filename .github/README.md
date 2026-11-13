@@ -15,10 +15,10 @@
 <table align="center">
   <tr>
     <td width="50%">
-      <img src="assets/preview/preview-1.webp" alt="Chủ đề SDDM" width="100%">
+      <img src="../assets/preview/preview-1.webp" alt="Chủ đề SDDM" width="100%">
     </td>
     <td width="50%">
-      <img src="assets/preview/preview-2.webp" alt="Màn hình chính" width="100%">
+      <img src="../assets/preview/preview-2.webp" alt="Màn hình chính" width="100%">
     </td>
   </tr>
   <tr>
@@ -53,10 +53,10 @@ Lịch âm chỉ khả dụng khi ngôn ngữ giao diện là **Tiếng Việt**
 <table align="center">
   <tr>
     <td width="50%">
-      <img src="assets/preview/preview-3.webp" alt="Lịch âm trong popup lịch" width="100%">
+      <img src="../assets/preview/preview-3.webp" alt="Lịch âm trong popup lịch" width="100%">
     </td>
     <td width="50%">
-      <img src="assets/preview/preview-4.webp" alt="Chú giải khi rê chuột" width="100%">
+      <img src="../assets/preview/preview-4.webp" alt="Chú giải khi rê chuột" width="100%">
     </td>
   </tr>
   <tr>
@@ -65,10 +65,10 @@ Lịch âm chỉ khả dụng khi ngôn ngữ giao diện là **Tiếng Việt**
   </tr>
   <tr>
     <td width="50%">
-      <img src="assets/preview/preview-5.webp" alt="Ngày lễ có chấm đánh dấu" width="100%">
+      <img src="../assets/preview/preview-5.webp" alt="Ngày lễ có chấm đánh dấu" width="100%">
     </td>
     <td width="50%">
-      <img src="assets/preview/preview-6.webp" alt="Cài đặt lịch âm" width="100%">
+      <img src="../assets/preview/preview-6.webp" alt="Cài đặt lịch âm" width="100%">
     </td>
   </tr>
   <tr>
