@@ -20,6 +20,53 @@
         "type": "github"
       }
     },
+    "caelestia-cli": {
+      "inputs": {
+        "caelestia-shell": [
+          "caelestia-shell"
+        ],
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794549950,
+        "narHash": "sha256-CwnkJOnUNZB2jQGz5824L0myBtvmc98OyrwJvZgcT5s=",
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "rev": "9ab901f592917454da396ea012c50dd2c3f37003",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "type": "github"
+      }
+    },
+    "caelestia-shell": {
+      "inputs": {
+        "caelestia-cli": "caelestia-cli",
+        "m3shapes": "m3shapes",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1794717543,
+        "narHash": "sha256-oBo1EfvEKqF6UZh+6hT6YTwu+qrloQeX/a22JUehCV4=",
+        "owner": "caelestia-dots",
+        "repo": "shell",
+        "rev": "e72df8eb687246aa6c6ec6daa631073b374e5215",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "shell",
+        "type": "github"
+      }
+    },
     "fcitx5-lotus": {
       "inputs": {
         "nixpkgs": [
@@ -171,6 +218,28 @@
         "type": "github"
       }
     },
+    "m3shapes": {
+      "inputs": {
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787906858,
+        "narHash": "sha256-YZelgEZflFNwGutX4/tIzBdbOeghJgE2oDw0uWYGxns=",
+        "owner": "soramanew",
+        "repo": "m3shapes",
+        "rev": "32ad9ce328bb77ed349b40a3be10ee9ea610b8ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soramanew",
+        "repo": "m3shapes",
+        "rev": "32ad9ce328bb77ed349b40a3be10ee9ea610b8ab",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -207,25 +276,31 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1793540411,
-        "narHash": "sha256-fiPJ88izTVucjeo2EQ3jk4aWmLg03I1D4vxnX2QjEgE=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "0bb2eedc20e4739f29e8045034f2828ad7054f8f",
-        "type": "github"
+        "lastModified": 1792651682,
+        "narHash": "sha256-TiCGqLMpNIy7FERewgfKVluPsLVF96uc6x6xwZnMjdQ=",
+        "ref": "refs/heads/master",
+        "rev": "9b0f339b19057f4731bf3b48293307d7ef241671",
+        "revCount": 879,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       }
     },
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "caelestia-shell": "caelestia-shell",
         "fcitx5-lotus": "fcitx5-lotus",
         "git-hooks": "git-hooks",
         "helium-flake": "helium-flake",
@@ -233,77 +308,21 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "sddm-themes": "sddm-themes",
-        "serpantinum": "serpantinum",
         "systems": "systems_2",
         "zen-browser": "zen-browser"
       }
     },
     "sddm-themes": {
-      "locked": {
-        "lastModified": 1794223040,
-        "narHash": "sha256-m63NOFGNcqSqFDIPkiaPtOEFcVqy7Ze0drneri8Rimc=",
-        "owner": "ann9cht",
-        "repo": "sddm-themes",
-        "rev": "aa2eb83e17bd18db32dc283c6b28d0b98262693a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ann9cht",
-        "repo": "sddm-themes",
-        "type": "github"
-      }
-    },
-    "serpantinum": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2",
-        "serpantinum-wallpapers": "serpantinum-wallpapers",
-        "ski": "ski"
-      },
-      "locked": {
-        "lastModified": 1794229563,
-        "narHash": "sha256-ttMqKdHjcIGyKLfYxapVDWMOHf1lGmW8ZhhifzwrSzU=",
-        "owner": "ilyamiro",
-        "repo": "serpantinum",
-        "rev": "320fece13b69451e8e46e2285c1574dd2c0ad1de",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ilyamiro",
-        "repo": "serpantinum",
-        "rev": "320fece13b69451e8e46e2285c1574dd2c0ad1de",
-        "type": "github"
-      }
-    },
-    "serpantinum-wallpapers": {
       "flake": false,
       "locked": {
-        "lastModified": 1793124384,
-        "narHash": "sha256-ffCXeC8Yd8kltn14qwq8yIJW4LoocE/2PRma4+IY3Fw=",
-        "owner": "ilyamiro",
-        "repo": "shell-wallpapers",
-        "rev": "c9baa81ce63e27582934a002f7286437db9c5708",
-        "type": "github"
+        "lastModified": 1794734500,
+        "narHash": "sha256-0gMHp4wUAnd4ZlwtQA+yVOyRNsc81/v0lwUz54OoOdI=",
+        "path": "/home/ann9cht/GitHub/qylock",
+        "type": "path"
       },
       "original": {
-        "owner": "ilyamiro",
-        "repo": "shell-wallpapers",
-        "type": "github"
-      }
-    },
-    "ski": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1793704142,
-        "narHash": "sha256-wxnRqzcNTWfa9ZlHkFtwJIlhxmgo+YYSmGKozIjLiBg=",
-        "owner": "ilyamiro",
-        "repo": "Ski",
-        "rev": "807c744724bb7f34de09f737973aa73391a931b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ilyamiro",
-        "repo": "Ski",
-        "type": "github"
+        "path": "/home/ann9cht/GitHub/qylock",
+        "type": "path"
       }
     },
     "snowfall-lib": {

@@ -8,10 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    serpantinum.url = "github:ilyamiro/serpantinum/320fece13b69451e8e46e2285c1574dd2c0ad1de";
-
-    sddm-themes.url = "github:ann9cht/sddm-themes";
-
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +20,16 @@
 
     agenix = {
       url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sddm-themes = {
+      url = "path:/home/ann9cht/GitHub/qylock";
+      flake = false;
+    };
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
