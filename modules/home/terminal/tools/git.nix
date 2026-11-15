@@ -15,7 +15,7 @@
       };
 
       alias = {
-        ad = "add";
+        a = "add";
 
         b = "branch";
         ba = "branch -a";
@@ -38,6 +38,9 @@
         pl = "pull";
 
         rv = "revert";
+
+        sw = "switch";
+        swc = "switch -c";
       };
     };
   };
