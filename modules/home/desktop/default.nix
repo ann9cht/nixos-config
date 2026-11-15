@@ -1,9 +1,7 @@
 {
   imports = [
+    ./caelestia.nix
     ./cursor.nix
-    ./serpantinum.nix
     ./xdg.nix
-
-    ./hyprland
   ];
 }
