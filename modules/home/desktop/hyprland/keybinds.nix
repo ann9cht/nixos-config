@@ -109,7 +109,6 @@ in
       (bind "${mod} + B" (exec "kitty -e btop --force-utf") { })
 
       (bind "${mod} + Z" (exec "${vars.home}/Programs/Zalo-*.AppImage") { })
-      (bind "${mod} + X" (exec "${vars.home}/Programs/artcraft-launcher-*.AppImage") { })
 
       # serp
       (bind "${mod} + R" (exec "serpantinum reload") { })
