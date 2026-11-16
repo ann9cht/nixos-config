@@ -1,5 +1,8 @@
 {
-  hardware.bluetooth.powerOnBoot = false;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
 
   services.pipewire.wireplumber.extraConfig."51-bluez-sw-volume" = {
     "monitor.bluez.properties" = {
