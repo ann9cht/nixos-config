@@ -4,6 +4,8 @@
 
     ./office/obsidian.nix
 
+    ./file/nautilus.nix
+
     ./browser
     ./media
   ];
