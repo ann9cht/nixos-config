@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    systems.url = "github:nix-systems/default";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -47,14 +46,10 @@
   };
 
   outputs =
-    {
-      self,
-      systems,
-      nixpkgs,
-      ...
-    }@inputs:
+    { nixpkgs, ... }@inputs:
     let
-      forEachSystem = nixpkgs.lib.genAttrs (import systems);
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
 
       vars = rec {
         host = "nixdesk";
@@ -63,10 +58,19 @@
         flakePath = "${home}/GitHub/nixos-config";
         stateVersion = "26.05"; # Không đc sửa
       };
+
+      pre-commit-check = inputs.git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          statix.enable = true;
+          deadnix.enable = true;
+          nixfmt.enable = true;
+        };
+      };
     in
     {
       nixosConfigurations.${vars.host} = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         specialArgs = { inherit inputs vars; };
         modules = [
           ./host/nixdesk
@@ -75,40 +79,19 @@
         ];
       };
 
-      formatter = forEachSystem (
-        system:
+      formatter.${system} =
         let
-          pkgs = nixpkgs.legacyPackages.${system};
-          config = self.checks.${system}.pre-commit-check.config;
-          inherit (config) package configFile;
-          script = ''
-            ${pkgs.lib.getExe package} run --all-files --config ${configFile}
-          '';
+          inherit (pre-commit-check.config) package configFile;
         in
-        pkgs.writeShellScriptBin "pre-commit-run" script
-      );
+        pkgs.writeShellScriptBin "pre-commit-run" ''
+          ${pkgs.lib.getExe package} run --all-files --config ${configFile}
+        '';
 
-      checks = forEachSystem (system: {
-        pre-commit-check = inputs.git-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            statix.enable = true;
-            deadnix.enable = true;
-            nixfmt.enable = true;
-          };
-        };
-      });
+      checks.${system}.pre-commit-check = pre-commit-check;
 
-      devShells = forEachSystem (system: {
-        default =
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-            inherit (self.checks.${system}.pre-commit-check) shellHook enabledPackages;
-          in
-          pkgs.mkShell {
-            inherit shellHook;
-            buildInputs = enabledPackages;
-          };
-      });
+      devShells.${system}.default = pkgs.mkShell {
+        inherit (pre-commit-check) shellHook;
+        buildInputs = pre-commit-check.enabledPackages;
+      };
     };
 }
