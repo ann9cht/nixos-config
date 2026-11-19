@@ -6,6 +6,7 @@ let
     "wl-paste --type text --watch cliphist store"
     "wl-paste --type image --watch cliphist store"
     "fcitx5 -d"
+    "kdeconnect-indicator"
   ];
 in
 {

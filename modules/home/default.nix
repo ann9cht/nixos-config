@@ -3,7 +3,6 @@
   imports = [
     ./apps
     ./desktop
-    ./services
     ./terminal
   ];
 

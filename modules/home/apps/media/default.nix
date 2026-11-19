@@ -6,10 +6,9 @@
   ];
 
   home.packages = with pkgs; [
-    # Xem ảnh
-    loupe
-
-    # Torrent
-    transmission_4-gtk
+    loupe # xem ảnh
+    transmission_4-gtk # torrent
   ];
+
+  services.playerctld.enable = true;
 }
