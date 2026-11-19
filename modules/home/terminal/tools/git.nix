@@ -15,7 +15,7 @@
       };
 
       alias = {
-        ad = "add";
+        a = "add";
 
         b = "branch";
         ba = "branch -a";
