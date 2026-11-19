@@ -20,6 +20,13 @@ let
 
   mkPins =
     base: prefix: pins:
+    let
+      names = map (pin: pin.name) pins;
+      duplicates = lib.unique (lib.filter (n: lib.count (x: x == n) names > 1) names);
+    in
+    assert lib.assertMsg (
+      duplicates == [ ]
+    ) "Zen pins: tên bị trùng trong '${prefix}': ${lib.concatStringsSep ", " duplicates}";
     lib.listToAttrs (
       lib.imap1 (
         i: pin:
@@ -50,6 +57,7 @@ in
     spacesForce = true;
     pinsForce = true;
     pinsForceAction = "remove";
+
     spaces.${spaceName} = {
       id = mkUuid "space/${spaceName}";
       position = 1000;
