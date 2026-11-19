@@ -1,6 +1,7 @@
 {
   imports = [
     ./fonts.nix
+    ./niri.nix
     ./xdg.nix
   ];
 

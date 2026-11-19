@@ -3,10 +3,8 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    config = {
-      common.default = [
-        "gtk"
-      ];
+    config.niri = {
+      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
     };
   };
 }
