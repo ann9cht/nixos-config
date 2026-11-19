@@ -74,7 +74,7 @@
         specialArgs = { inherit inputs vars; };
         modules = [
           ./host/nixdesk
-          ./modules/nixos
+          ./modules/system
           inputs.nix-index-database.nixosModules.default
         ];
       };
