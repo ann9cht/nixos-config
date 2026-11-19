@@ -10,4 +10,6 @@
     evince # xem pdf
     transmission_4-gtk # torrent
   ];
+
+  services.playerctld.enable = true;
 }
