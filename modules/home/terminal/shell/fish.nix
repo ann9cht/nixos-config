@@ -12,12 +12,13 @@
     '';
 
     shellAbbrs = {
-      ns = "nh os switch";
-      nsu = "nh os switch --update";
+      nw = "nh os switch";
+      nwu = "nh os switch --update";
       nb = "nh os boot";
       nbu = "nh os boot --update";
       nt = "nh os test";
       ntu = "nh os test --update";
+      nbb = "nh os build";
       nc = "nh clean all --keep-one";
 
       cnc = "codium ${vars.flakePath}; exit";
