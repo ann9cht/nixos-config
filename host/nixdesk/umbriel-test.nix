@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   vars,
@@ -18,18 +19,47 @@
 
     systemd.tmpfiles.rules = [ "d /home/tumb 0700 test users -" ];
 
+    imports = [ inputs.umbriel.nixosModules.default ];
+
     programs = {
       dux-shell.enable = lib.mkForce false;
       dux-search.enable = lib.mkForce false;
+
+      umbriel.enable = true;
+      luciole.enable = true;
     };
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    services.gvfs.enable = true;
+
+    environment = {
+      sessionVariables.NIXOS_OZONE_WL = "1";
+      systemPackages = [
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
+    };
 
     home-manager.users.tumb = {
       imports = [
+        inputs.umbriel.homeModules.default
         ../../modules/home/terminal
         ../../modules/home/apps
       ];
+
+      programs.umbriel = {
+        enable = true;
+        settings = {
+          general.autostart = [ "noctalia" ];
+          layout.gap = 5;
+          input.keyboard.layout = "us";
+          keybinds = {
+            "Mod+T" = "spawn kitty";
+            "Mod+C" = "spawn codium";
+            "Mod+Z" = "spawn zen-beta";
+            "Mod+Q" = "window-close";
+            "Mod+Space" = "spawn noctalia msg panel-toggle launcher";
+          };
+        };
+      };
 
       home = {
         inherit (vars) stateVersion;
