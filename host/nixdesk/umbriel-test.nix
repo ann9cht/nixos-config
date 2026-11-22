@@ -19,6 +19,7 @@
 
     imports = with inputs; [
       umbriel.nixosModules.default
+      noctalia.nixosModules.default
       luciole.nixosModules.default
     ];
 
