@@ -54,6 +54,7 @@
           input.keyboard.layout = "us";
           keybinds = {
             "Mod+T" = "spawn kitty";
+            "Mod+E" = "spawn luciole";
             "Mod+C" = "spawn codium";
             "Mod+Z" = "spawn zen-beta";
             "Mod+Q" = "window-close";
