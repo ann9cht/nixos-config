@@ -17,8 +17,6 @@
       ];
     };
 
-    systemd.tmpfiles.rules = [ "d /home/tumb 0700 test users -" ];
-
     imports = with inputs; [
       umbriel.nixosModules.default
       luciole.nixosModules.default
@@ -29,17 +27,16 @@
       dux-search.enable = lib.mkForce false;
 
       umbriel.enable = true;
+      noctalia = {
+        enable = true;
+        recommendedServices.enable = true;
+      };
       luciole.enable = true;
     };
 
     services.gvfs.enable = true;
 
-    environment = {
-      sessionVariables.NIXOS_OZONE_WL = "1";
-      systemPackages = [
-        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-      ];
-    };
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     home-manager.users.tumb = {
       imports = [
