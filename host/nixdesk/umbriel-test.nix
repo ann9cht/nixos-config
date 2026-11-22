@@ -25,7 +25,7 @@
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-    home-manager.users.test = {
+    home-manager.users.tumb = {
       imports = [
         ../../modules/home/terminal
         ../../modules/home/apps
