@@ -19,7 +19,10 @@
 
     systemd.tmpfiles.rules = [ "d /home/tumb 0700 test users -" ];
 
-    imports = [ inputs.umbriel.nixosModules.default ];
+    imports = with inputs; [
+      umbriel.nixosModules.default
+      luciole.nixosModules.default
+    ];
 
     programs = {
       dux-shell.enable = lib.mkForce false;
