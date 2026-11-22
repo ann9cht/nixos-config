@@ -1,6 +1,7 @@
 {
   imports = [
     ./nh.nix
+    ./substituter.nix
   ];
 
   nix.settings = {

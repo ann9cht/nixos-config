@@ -7,6 +7,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    umbriel.url = "github:noctalia-dev/umbriel/cachix";
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    luciole.url = "github:noctalia-dev/luciole/cachix";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
