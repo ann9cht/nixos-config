@@ -1,7 +1,7 @@
 {
   imports = [
     ./home-manager.nix
-    ./secrets.nix
+    ./snapper.nix
 
     ./apps
     ./compat
@@ -10,6 +10,5 @@
     ./hardware
     ./network
     ./nix
-    ./storage
   ];
 }

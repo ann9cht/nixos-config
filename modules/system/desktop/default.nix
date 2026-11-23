@@ -1,9 +1,10 @@
 {
   imports = [
-    ./dux-shell
-
+    ./fcitx5.nix
     ./fonts.nix
-    ./niri.nix
+    ./xdg.nix
+
+    ./noctalia
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

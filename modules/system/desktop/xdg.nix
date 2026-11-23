@@ -3,12 +3,11 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    config.niri = {
+    config.umbriel = {
       default = [
-        "gnome"
+        "umbriel"
         "gtk"
       ];
-      "org.freedesktop.impl.portal.FileChooser" = [ "dfiles" ];
     };
   };
 }

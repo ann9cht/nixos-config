@@ -2,19 +2,14 @@
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
 
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
+    home-manager = {
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     umbriel.url = "github:noctalia-dev/umbriel/cachix";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     luciole.url = "github:noctalia-dev/luciole/cachix";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
@@ -23,11 +18,6 @@
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

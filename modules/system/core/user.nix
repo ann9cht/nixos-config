@@ -1,27 +1,17 @@
-{
-  config,
-  pkgs,
-  vars,
-  ...
-}:
+{ pkgs, vars, ... }:
 {
   programs.fish.enable = true;
 
-  users = {
-    mutableUsers = false;
-    users = {
-      root.hashedPassword = "!";
-      ${vars.username} = {
-        isNormalUser = true;
-        hashedPasswordFile = config.age.secrets.password.path;
-        shell = pkgs.fish;
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "i2c"
-          "uinput"
-        ];
-      };
+  users.users = {
+    ${vars.username} = {
+      isNormalUser = true;
+      initialPassword = "1";
+      shell = pkgs.fish;
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "i2c"
+      ];
     };
   };
 }
