@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  inports = [
+  imports = [
     inputs.noctalia.nixosModules.default
     ./luciole.nix
     ./umbriel.nix
