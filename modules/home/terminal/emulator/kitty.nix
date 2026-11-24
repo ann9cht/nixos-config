@@ -19,6 +19,7 @@
       cursor_beam_thickness = "1.5";
       cursor_trail = 1;
 
+      background_opacity = "0.88";
       hide_window_decorations = "yes";
       window_padding_width = 4;
       remember_window_size = "no";

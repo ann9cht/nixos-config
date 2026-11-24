@@ -1,7 +1,8 @@
 {
   imports = [
+    ./umbriel
+
     ./cursor.nix
-    ./umbriel.nix
     ./xdg.nix
   ];
 }
