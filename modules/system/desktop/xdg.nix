@@ -1,11 +1,15 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    config.umbriel = {
-      default = [
-        "umbriel"
+    extraPortals = [
+      inputs.luciole.packages.${pkgs.stdenv.hostPlatform.system}.default
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config.common = {
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.FileChooser" = [
+        "luciole"
         "gtk"
       ];
     };
