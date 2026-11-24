@@ -3,6 +3,7 @@
   imports = [
     inputs.noctalia.nixosModules.default
     ./luciole.nix
+    ./noctalia-greeter.nix
     ./umbriel.nix
   ];
 
