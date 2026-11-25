@@ -9,7 +9,6 @@
       noto-fonts
 
       nerd-fonts.jetbrains-mono
-      nerd-fonts.fira-code
 
       corefonts
       vista-fonts
