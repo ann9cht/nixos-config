@@ -6,12 +6,8 @@
       inputs.luciole.packages.${pkgs.stdenv.hostPlatform.system}.default
       pkgs.xdg-desktop-portal-gtk
     ];
-    config.common = {
-      default = [ "gtk" ];
-      "org.freedesktop.impl.portal.FileChooser" = [
-        "luciole"
-        "gtk"
-      ];
+    config.umbriel = {
+      "org.freedesktop.impl.portal.FileChooser" = [ "luciole" ];
     };
   };
 }
