@@ -163,7 +163,7 @@
   "Mod+Alt+Left" = "column-focus-tab-previous";
   "Mod+WheelUp" = "window-focus-left";
   "Mod+WheelDown" = "window-focus-right";
-  "Mod+O" = {
+  "Mod+Alt+Tab" = {
     action = "overview-toggle";
     repeat = false;
   };
@@ -198,5 +198,5 @@
     action = "window-restore-from-scratchpad";
     repeat = false;
   };
-  "Mod+Alt+Tab" = "scratchpad-focus-next";
+  "Mod+Alt+F1" = "scratchpad-focus-next";
 }
