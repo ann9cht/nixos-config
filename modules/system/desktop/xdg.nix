@@ -7,6 +7,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
     config.umbriel = {
+      default = [ "gtk" ];
       "org.freedesktop.impl.portal.FileChooser" = [ "luciole" ];
     };
   };
