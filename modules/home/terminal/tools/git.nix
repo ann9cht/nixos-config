@@ -38,6 +38,9 @@
         pl = "pull";
 
         rv = "revert";
+
+        sw = "switch";
+        swc = "switch -c";
       };
     };
   };
