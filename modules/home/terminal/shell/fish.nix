@@ -22,7 +22,6 @@
       nc = "nh clean all --keep-one";
 
       cnc = "codium ${vars.flakePath}; exit";
-      cnr = "codium ${vars.home}/.config/niri; exit";
     };
   };
 }
