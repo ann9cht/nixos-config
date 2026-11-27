@@ -21,9 +21,9 @@
 
       layout = {
         extent_presets = [
-          0.333
-          0.5
-          0.667
+          0.4
+          0.6
+          0.8
         ];
         scrolling.default_extent_fraction = 0.5;
       };
@@ -36,47 +36,7 @@
 
       keybinds = import ./keybinds.nix;
 
-      window_rule = [
-        # Blur toàn bộ cửa sổ
-        { blur = true; }
-
-        {
-          match.app_id = "^dev.noctalia.Noctalia$";
-          default_floating = true;
-          default_floating_size_px = {
-            width = 1020;
-            height = 900;
-          };
-        }
-        {
-          match.app_id = "^dev.noctalia.UmbrielSharePicker$";
-          default_floating = true;
-          default_floating_size_px = {
-            width = 800;
-            height = 600;
-          };
-        }
-        {
-          match.title = "^(Picture-in-Picture|Picture in picture)$";
-          default_floating = true;
-          default_maximize = false;
-          default_position = {
-            x = 20;
-            y = 20;
-            anchor = "bottom_right";
-          };
-        }
-        {
-          match.title = "^notificationtoasts_.+_desktop";
-          default_position = {
-            x = 0;
-            y = 0;
-            anchor = "bottom_right";
-          };
-          default_focused = false;
-          default_pinned = true;
-        }
-      ];
+      window_rule = import ./windowrule.nix;
 
       layer_rule = [
         {
