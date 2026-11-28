@@ -9,9 +9,6 @@
       noto-fonts
 
       nerd-fonts.jetbrains-mono
-
-      corefonts
-      vista-fonts
     ];
 
     fontconfig.defaultFonts = {

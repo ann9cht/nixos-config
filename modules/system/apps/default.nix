@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./onlyoffice.nix
     ./steam.nix
     ./waydroid.nix
   ];
