@@ -66,6 +66,10 @@
     default_scrolling_extent = 0.8;
   }
   {
+    match.app_id = "^ONLYOFFICE$";
+    default_scrolling_extent = 0.8;
+  }
+  {
     match.title = "^(Picture-in-Picture|Picture in picture)$";
     default_floating = true;
     default_maximize = false;
