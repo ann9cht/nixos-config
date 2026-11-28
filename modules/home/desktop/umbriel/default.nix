@@ -1,17 +1,16 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
-  imports = [ inputs.umbriel.homeModules.default ];
+  imports = [
+    inputs.umbriel.homeModules.default
+    ./autostart.nix
+    ./keybinds.nix
+    ./layerrule.nix
+    ./windowrule.nix
+  ];
 
   programs.umbriel = {
     enable = true;
     settings = {
-      general.autostart = [
-        "noctalia"
-        "fcitx5 -d"
-        "kdeconnect"
-        "kdeconnect-indicator"
-      ];
-
       appearance.blur.radius = 3;
 
       input.keyboard = {
@@ -34,22 +33,7 @@
         action = "overview-open";
       };
 
-      keybinds = import ./keybinds.nix;
-
-      window_rule = import ./windowrule.nix;
-
-      layer_rule = [
-        {
-          match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$";
-          blur = true;
-          blur_ignore_alpha = 0.5;
-          blur_popups = true;
-        }
-        {
-          match.namespace = "^noctalia-(notification|dock|panel|attached-panel|osd)$";
-          blur_optimized = false;
-        }
-      ];
+      include.optional.files = [ "${config.xdg.configHome}/umbriel/noctalia.toml" ];
     };
   };
 }

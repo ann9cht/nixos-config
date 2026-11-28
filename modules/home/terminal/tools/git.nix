@@ -16,6 +16,7 @@
 
       alias = {
         a = "add";
+        aa = "add .";
 
         b = "branch";
         ba = "branch -a";

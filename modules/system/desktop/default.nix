@@ -2,6 +2,7 @@
   imports = [
     ./fcitx5.nix
     ./fonts.nix
+    ./qt.nix
     ./xdg.nix
 
     ./noctalia

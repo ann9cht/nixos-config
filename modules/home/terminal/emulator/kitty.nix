@@ -34,5 +34,9 @@
       notify_on_cmd_finish = "unfocused 10.0";
       shell_integration = "enabled";
     };
+
+    extraConfig = ''
+      include themes/noctalia.conf
+    '';
   };
 }
