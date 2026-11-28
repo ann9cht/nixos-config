@@ -21,11 +21,15 @@
         ba = "branch -a";
         bd = "branch -d";
         bdd = "branch -D";
+        bm = "branch -m";
 
         cl = "clone";
 
         d = "diff";
         ds = "diff --staged";
+
+        f = "fetch";
+        fp = "fetch --prune";
 
         h = "show";
         h1 = "show HEAD^";
