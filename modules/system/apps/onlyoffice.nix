@@ -7,6 +7,4 @@
       vista-fonts
     ];
   };
-
-  environment.systemPackages = with pkgs; [ euro-office-desktopeditors ];
 }

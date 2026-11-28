@@ -137,10 +137,6 @@
     action = "window-toggle-pinned";
     repeat = false;
   };
-  "Mod+M" = {
-    action = "window-toggle-maximize-to-edges";
-    repeat = false;
-  };
   "Mod+F" = {
     action = "window-toggle-maximize";
     repeat = false;

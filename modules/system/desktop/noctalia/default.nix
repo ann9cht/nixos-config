@@ -7,10 +7,7 @@
     ./umbriel.nix
   ];
 
-  programs.noctalia = {
-    enable = true;
-    recommendedServices.enable = true;
-  };
+  programs.noctalia.enable = true;
 
   environment.systemPackages = with pkgs; [ cliphist ];
 }
